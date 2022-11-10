@@ -14,7 +14,8 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $invoice = Invoice::paginate(10);
+        return view('invoices.index', compact('invoice'));
     }
 
     /**

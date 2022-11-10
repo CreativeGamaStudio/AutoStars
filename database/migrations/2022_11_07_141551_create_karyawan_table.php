@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('karyawan', function (Blueprint $table) {
+        Schema::create('employee', function (Blueprint $table) {
             $table->id();
-            $table->string('nm_kry');
-            $table->string('tlp');
-            $table->text('alamat');
-            $table->string('jabatan');
-            $table->string('id_user');
+            $table->string('employee_name');
+            $table->string('phone_number');
+            $table->text('address');
+            $table->string('position');
             $table->timestamps();
         });
     }

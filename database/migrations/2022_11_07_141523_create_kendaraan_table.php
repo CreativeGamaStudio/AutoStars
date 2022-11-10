@@ -13,14 +13,12 @@ class CreateKendaraanTable extends Migration
      */
     public function up()
     {
-        Schema::create('kendaraan', function (Blueprint $table) {
+        Schema::create('vehicle', function (Blueprint $table) {
             $table->id();
-            $table->string('no_polisi');
-            $table->string('no_rangka');
-            $table->string('id_plg');
+            $table->string('plate_number');
+            $table->string('engine_number');
             $table->string('type');
-            $table->string('warna');
-            $table->string('id_user');
+            $table->string('color');
             $table->timestamps();
         });
     }

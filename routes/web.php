@@ -29,3 +29,17 @@ Route::resource('items', App\Http\Controllers\ItemController::class);
 Route::resource('clients', App\Http\Controllers\ClientController::class);
 
 Route::resource('invoices', App\Http\Controllers\InvoiceController::class);
+
+Route::resource('users', App\Http\Controllers\UserController::class);
+
+Route::resource('customers', App\Http\Controllers\CustomerController::class);
+
+Route::resource('services', App\Http\Controllers\ServiceController::class);
+
+Route::resource('employees', App\Http\Controllers\EmployeeController::class);
+
+Route::resource('vehicles', App\Http\Controllers\VehicleController::class);
+
+Route::resource('parts', App\Http\Controllers\PartController::class);
+
+Route::resource('registrations', App\Http\Controllers\RegistrationController::class);

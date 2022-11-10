@@ -13,13 +13,12 @@ class CreatePelangganTable extends Migration
      */
     public function up()
     {
-        Schema::create('pelanggan', function (Blueprint $table) {
+        Schema::create('customer', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->text('alamat');
-            $table->string('tlp');
-            $table->string('kota');
-            $table->string('id_user');
+            $table->string('name');
+            $table->text('adrress');
+            $table->string('phone_number');
+            $table->string('city');
             $table->timestamps();
         });
     }

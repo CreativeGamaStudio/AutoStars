@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('registration', function (Blueprint $table) {
             $table->id();
-            $table->string('service_name');
-            $table->string('cost');
+            $table->string('barcode');
+            $table->string('police_number');
+            $table->dateTime('date');
+            $table->integer('odometer');
+            $table->integer('pkb_flag');
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jasaservice');
+        Schema::dropIfExists('registration');
     }
 };

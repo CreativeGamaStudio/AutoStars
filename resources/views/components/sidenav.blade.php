@@ -209,40 +209,263 @@
                         data-bs-auto-close="false" role="button" aria-expanded="true">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44"
+                                height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <rect x="4" y="4" width="6" height="5" rx="2"></rect>
-                                <rect x="4" y="13" width="6" height="7" rx="2"></rect>
-                                <rect x="14" y="4" width="6" height="7" rx="2"></rect>
-                                <rect x="14" y="15" width="6" height="5" rx="2"></rect>
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <circle cx="12" cy="7" r="4" />
+                                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Layout
+                            User
                         </span>
                     </a>
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="./layout-horizontal.html">
-                                    Horizontal
+                                    User
                                 </a>
                                 <a class="dropdown-item" href="./layout-boxed.html">
-                                    Boxed
-                                    <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span>
-                                </a>
-                                <a class="dropdown-item" href="./layout-vertical.html">
-                                    Vertical
+                                    Menu User
+                                    <!-- <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span> -->
                                 </a>
                             </div>
-                            <div class="dropdown-menu-column">
+                            <!-- <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="./layout-navbar-dark.html">
                                     Navbar dark
                                 </a>
                                 <a class="dropdown-item" href="./layout-navbar-sticky.html">
                                     Navbar sticky
+                                </a>
+                            </div> -->
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="true">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-border-all"
+                                width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <rect x="4" y="4" width="16" height="16" rx="2" />
+                                <line x1="4" y1="12" x2="20" y2="12" />
+                                <line x1="12" y1="4" x2="12" y2="20" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Master
+                        </span>
+                    </a>
+                    <div class="dropdown-menu show">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="./layout-boxed.html">
+                                    Pelanggan
+                                </a>
+                                <a class="dropdown-item" href="./layout-vertical.html">
+                                    Karyawan
+                                </a>
+                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                    Jasa Service
+                                </a>
+                            </div>
+                            <!-- <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="./layout-navbar-dark.html">
+                                    Navbar dark
+                                </a>
+                                <a class="dropdown-item" href="./layout-navbar-sticky.html">
+                                    Navbar sticky
+                                </a>
+                            </div> -->
+                        </div>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="true">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tool" width="44"
+                                height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Service
+                        </span>
+                    </a>
+                    <div class="dropdown-menu show">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                    Registrasi
+                                </a>
+                                <a class="dropdown-item" href="./layout-boxed.html">
+                                    Perintah Kerja Bengkel
+                                    <!-- <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span> -->
+                                </a>
+                            </div>
+                            <!-- <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="./layout-navbar-dark.html">
+                                    Navbar dark
+                                </a>
+                                <a class="dropdown-item" href="./layout-navbar-sticky.html">
+                                    Navbar sticky
+                                </a>
+                            </div> -->
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Gudang -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="true">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="icon icon-tabler icon-tabler-building-warehouse" width="44" height="44"
+                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 21v-13l9 -4l9 4v13" />
+                                <path d="M13 13h4v8h-10v-6h6" />
+                                <path d="M13 21v-9a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v3" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Gudang
+                        </span>
+                    </a>
+                    <div class="dropdown-menu show">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                    Part
+                                </a>
+                                <a class="dropdown-item" href="./layout-boxed.html">
+                                    Nota Bengkel
+                                </a>
+                                <a class="dropdown-item" href="./layout-boxed.html">
+                                    Retur Nota Bengkel
+                                </a>
+                            </div>
+                            <!-- <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="./layout-navbar-dark.html">
+                                    Navbar dark
+                                </a>
+                                <a class="dropdown-item" href="./layout-navbar-sticky.html">
+                                    Navbar sticky
+                                </a>
+                            </div> -->
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Tagihan -->
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="true">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-invoice"
+                                width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                                <line x1="9" y1="7" x2="10" y2="7" />
+                                <line x1="9" y1="13" x2="15" y2="13" />
+                                <line x1="13" y1="17" x2="15" y2="17" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Tagihan
+                        </span>
+                    </a>
+                    <div class="dropdown-menu show">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                    Faktur
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Kasir -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="true">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-coin" width="44"
+                                height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <circle cx="12" cy="12" r="9" />
+                                <path
+                                    d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4h-2a2 2 0 0 1 -1.8 -1" />
+                                <path d="M12 6v2m0 8v2" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Kasir
+                        </span>
+                    </a>
+                    <div class="dropdown-menu show">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                    Bukti Bayar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- Laporan -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
+                        data-bs-auto-close="false" role="button" aria-expanded="true">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="icon icon-tabler icon-tabler-report-analytics" width="44" height="44"
+                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M9 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-12a2 2 0 0 0 -2 -2h-2" />
+                                <rect x="9" y="3" width="6" height="4" rx="2" />
+                                <path d="M9 17v-5" />
+                                <path d="M12 17v-1" />
+                                <path d="M15 17v-3" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Laporan
+                        </span>
+                    </a>
+                    <div class="dropdown-menu show">
+                        <div class="dropdown-menu-columns">
+                            <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                    Pendapatan
+                                </a>
+                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                    Piutang
                                 </a>
                             </div>
                         </div>
@@ -254,20 +477,16 @@
                         data-bs-auto-close="false" role="button" aria-expanded="false">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <!-- Download SVG icon from http://tabler-icons.io/i/lifebuoy -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <circle cx="12" cy="12" r="4"></circle>
-                                <circle cx="12" cy="12" r="9"></circle>
-                                <line x1="15" y1="15" x2="18.35" y2="18.35"></line>
-                                <line x1="9" y1="15" x2="5.65" y2="18.35"></line>
-                                <line x1="5.65" y1="5.65" x2="9" y2="9"></line>
-                                <line x1="18.35" y1="5.65" x2="15" y2="9"></line>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-thumb-up"
+                                width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Help
+                            Thanks To
                         </span>
                     </a>
                     <div class="dropdown-menu">

@@ -4,20 +4,21 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+//perintah kerja bengkel (PKB database)
 return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 
      * @return void
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
+        Schema::create('order', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description', 15)->min(10);
-            $table->decimal('price', 8, 2);
+            $table->string('date');
+            $table->string('order');
+            $table->string('complaint');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('order');
     }
 };

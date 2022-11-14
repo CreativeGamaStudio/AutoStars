@@ -10,4 +10,13 @@ class Registration extends Model
     use HasFactory;
 
     protected $table = 'registration';
+
+    protected $fillable = [
+        'barcode',
+        'police_number',
+        'date',
+        'odometer',
+        'pkb_flag',
+        'status',
+    ];
 }

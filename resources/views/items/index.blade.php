@@ -11,14 +11,15 @@
                     Manage
                 </div>
                 <h2 class="page-title">
-                    Employee
+                    Items
                 </h2>
             </div>
             <!-- Page title actions -->
             <div class="col-auto ms-auto d-print-none">
                 <div class="btn-list">
+                    <!-- data-bs-target diganti ex #modal-new-nama -->
                     <a href="#" class="btn btn-primary d-none d-sm-inline-block" data-bs-toggle="modal"
-                        data-bs-target="#modal-new-employee">
+                        data-bs-target="#modal-new-item">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -27,7 +28,7 @@
                             <line x1="12" y1="5" x2="12" y2="19"></line>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
-                        New Employee
+                        New Item
                     </a>
                 </div>
             </div>
@@ -49,30 +50,21 @@
 <!-- x-modal item -->
 <!-- 1. ganti modal id
 2. sesuaikan form -->
-<x-modal id="modal-new-employee">
-    <x-slot:title>New Employee</x-slot:title>
+<x-modal id="modal-new-item">
+    <x-slot:title>New Item</x-slot:title>
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Name">
         </div>
+
         <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
-        </div>
-        <div class="mb-3">
-            <label for="phone" class="form-label">Phone Number</label>
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
-        </div>
-        <div class="mb-3">
-            <label for="address" class="form-label">Address</label>
-            <textarea class="form-control" id="address" name="address" rows="4" placeholder="Address"></textarea>
-            <!-- <input type="text" class="form-control" id="address" name="address" placeholder="Address"> -->
-        </div>
-        <div class="mb-3">
-            <label for="city" class="form-label">City</label>
-            <input type="text" class="form-control" id="city" name="city" placeholder="City">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" id="status" name="status">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

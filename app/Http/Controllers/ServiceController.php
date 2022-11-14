@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ServiceDataTable;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,9 @@ class ServiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ServiceDataTable $dataTable)
     {
-        $service = Service::paginate(10);
-        return view('services.index', compact('service'));
+        return $dataTable->render('services.index');
     }
     
 

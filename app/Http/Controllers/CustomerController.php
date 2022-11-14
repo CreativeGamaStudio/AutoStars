@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\CustomerDataTable;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,11 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CustomerDataTable $dataTable)
     {
-        $customer = Customer::paginate(10);
-        return view('customers.index', compact('customer'));
+        return $dataTable->render('customers.index');
     }
+    
 
     /**
      * Show the form for creating a new resource.

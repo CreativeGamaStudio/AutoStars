@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\InvoiceDataTable;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,9 @@ class InvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(InvoiceDataTable $dataTable)
     {
-        $invoice = Invoice::paginate(10);
-        return view('invoices.index', compact('invoice'));
+        return $dataTable->render('invoices.index');
     }
 
     /**

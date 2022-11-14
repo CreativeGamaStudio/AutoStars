@@ -43,3 +43,5 @@ Route::resource('vehicles', App\Http\Controllers\VehicleController::class);
 Route::resource('parts', App\Http\Controllers\PartController::class);
 
 Route::resource('registrations', App\Http\Controllers\RegistrationController::class);
+
+Route::resource('orders', App\Http\Controllers\OrderController::class);

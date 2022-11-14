@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\RegistrationDataTable;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,11 @@ class RegistrationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(RegistrationDataTable $dataTable)
     {
-        $registration = Registration::paginate(10);
-        return view('registrations.index', compact('registration'));
+        return $dataTable->render('registrations.index');
     }
+ 
 
     /**
      * Show the form for creating a new resource.

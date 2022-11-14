@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\EmployeeDataTable;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
@@ -12,10 +13,9 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(EmployeeDataTable $dataTable)
     {
-        $employee = Employee::paginate(10);
-        return view('employees.index', compact('employee'));
+        return $dataTable->render('employees.index');
     }
 
     /**

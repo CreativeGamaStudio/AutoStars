@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('part', function (Blueprint $table) {
             $table->id();
             $table->string('barcode');
-            $table->string('part_name');
+            $table->string('name');
             $table->integer('qty');
             $table->integer('selling_price');
             $table->integer('purchase_price');

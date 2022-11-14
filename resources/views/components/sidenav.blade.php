@@ -185,7 +185,7 @@
         <div class="collapse navbar-collapse" id="sidebar-menu">
             <ul class="navbar-nav pt-lg-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="./">
+                    <a class="nav-link" href="./home">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <!-- Download SVG icon from http://tabler-icons.io/i/home -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
@@ -205,10 +205,9 @@
 
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
+                    <a class="nav-link dropdown-toggle" href="#users-nav" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="true">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                            <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="44"
                                 height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -224,28 +223,22 @@
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                <!-- ganti href dengan routes -->
+                                <a class="dropdown-item" href="./users">
                                     User
                                 </a>
-                                <a class="dropdown-item" href="./layout-boxed.html">
+                                <a class="dropdown-item" href="./items">
                                     Menu User
-                                    <!-- <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span> -->
                                 </a>
+                                
                             </div>
-                            <!-- <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-navbar-dark.html">
-                                    Navbar dark
-                                </a>
-                                <a class="dropdown-item" href="./layout-navbar-sticky.html">
-                                    Navbar sticky
-                                </a>
-                            </div> -->
+
                         </div>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="true">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="false"
+                        role="button" aria-expanded="true">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
                             <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-border-all"
@@ -264,33 +257,24 @@
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-boxed.html">
+                                <a class="dropdown-item" href="./customers">
                                     Pelanggan
                                 </a>
-                                <a class="dropdown-item" href="./layout-vertical.html">
+                                <a class="dropdown-item" href="./employees">
                                     Karyawan
                                 </a>
-                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                <a class="dropdown-item" href="./services">
                                     Jasa Service
                                 </a>
                             </div>
-                            <!-- <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-navbar-dark.html">
-                                    Navbar dark
-                                </a>
-                                <a class="dropdown-item" href="./layout-navbar-sticky.html">
-                                    Navbar sticky
-                                </a>
-                            </div> -->
                         </div>
                     </div>
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
-                        data-bs-auto-close="false" role="button" aria-expanded="true">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="false"
+                        role="button" aria-expanded="true">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                            <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tool" width="44"
                                 height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                                 stroke-linecap="round" stroke-linejoin="round">
@@ -306,22 +290,13 @@
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                <a class="dropdown-item" href="./registations">
                                     Registrasi
                                 </a>
-                                <a class="dropdown-item" href="./layout-boxed.html">
+                                <a class="dropdown-item" href="./perintah">
                                     Perintah Kerja Bengkel
-                                    <!-- <span class="badge badge-sm bg-green-lt text-uppercase ms-auto">New</span> -->
                                 </a>
                             </div>
-                            <!-- <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-navbar-dark.html">
-                                    Navbar dark
-                                </a>
-                                <a class="dropdown-item" href="./layout-navbar-sticky.html">
-                                    Navbar sticky
-                                </a>
-                            </div> -->
                         </div>
                     </div>
                 </li>
@@ -349,24 +324,19 @@
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                <a class="dropdown-item" href="./parts">
                                     Part
                                 </a>
-                                <a class="dropdown-item" href="./layout-boxed.html">
+                                <a class="dropdown-item" href="./items">
+                                    Barang
+                                </a>
+                                <a class="dropdown-item" href="./nota">
                                     Nota Bengkel
                                 </a>
-                                <a class="dropdown-item" href="./layout-boxed.html">
+                                <a class="dropdown-item" href="./retur">
                                     Retur Nota Bengkel
                                 </a>
                             </div>
-                            <!-- <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-navbar-dark.html">
-                                    Navbar dark
-                                </a>
-                                <a class="dropdown-item" href="./layout-navbar-sticky.html">
-                                    Navbar sticky
-                                </a>
-                            </div> -->
                         </div>
                     </div>
                 </li>
@@ -377,7 +347,6 @@
                     <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="true">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
-                            <!-- Download SVG icon from http://tabler-icons.io/i/layout-2 -->
                             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-invoice"
                                 width="44" height="44" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
                                 fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -396,7 +365,7 @@
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                <a class="dropdown-item" href="./invoices">
                                     Faktur
                                 </a>
                             </div>
@@ -427,7 +396,7 @@
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                <a class="dropdown-item" href="./buktibayar">
                                     Bukti Bayar
                                 </a>
                             </div>
@@ -461,10 +430,10 @@
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                <a class="dropdown-item" href="./pendapatan">
                                     Pendapatan
                                 </a>
-                                <a class="dropdown-item" href="./layout-horizontal.html">
+                                <a class="dropdown-item" href="./piutang">
                                     Piutang
                                 </a>
                             </div>
@@ -490,7 +459,7 @@
                         </span>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="./changelog.html">
+                        <a class="dropdown-item" href="./credits">
                             Credits
                         </a>
                     </div>

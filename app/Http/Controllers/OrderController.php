@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
+use App\Models\Order;
 use Illuminate\Http\Request;
-use App\DataTables\ItemDataTable;
 
-class ItemController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(ItemDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('items.index');
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show(Order $order)
     {
         //
     }
@@ -53,10 +52,10 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function edit(Item $item)
+    public function edit(Order $order)
     {
         //
     }
@@ -65,10 +64,10 @@ class ItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -76,10 +75,10 @@ class ItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Item  $item
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    public function destroy(Order $order)
     {
         //
     }

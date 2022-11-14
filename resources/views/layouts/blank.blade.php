@@ -22,7 +22,6 @@
 
 <body class="theme-light">
     <div id="app" class="page">
-        @include('components.sidenav')
         <!-- Navbar -->
         <header class="navbar navbar-expand-md navbar-light d-none d-lg-flex d-print-none">
             <div class="container-xl">
@@ -95,11 +94,12 @@
         </header>
 
 
-        <main class="page-wrapper">
+        <main class="py-4">
             @yield('content')
         </main>
-        
-    @stack('scripts')
+
+        @stack('scripts')
     </div>
 </body>
+
 </html>

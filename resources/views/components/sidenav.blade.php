@@ -290,10 +290,10 @@
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./registations">
+                                <a class="dropdown-item" href="./registrations">
                                     Registrasi
                                 </a>
-                                <a class="dropdown-item" href="./perintah">
+                                <a class="dropdown-item" href="./orders">
                                     Perintah Kerja Bengkel
                                 </a>
                             </div>

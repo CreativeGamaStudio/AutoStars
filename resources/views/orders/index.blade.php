@@ -55,15 +55,19 @@
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+            <label for="name" class="form-label">Date</label>
+            <input type="date" class="form-control" id="date" name="date" placeholder="Date">
         </div>
-
         <div class="mb-3">
-            <label for="cost" class="form-label">Cost</label>
-            <input type="text" class="form-control" id="cost" name="cost" placeholder="Cost">
+            <label for="order" class="form-label">Orders</label>
+            <textarea class="form-control" id="order" name="order" rows="4" placeholder="Order"></textarea>
+            <!-- <input type="text" class="form-control" id="address" name="address" placeholder="Address"> -->
         </div>
-
+        <div class="mb-3">
+            <label for="complaint" class="form-label">Complaint</label>
+            <textarea class="form-control" id="complaint" name="complaint" rows="4" placeholder="Complaint"></textarea>
+            <!-- <input type="text" class="form-control" id="address" name="address" placeholder="Address"> -->
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </x-modal>

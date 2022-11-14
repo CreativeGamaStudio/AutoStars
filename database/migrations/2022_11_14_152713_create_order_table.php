@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->id();
-            $table->string('date');
+            $table->dateTime('date');
             $table->string('order');
             $table->string('complaint');
             $table->timestamps();

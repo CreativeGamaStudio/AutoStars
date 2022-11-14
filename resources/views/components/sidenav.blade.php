@@ -396,7 +396,7 @@
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
-                                <a class="dropdown-item" href="./buktibayar">
+                                <a class="dropdown-item" href="./payments">
                                     Bukti Bayar
                                 </a>
                             </div>

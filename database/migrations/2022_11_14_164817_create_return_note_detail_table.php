@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-//database part
+//retur nota bengkel detail
 return new class extends Migration
 {
     /**
@@ -14,13 +14,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('part', function (Blueprint $table) {
+        Schema::create('return_note_detail', function (Blueprint $table) {
             $table->id();
-            $table->string('barcode');
-            $table->string('name');
             $table->integer('qty');
-            $table->integer('selling_price');
-            $table->integer('purchase_price');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('part');
+        Schema::dropIfExists('return_note_detail');
     }
 };

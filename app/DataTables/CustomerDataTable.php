@@ -75,8 +75,6 @@ class CustomerDataTable extends DataTable
             Column::make('address'),
             Column::make('phone'),
             Column::make('email'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
         ];
     }
 

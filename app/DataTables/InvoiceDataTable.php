@@ -74,9 +74,6 @@ class InvoiceDataTable extends DataTable
             Column::make('invoice_date'),
             Column::make('total'),
             Column::make('paid'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
         ];
     }
 

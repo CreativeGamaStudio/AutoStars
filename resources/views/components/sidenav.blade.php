@@ -330,10 +330,10 @@
                                 <a class="dropdown-item" href="./items">
                                     Barang
                                 </a>
-                                <a class="dropdown-item" href="./nota">
+                                <a class="dropdown-item" href="./notes">
                                     Nota Bengkel
                                 </a>
-                                <a class="dropdown-item" href="./retur">
+                                <a class="dropdown-item" href="./return_notes">
                                     Retur Nota Bengkel
                                 </a>
                             </div>

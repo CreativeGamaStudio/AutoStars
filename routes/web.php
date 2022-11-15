@@ -47,3 +47,7 @@ Route::resource('registrations', App\Http\Controllers\RegistrationController::cl
 Route::resource('orders', App\Http\Controllers\OrderController::class);
 
 Route::resource('payments', App\Http\Controllers\PaymentController::class);
+
+Route::resource('notes', App\Http\Controllers\NoteController::class);
+
+Route::resource('return_notes', App\Http\Controllers\ReturnNoteController::class);

@@ -23,7 +23,9 @@ class ServiceDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'service.action')
+        ->addColumn('action',  function ($service) {
+            return '<a href="'.route('services.edit', $service->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+        })
             ->setRowId('id');
     }
 
@@ -73,6 +75,7 @@ class ServiceDataTable extends DataTable
             Column::make('id'),
             Column::make('name'),
             Column::make('cost'),
+            Column::make('action')->title('Actions')->orderable(false)->searchable(false),
         ];
     }
 

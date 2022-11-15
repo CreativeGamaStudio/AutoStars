@@ -23,7 +23,9 @@ class ItemDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'item.action')
+            ->addColumn('action', function ($item) {
+                return '<a href="' . route('items.edit', $item->id) . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            })
             ->setRowId('id');
     }
 
@@ -59,6 +61,7 @@ class ItemDataTable extends DataTable
                 // Button::make('print'),
                 // Button::make('reset'),
                 // Button::make('reload')
+
             ]);
     }
 
@@ -74,8 +77,11 @@ class ItemDataTable extends DataTable
             Column::make('name'),
             Column::make('description'),
             Column::make('price'),
+            Column::make('action')->title('Actions')->orderable(false)->searchable(false),
+
             // Column::make('created_at'),
             // Column::make('updated_at'),
+
         ];
     }
 

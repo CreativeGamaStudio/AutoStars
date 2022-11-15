@@ -23,7 +23,9 @@ class OrderDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'order.action')
+            ->addColumn('action', function ($order) {
+                return '<a href="' . route('orders.edit', $order->id) . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            })
             ->setRowId('id');
     }
 
@@ -46,20 +48,20 @@ class OrderDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('order-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        // Button::make('excel'),
-                        // Button::make('csv'),
-                        // Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('order-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+                //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                // Button::make('excel'),
+                // Button::make('csv'),
+                // Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -74,8 +76,10 @@ class OrderDataTable extends DataTable
             Column::make('date'),
             Column::make('order'),
             Column::make('complaint'),
+            Column::make('action')->title('Actions')->orderable(false)->searchable(false),
             // Column::make('created_at'),
             // Column::make('updated_at'),
+
         ];
     }
 

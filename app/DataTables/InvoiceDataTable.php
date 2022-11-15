@@ -23,7 +23,9 @@ class InvoiceDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'invoice.action')
+        ->addColumn('action',  function ($invoice) {
+            return '<a href="'.route('invoices.edit', $invoice->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+        })
             ->setRowId('id');
     }
 
@@ -74,6 +76,7 @@ class InvoiceDataTable extends DataTable
             Column::make('invoice_date'),
             Column::make('total'),
             Column::make('paid'),
+            Column::make('action')->title('Actions')->orderable(false)->searchable(false),
         ];
     }
 

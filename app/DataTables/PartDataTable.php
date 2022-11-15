@@ -23,7 +23,9 @@ class PartDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'part.action')
+        ->addColumn('action',  function ($part) {
+            return '<a href="'.route('parts.edit', $part->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+        })
             ->setRowId('id');
     }
 
@@ -76,6 +78,7 @@ class PartDataTable extends DataTable
             Column::make('qty'),
             Column::make('seliing_price'),
             Column::make('purchase_price'),
+            Column::make('action')->title('Actions')->orderable(false)->searchable(false),
             // Column::make('updated_at'),
         ];
     }

@@ -23,7 +23,9 @@ class NoteDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'note.action')
+            ->addColumn('action', function ($note) {
+                return '<a href="' . route('notes.edit', $note->id) . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            })
             ->setRowId('id');
     }
 
@@ -46,20 +48,20 @@ class NoteDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('note-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        // Button::make('excel'),
-                        // Button::make('csv'),
-                        // Button::make('pdf'),
-                        // Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('note-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+                //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                // Button::make('excel'),
+                // Button::make('csv'),
+                // Button::make('pdf'),
+                // Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -72,8 +74,7 @@ class NoteDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('date'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::make('action')->title('Actions')->orderable(false)->searchable(false),
         ];
     }
 

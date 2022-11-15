@@ -23,7 +23,9 @@ class RegistrationDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'registration.action')
+        ->addColumn('action',  function ($registration) {
+            return '<a href="'.route('registrations.edit', $registration->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+        })
             ->setRowId('id');
     }
 
@@ -77,6 +79,7 @@ class RegistrationDataTable extends DataTable
             Column::make('odometer'),
             Column::make('pkb_flag'),
             Column::make('status'),
+            Column::make('action')->title('Actions')->orderable(false)->searchable(false),
             // Column::make('created_at'),
             // Column::make('updated_at'),
         ];

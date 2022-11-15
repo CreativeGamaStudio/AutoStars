@@ -23,7 +23,9 @@ class CustomerDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'customer.action')
+            ->addColumn('action', function ($customer) {
+                return '<a href="' . route('customers.edit', $customer->id) . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            })
             ->setRowId('id');
     }
 
@@ -46,20 +48,21 @@ class CustomerDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('customer-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        // Button::make('excel'),
-                        // Button::make('csv'),
-                        // Button::make('pdf'),
-                        // Button::make('print'),
-                        // Button::make('reset'),
-                        // Button::make('reload')
-                    ]);
+            ->setTableId('customer-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+                //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                // Button::make('excel'),
+                // Button::make('csv'),
+                // Button::make('pdf'),
+                // Button::make('print'),
+                // Button::make('reset'),
+                // Button::make('reload')
+
+            ]);
     }
 
     /**
@@ -75,6 +78,7 @@ class CustomerDataTable extends DataTable
             Column::make('address'),
             Column::make('phone'),
             Column::make('email'),
+            Column::make('action')->title('Actions')->orderable(false)->searchable(false),
         ];
     }
 

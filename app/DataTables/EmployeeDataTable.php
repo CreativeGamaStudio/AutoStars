@@ -23,7 +23,9 @@ class EmployeeDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'employee.action')
+        ->addColumn('action',  function ($employee) {
+            return '<a href="'.route('employees.edit', $employee->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+        })
             ->setRowId('id');
     }
 
@@ -75,6 +77,7 @@ class EmployeeDataTable extends DataTable
             Column::make('phone'),
             Column::make('address'),
             Column::make('position'),
+            Column::make('action')->title('Actions')->orderable(false)->searchable(false),
         ];
     }
 

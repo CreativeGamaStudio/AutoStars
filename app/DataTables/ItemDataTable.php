@@ -74,8 +74,8 @@ class ItemDataTable extends DataTable
             Column::make('name'),
             Column::make('description'),
             Column::make('price'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            // Column::make('created_at'),
+            // Column::make('updated_at'),
         ];
     }
 

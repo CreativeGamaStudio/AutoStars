@@ -10,4 +10,12 @@ class Part extends Model
     use HasFactory;
 
     protected $table = 'part';
+
+    protected $fillable = [
+        'barcode',
+        'name',
+        'qty',
+        'selling_price',
+        'purchase_price',
+    ];
 }

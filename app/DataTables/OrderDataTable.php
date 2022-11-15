@@ -74,8 +74,8 @@ class OrderDataTable extends DataTable
             Column::make('date'),
             Column::make('order'),
             Column::make('complaint'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+            // Column::make('created_at'),
+            // Column::make('updated_at'),
         ];
     }
 

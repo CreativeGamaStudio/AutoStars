@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\Registration;
+use App\Models\Part;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class RegistrationDataTable extends DataTable
+class PartDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -23,17 +23,17 @@ class RegistrationDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'registration.action')
+            ->addColumn('action', 'part.action')
             ->setRowId('id');
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Registration $model
+     * @param \App\Models\Part $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Registration $model): QueryBuilder
+    public function query(Part $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -46,7 +46,7 @@ class RegistrationDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('registration-table')
+                    ->setTableId('part-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -56,7 +56,7 @@ class RegistrationDataTable extends DataTable
                         // Button::make('excel'),
                         // Button::make('csv'),
                         // Button::make('pdf'),
-                        // Button::make('print'),
+                        Button::make('print'),
                         Button::make('reset'),
                         Button::make('reload')
                     ]);
@@ -72,12 +72,10 @@ class RegistrationDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('barcode'),
-            Column::make('police_number'),
-            Column::make('date'),
-            Column::make('odometer'),
-            Column::make('pkb_flag'),
-            Column::make('status'),
-            // Column::make('created_at'),
+            Column::make('name'),
+            Column::make('qty'),
+            Column::make('seliing_price'),
+            Column::make('purchase_price'),
             // Column::make('updated_at'),
         ];
     }
@@ -89,6 +87,6 @@ class RegistrationDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Registration_' . date('YmdHis');
+        return 'Part_' . date('YmdHis');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\PartDataTable;
 use App\Models\Part;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,11 @@ class PartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PartDataTable $dataTable)
     {
-        $part = Part::paginate(10);
-        return view('parts.index', compact('part'));
+        return $dataTable->render('parts.index');
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -31,7 +31,6 @@ $request->validate([
         // redirect to users.index
         return redirect()->route('users.index')->with('success', 'User created successfully.');
 
-
 ```
 
 

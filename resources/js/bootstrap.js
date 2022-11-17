@@ -1,6 +1,7 @@
 import _ from 'lodash';
 window._ = _;
-
+import * as $ from 'jquery';
+window.$ = window.jQuery = $;
 import 'bootstrap/dist/js/bootstrap';
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

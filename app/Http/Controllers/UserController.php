@@ -77,7 +77,8 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        session()->put('info', 'User updated successfully.');
+        return view('home');
     }
 
     /**

@@ -25,7 +25,7 @@ class InvoiceController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -36,7 +36,22 @@ class InvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'invoices_date' => 'required',
+            'total' => 'required',
+            'paid' => 'required',
+        ]);
+
+        // create user
+        $user = User::create([
+            'invoices_date' => $request->invoices_date,
+            'total' => $request->total,
+            'paid' => $request->paid,
+        ]);
+
+        // redirect to users.index
+        return redirect()->route('invoices.index')->with('success', 'Invoices created successfully.');
+
     }
 
     /**
@@ -58,7 +73,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        //
+        
     }
 
     /**

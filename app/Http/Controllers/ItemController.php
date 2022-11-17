@@ -36,7 +36,19 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+            ]);
+            
+            $item = Item::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+            ]);
+            
+            return redirect()->route('items.index')->with('success','item has been created successfully.');
     }
 
     /**

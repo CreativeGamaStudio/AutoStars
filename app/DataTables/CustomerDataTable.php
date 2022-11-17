@@ -75,9 +75,9 @@ class CustomerDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
+            Column::make('phone_number'),
             Column::make('address'),
-            Column::make('phone'),
-            Column::make('email'),
+            Column::make('city'),
             Column::make('action')->title('Actions')->orderable(false)->searchable(false),
         ];
     }

@@ -17,7 +17,7 @@ class CustomerController extends Controller
     {
         return $dataTable->render('customers.index');
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -37,7 +37,23 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'phone_number' => 'required|string|email|max:13',
+            'address' => 'required',
+            'city' => 'required',
+        ]);
+
+        // create user
+        $customer = Customer::create([
+            'name' => $request->name,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+            'city' => $request->city,
+        ]);
+
+        // redirect to users.index
+        return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
     }
 
     /**

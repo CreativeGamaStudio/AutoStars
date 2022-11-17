@@ -52,15 +52,15 @@
 2. sesuaikan form -->
 <x-modal id="modal-new-customer">
     <x-slot:title>New Customer</x-slot:title>
-    <form action="{{ route('users.store') }}" method="POST">
+    <form action="{{ route('customers.store') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="Name">
         </div>
         <div class="mb-3">
-            <label for="phone" class="form-label">Phone Number</label>
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
+            <label for="phone_number" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phone_number" name="phone_number" placeholder="Phone">
         </div>
         <div class="mb-3">
             <label for="address" class="form-label">Address</label>
@@ -68,8 +68,8 @@
             <!-- <input type="text" class="form-control" id="address" name="address" placeholder="Address"> -->
         </div>
         <div class="mb-3">
-            <label for="position" class="form-label">Position</label>
-            <input type="text" class="form-control" id="position" name="position" placeholder="position">
+            <label for="city" class="form-label">City</label>
+            <input type="city" class="form-control" id="city" name="city" placeholder="city">
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

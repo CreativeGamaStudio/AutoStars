@@ -37,7 +37,28 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'barcode' => 'required',
+            'police_number' => 'required',
+            'date' => 'required',
+            'odometer' => 'required',
+            'pkb_flag' => 'required',
+            'status' => 'required',
+        ]);
+
+        // create user
+        $user = User::create([
+            'barcode' => $request->barcode,
+            'date' => $request->date,
+            'police_number' => $request->police_number,
+            'odometer' => $request->odometer,
+            'pkb_flag' => $request->pkb_flag,
+            'status' => $request->status,
+        ]);
+
+        // redirect to users.index
+        return redirect()->route('invoices.index')->with('success', 'Invoices created successfully.');
+
     }
 
     /**

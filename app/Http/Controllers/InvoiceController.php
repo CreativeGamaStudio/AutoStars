@@ -43,7 +43,7 @@ class InvoiceController extends Controller
         ]);
 
         // create user
-        $user = User::create([
+        $invoice = Invoice::create([
             'invoices_date' => $request->invoices_date,
             'total' => $request->total,
             'paid' => $request->paid,

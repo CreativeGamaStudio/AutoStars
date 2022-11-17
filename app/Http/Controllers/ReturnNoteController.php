@@ -36,9 +36,18 @@ class ReturnNoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'date' => 'required',
+        ]);
 
+        // create user
+        $return_note = ReturnNote::create([
+            'date' => $request->date,
+        ]);
+
+        // redirect to index
+        return redirect()->route('return_notes.index')->with('success', 'Return Notes created successfully.');
+    }
     /**
      * Display the specified resource.
      *

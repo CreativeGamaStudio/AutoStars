@@ -37,7 +37,22 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'service_date' => 'required',
+            'total' => 'required',
+            'paid' => 'required',
+        ]);
+
+        // create user
+        $service = Service::create([
+            'service_date' => $request->service_date,
+            'total' => $request->total,
+            'paid' => $request->paid,
+        ]);
+
+        // redirect to index
+        return redirect()->route('services.index')->with('success', 'Services created successfully.');
+
     }
 
     /**

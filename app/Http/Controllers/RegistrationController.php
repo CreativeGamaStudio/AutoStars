@@ -47,7 +47,7 @@ class RegistrationController extends Controller
         ]);
 
         // create user
-        $user = User::create([
+        $registration = Registration::create([
             'barcode' => $request->barcode,
             'date' => $request->date,
             'police_number' => $request->police_number,
@@ -57,7 +57,7 @@ class RegistrationController extends Controller
         ]);
 
         // redirect to users.index
-        return redirect()->route('invoices.index')->with('success', 'Invoices created successfully.');
+        return redirect()->route('registrations.index')->with('success', 'Registration created successfully.');
 
     }
 
@@ -90,9 +90,26 @@ class RegistrationController extends Controller
      * @param  \App\Models\Registration  $registration
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Registration $registration)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'barcode' => 'required',
+            'police_number' => 'required',
+            'date' => 'required',
+            'odometer' => 'required',
+            'pkb_flag' => 'required',
+            'status' => 'required',
+        ]);
+        $item = Item::find($id);
+        $item->barcode = $request->barcode;
+        $item->police_number = $request->police_number;
+        $item->date = $request->date;
+        $item->odometer = $request->odometer;
+        $item->pkb_flag = $request->pkb_flag;
+        $item->status = $request->status;
+        $item->save();
+
+        return redirect()->route('registrations.index')->with('success', 'Registration created successfully.');
     }
 
     /**

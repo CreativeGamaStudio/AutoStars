@@ -33,6 +33,15 @@ $request->validate([
 
 ```
 
+### Edit
+
+1. Update DataTable Edit Buat Nampilin Data Terbaru
+
+2. Update Controller update
+
+3. Update Views
+
+
 
 ## Tutorial Action Button
 Tombol edit

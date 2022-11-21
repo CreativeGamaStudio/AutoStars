@@ -40,15 +40,15 @@ class ItemController extends Controller
             'name' => 'required',
             'description' => 'required',
             'price' => 'required'
-            ]);
-            
-            $item = Item::create([
-                'name' => $request->name,
-                'description' => $request->description,
-                'price' => $request->price,
-            ]);
-            
-            return redirect()->route('items.index')->with('success','item has been created successfully.');
+        ]);
+
+        $item = Item::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+        ]);
+
+        return redirect()->route('items.index')->with('success', 'item has been created successfully.');
     }
 
     /**
@@ -80,9 +80,20 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Item $item)
+    public function update(Request $request, $id)
     {
-        //
+        // validate
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
+        $item = Item::find($id);
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->price = $request->price;
+        $item->save();
+        return redirect()->route('items.index')->with('success', 'item has been updated successfully.');
     }
 
     /**
@@ -93,6 +104,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        //
+        $item->delete();
+
+        return redirect()->route('items.index')->with('success', 'item has been deleted successfully.');
     }
 }

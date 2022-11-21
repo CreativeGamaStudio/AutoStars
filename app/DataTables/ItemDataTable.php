@@ -24,7 +24,10 @@ class ItemDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($item) {
-                return '<a href="' . route('items.edit', $item->id) . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+                $itemasjson = json_encode($item);
+                $itemasjson = str_replace("\"", "'", $itemasjson);
+                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+                return '<a class="btn btn-xs btn-primary" data-bs-toggle="modal" data-bs-target="#modal-edit-item" data-bs-item="' . $itemasjson . '"><i class="fas fa-eye"></i></a>';
             })
             ->setRowId('id');
     }

@@ -85,9 +85,23 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, Customer $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'phone_number' => 'required|string|email|max:13',
+            'address' => 'required',
+            'city' => 'required',
+        ]);
+
+        $item = Customer::find($id);
+        $item->name = $request->name;
+        $item->phone_number = $request->phone_number;
+        $item->address = $request->address;
+        $item->city = $request->city;
+        $item->save();
+        
+        return redirect()->route('customers.index')->with('success', 'costumer has been updated successfully.');
     }
 
     /**

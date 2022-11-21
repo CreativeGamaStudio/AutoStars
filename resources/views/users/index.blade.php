@@ -100,12 +100,12 @@
             data = data.replace(/'/g, '"');
             var json = JSON.parse(data);
 
-            var inputName = document.getElementById('modal-edit-customer').querySelector('#name');
-            var inputEmail = document.getElementById('modal-edit-customer').querySelector('#email');
-            var inputPass = document.getElementById('modal-edit-item').querySelector('#password');
-            var inputPassConf = document.getElementById('modal-edit-item').querySelector('#password_confirmation');
-            var inputRole = document.getElementById('modal-edit-item').querySelector('#role');
-            var inputStatus = document.getElementById('modal-edit-item').querySelector('#status');
+            var inputName = document.getElementById('modal-edit-user').querySelector('#name');
+            var inputEmail = document.getElementById('modal-edit-user').querySelector('#email');
+            var inputPass = document.getElementById('modal-edit-user').querySelector('#password');
+            var inputPassConf = document.getElementById('modal-edit-user').querySelector('#password_confirmation');
+            var inputRole = document.getElementById('modal-edit-user').querySelector('#role');
+            var inputStatus = document.getElementById('modal-edit-user').querySelector('#status');
 
             inputName.value = json.name;
             inputEmail.value = json.email;
@@ -119,8 +119,8 @@
             modalTitle.textContent = 'Edit ' + json.name
             
             // set action to form
-            var modalForm = document.getElementById('modal-edit-customer').querySelector('form');
-            modalForm.action = "{{ route('customers.update', '') }}/" + json.id;
+            var modalForm = document.getElementById('modal-edit-user').querySelector('form');
+            modalForm.action = "{{ route('users.update', '') }}/" + json.id;
             modalForm.method = "PUT";
         })
     </script>

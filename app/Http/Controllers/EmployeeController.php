@@ -44,7 +44,7 @@ class EmployeeController extends Controller
         ]);
 
         // create user
-        $user = User::create([
+        $employee = Employee::create([
             'name' => $request->name,
             'phone_number' => $request->phone_number,
             'address' => $request->address,

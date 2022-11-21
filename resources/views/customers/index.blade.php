@@ -85,7 +85,7 @@
         var exampleModal = document.getElementById('modal-edit-customer')
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
-            var data = button.getAttribute('data-bs-item')
+            var data = button.getAttribute('data-bs-customer')
             data = data.replace(/'/g, '"');
             var json = JSON.parse(data);
 

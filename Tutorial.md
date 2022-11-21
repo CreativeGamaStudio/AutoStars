@@ -64,7 +64,7 @@ $request->validate([
                 $itemasjson = json_encode($item);
                 $itemasjson = str_replace("\"", "'", $itemasjson);
                 $itemasjson = str_replace("\r\n", ' ', $itemasjson);
-                return '<a class="btn btn-xs btn-primary" data-bs-toggle="modal" data-bs-target="#modal-edit-item" data-bs-item="' . $itemasjson . '"><i class="fas fa-eye"></i></a>';
+                return '<a class="btn btn-xs btn-primary" data-bs-toggle="modal" data-bs-target="#modal-edit-item" data-bs-item="' . $itemasjson . '"><i class="fas fa-eye"></i> Edit</a>';
             })
 
 ```

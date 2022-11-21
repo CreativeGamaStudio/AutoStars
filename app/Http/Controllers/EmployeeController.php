@@ -84,9 +84,22 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone_number' => 'required|max:13',
+            'address' => 'required',
+            'position' => 'required',
+        ]);
+        $item = Employee::find($id);
+        $item->name = $request->name;
+        $item->phone_number = $request->phone_number;
+        $item->address = $request->address;
+        $item->position = $request->position;
+        $item->save();
+
+        return redirect()->route('employees.index')->with('success', 'employee has been updated successfully.');
     }
 
     /**

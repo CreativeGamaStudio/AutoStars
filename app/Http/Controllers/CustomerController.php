@@ -85,7 +85,7 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',

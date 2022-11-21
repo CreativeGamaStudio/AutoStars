@@ -36,7 +36,23 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'phone_number' => 'required|max:13',
+            'address' => 'required',
+            'position' => 'required',
+        ]);
+
+        // create user
+        $user = User::create([
+            'name' => $request->name,
+            'phone_number' => $request->phone_number,
+            'address' => $request->address,
+            'position' => $request->position,
+        ]);
+
+        // redirect to users.index
+        return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
     }
 
     /**

@@ -48,7 +48,7 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-                                                    2. sesuaikan form -->
+        2. sesuaikan form -->
     <x-modal id="modal-new-item">
         <x-slot:title>New Item</x-slot:title>
         <form action="{{ route('items.store') }}" method="POST">
@@ -61,6 +61,10 @@
         </form>
     </x-modal>
 
+    <!-- x-modal item -->
+    <!-- 1. ganti modal id
+        2. sesuaikan form -->
+        {{-- modal edit item --}}
     <x-modal id="modal-edit-item">
         <x-slot:title>Edit</x-slot:title>
         <form method="POST" enctype="multipart/form-data">
@@ -74,7 +78,7 @@
         </form>
     </x-modal>
 
-
+{{-- script --}} 
     <script>
         var exampleModal = document.getElementById('modal-edit-item')
         exampleModal.addEventListener('show.bs.modal', function(event) {

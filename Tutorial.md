@@ -4,6 +4,7 @@
 reference : https://www.tutsmake.com/laravel-9-crud-application-tutorial-with-example/
 
 ```
+## ADD
 1. create
 goto controller
 
@@ -33,13 +34,40 @@ $request->validate([
 
 ```
 
+```
 ### Edit
 
-1. Update DataTable Edit Buat Nampilin Data Terbaru
+1. goto views
 
-2. Update Controller update
+tambahin modal edit dan script js edit
 
-3. Update Views
+ref : [./views/items/index.blade.php](./views)
+
+2. Update Controller edit
+
+tambahin di function update
+$request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
+        $item = Item::find($id);
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->price = $request->price;
+        $item->save();
+        
+        return redirect()->route('items.index')->with('success', 'item has been updated successfully.');
+
+3. goto datatable
+->addColumn('action', function ($item) {
+                $itemasjson = json_encode($item);
+                $itemasjson = str_replace("\"", "'", $itemasjson);
+                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+                return '<a class="btn btn-xs btn-primary" data-bs-toggle="modal" data-bs-target="#modal-edit-item" data-bs-item="' . $itemasjson . '"><i class="fas fa-eye"></i></a>';
+            })
+
+```
 
 
 

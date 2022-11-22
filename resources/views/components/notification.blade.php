@@ -1,87 +1,60 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.js"></script>
+ @if (session()->has('success'))
+     <x-alert type="success" message="{{ session()->get('success') }}">
+         <x-slot:icon>
+             <i class="bi bi-check-circle-fill"></i>
+         </x-slot:icon>
+     </x-alert>
+     @php
+         session()->forget('success');
+     @endphp
+ @endif
 
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.css">
 
 
+ @if (session()->has('info'))
+     <x-alert type="info" message="{{ session()->get('info') }}">
+         <x-slot:icon>
+             <i class="bi bi-info-circle-fill"></i>
+         </x-slot:icon>
+     </x-alert>
 
-<div class='notifications top-right'></div>
-
-
-
-<script>
-
-  @if(Session::has('success'))
-
-     $('.top-right').notify({
-
-        message: { text: "{{ Session::get('success') }}" }
-
-      }).show();
 
      @php
-
-       Session::forget('success');
-
+         session()->forget('info');
      @endphp
-
-  @endif
-
-
-
-  @if(Session::has('info'))
-
-      $('.top-right').notify({
-
-        message: { text: "{{ Session::get('info') }}" },
-
-        type:'info'
-
-      }).show();
-
-      @php
-
-        Session::forget('info');
-
-      @endphp
-
-  @endif
+ @endif
 
 
 
-  @if(Session::has('warning'))
-
-  		$('.top-right').notify({
-
-        message: { text: "{{ Session::get('warning') }}" },
-
-        type:'warning'
-
-      }).show();
-
-      @php
-
-        Session::forget('warning');
-
-      @endphp
-
-  @endif
+ @if (session()->has('warning'))
+     <x-alert type="warning" message="{{ session()->get('warning') }}">
+         <x-slot:icon>
+             <i class="bi bi-exclamation-circle-fill"></i>
+         </x-slot:icon>
+     </x-alert>
+     @php
+         session()->forget('warning');
+     @endphp
+ @endif
 
 
 
-  @if(Session::has('error'))
-  		$('.top-right').notify({
-        message: { text: "{{ Session::get('error') }}" },
-        type:'danger'
-      }).show();
-
-      @php
-
-        Session::forget('error');
-
-      @endphp
-
-  @endif
+ @if (session()->has('error'))
+     <x-alert type="danger" message="{{ session()->get('error') }}">
+         <x-slot:icon>
+             <i class="bi bi-x-circle-fill"></i>
+         </x-slot:icon>
+     </x-alert>
+     @php
+         session()->forget('error');
+     @endphp
+ @endif
 
 
+ <script>
+     var alertList = document.querySelectorAll('.alert');
 
-</script>
+     alertList.forEach(function(alert) {
+         new bootstrap.Alert(alert);
+     });
+ </script>

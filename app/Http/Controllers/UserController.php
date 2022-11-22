@@ -77,8 +77,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        // session()->put('info', 'User updated successfully.');
-        // return view('home');
+        return redirect()->route('users.index')->with('warning', 'User Edited successfully.');
     }
 
     /**
@@ -104,7 +103,7 @@ class UserController extends Controller
         $item->role = $request->role;
         $item->status = $request->status;
         $item->save();
-        
+
         return redirect()->route('users.index')->with('success', 'User has been updated successfully.');
     }
 

@@ -23,12 +23,15 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($item) {
-                $itemasjson = json_encode($item);
-                $itemasjson = str_replace("\"", "'", $itemasjson);
-                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
-                return '<a class="btn btn-xs btn-primary" data-bs-toggle="modal" data-bs-target="#modal-edit-user" data-bs-user="' . $itemasjson . '"><i class="fas fa-eye"></i> Edit</a>';
+            ->addColumn('action', function ($user) {
+                return '<a class="btn btn-xs btn-primary" href="' . route('users.edit', $user->id) . '"><i class="fas fa-eye"></i> Edit</a>';
             })
+                // ->addColumn('action', function ($item) {
+                //     $itemasjson = json_encode($item);
+                //     $itemasjson = str_replace("\"", "'", $itemasjson);
+                //     $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+                //     return '<a class="btn btn-xs btn-primary" data-bs-toggle="modal" data-bs-target="#modal-edit-user" data-bs-user="' . $itemasjson . '"><i class="fas fa-eye"></i> Edit</a>';
+                // })
             ->setRowId('id');
     }
 

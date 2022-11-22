@@ -39,7 +39,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone_number' => 'required|string|email|max:13',
+            'phone_number' => 'required|max:13',
             'address' => 'required',
             'city' => 'required',
         ]);
@@ -75,7 +75,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
     }
 
     /**
@@ -89,7 +89,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone_number' => 'required|string|email|max:13',
+            'phone_number' => 'required|max:13',
             'address' => 'required',
             'city' => 'required',
         ]);
@@ -101,7 +101,7 @@ class CustomerController extends Controller
         $item->city = $request->city;
         $item->save();
         
-        return redirect()->route('customers.index')->with('success', 'costumer has been updated successfully.');
+        return redirect()->route('customers.index')->with('success', 'Costumer has been updated successfully.');
     }
 
     /**

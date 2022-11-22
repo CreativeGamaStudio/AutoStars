@@ -16,7 +16,8 @@ class CreatePelangganTable extends Migration
         Schema::create('customer', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('adrress');
+            $table->text('address');
+            // $table->string('phone');
             $table->string('phone_number');
             $table->string('city');
             $table->timestamps();

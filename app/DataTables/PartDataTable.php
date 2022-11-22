@@ -23,9 +23,12 @@ class PartDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action',  function ($part) {
-            return '<a href="'.route('parts.edit', $part->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
-        })
+            ->addColumn('action', function ($item) {
+                $itemasjson = json_encode($item);
+                $itemasjson = str_replace("\"", "'", $itemasjson);
+                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+                return '<a class="btn btn-xs btn-primary" data-bs-toggle="modal" data-bs-target="#modal-edit-part" data-bs-part="' . $itemasjson . '"><i class="fas fa-eye"></i> Edit</a>';
+            })
             ->setRowId('id');
     }
 
@@ -48,20 +51,20 @@ class PartDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('part-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        // Button::make('excel'),
-                        // Button::make('csv'),
-                        // Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
+            ->setTableId('part-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+                //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                // Button::make('excel'),
+                // Button::make('csv'),
+                // Button::make('pdf'),
+                Button::make('print'),
+                Button::make('reset'),
+                Button::make('reload')
+            ]);
     }
 
     /**
@@ -80,6 +83,7 @@ class PartDataTable extends DataTable
             Column::make('purchase_price'),
             Column::make('action')->title('Actions')->orderable(false)->searchable(false),
             // Column::make('updated_at'),
+
         ];
     }
 

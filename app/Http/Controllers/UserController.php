@@ -77,7 +77,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return redirect()->route('users.index')->with('warning', 'User Edited successfully.');
+        return redirect()->route('users.index')->with('success', 'User Edited successfully.');
     }
 
     /**

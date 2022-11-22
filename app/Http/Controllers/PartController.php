@@ -37,7 +37,26 @@ class PartController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'barcode' => 'required',
+            'name' => 'required',
+            'qty' => 'required',
+            'selling_price' => 'required',
+            'purchase_price' => 'required',
+            
+        ]);
+
+         // create parts
+         $part = Part::create([
+            'name' => $request->name,
+            'barcode' => $request->barcode,
+            'qty' => $request->qty,
+            'purchase_price' => $request->purchase_price,
+            'selling_price' => $request->selling_price,
+        ]);
+
+        return redirect()->route('parts.index')->with('success', 'Parts has been updated successfully.');
+
     }
 
     /**
@@ -59,7 +78,7 @@ class PartController extends Controller
      */
     public function edit(Part $part)
     {
-        //
+        return redirect()->route('parts.index')->with('success', 'Parts has been updated successfully.');
     }
 
     /**
@@ -69,9 +88,24 @@ class PartController extends Controller
      * @param  \App\Models\Part  $part
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Part $part)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'barcode' => 'required',
+            'name' => 'required',
+            'qty' => 'required',
+            'purchase_price' => 'required',
+            'selling_price' => 'required',
+        ]);
+        $item = Part::find($id);
+        $item->name = $request->name;
+        $item->barcode = $request->barcode;
+        $item->qty = $request->qty;
+        $item->purchase_price = $request->purchase_price;
+        $item->selling_price = $request->selling_price;
+        $item->save();
+        
+        return redirect()->route('parts.index')->with('success', 'Parts has been updated successfully.');
     }
 
     /**

@@ -101,7 +101,7 @@ class RegistrationController extends Controller
             'pkb_flag' => 'required',
             'status' => 'required',
         ]);
-        $item = Item::find($id);
+        $item = Registration::find($id);
         $item->barcode = $request->barcode;
         $item->police_number = $request->police_number;
         $item->date = $request->date;

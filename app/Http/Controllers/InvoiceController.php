@@ -90,7 +90,7 @@ class InvoiceController extends Controller
             'total' => 'required',
             'paid' => 'required',
         ]);
-        $item = Item::find($id);
+        $item = Invoice::find($id);
         $item->invoice_date = $request->invoice_date;
         $item->total = $request->total;
         $item->paid = $request->paid;

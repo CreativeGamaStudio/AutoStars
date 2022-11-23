@@ -76,7 +76,7 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        //
+        return redirect()->route('payments.index')->with('success', 'Invoices created successfully.');
     }
 
     /**
@@ -86,9 +86,24 @@ class PaymentController extends Controller
      * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Payment $payment)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'price' => 'required',
+            'discount' => 'required',
+            'date' => 'required',
+            'card_number' => 'required',
+            'giro_number' => 'required',
+        ]);
+        $item = Payment::find($id);
+        $item->price = $request->price;
+        $item->discount = $request->discount;
+        $item->date = $request->date;
+        $item->card_number = $request->card_number;
+        $item->giro_number = $request->giro_number;
+        $item->save();
+        
+        return redirect()->route('payments.index')->with('success', 'Invoices created successfully.');
     }
 
     /**

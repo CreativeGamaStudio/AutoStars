@@ -51,13 +51,12 @@
     2. sesuaikan form -->
     <x-modal id="modal-new-employee">
         <x-slot:title>New Employee</x-slot:title>
-        <form action="{{ route('users.store') }}" method="POST">
+        <form action="{{ route('employees.store') }}" method="POST">
             @csrf
             <x-input id="name" name="name" label="Name" placeholder="Name" />
-            <x-input id="email" name="email" label="Email" placeholder="Email" type="email" />
             <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="number"/>
             <x-input id="address" name="address" label="Address" placeholder="Address" />
-            <x-input id="city" name="city" label="City" placeholder="City" />
+            <x-input id="position" name="position" label="Position" placeholder="Position" />
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -70,10 +69,9 @@
             @csrf
             @method('PUT')
             <x-input id="name" name="name" label="Name" placeholder="Name" />
-            <x-input id="email" name="email" label="Email" placeholder="Email" type="email" />
             <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="number"/>
             <x-input id="address" name="address" label="Address" placeholder="Address" />
-            <x-input id="city" name="city" label="City" placeholder="City" />
+            <x-input id="position" name="position" label="Position" placeholder="Position" />
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -89,16 +87,14 @@
             var json = JSON.parse(data);
 
             var inputName = document.getElementById('modal-edit-employee').querySelector('#name');
-            var inputEmail = document.getElementById('modal-edit-employee').querySelector('#email');
             var inputPhone = document.getElementById('modal-edit-employee').querySelector('#phone_number');
             var inputAddress = document.getElementById('modal-edit-employee').querySelector('#address');
-            var inputCity = document.getElementById('modal-edit-employee').querySelector('#city');
+            var inputPosition = document.getElementById('modal-edit-employee').querySelector('#position');
 
             inputName.value = json.name;
-            inputEmail.value = json.email;
             inputPhone.value = json.phone_number;
             inputAddress.value = json.address;
-            inputCity.value = json.city;
+            inputPosition.value = json.position;
 
             var modalTitle = exampleModal.querySelector('.modal-title')
 

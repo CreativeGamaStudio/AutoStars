@@ -37,7 +37,7 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:40',
             'phone_number' => 'required|max:13',
             'address' => 'required',
             'position' => 'required',
@@ -74,7 +74,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
     }
 
     /**
@@ -87,7 +87,7 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:40',
             'phone_number' => 'required|max:13',
             'address' => 'required',
             'position' => 'required',

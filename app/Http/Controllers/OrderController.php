@@ -72,7 +72,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return redirect()->route('orders.index')->with('success', 'Orders created successfully.');
     }
 
     /**

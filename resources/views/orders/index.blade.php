@@ -54,7 +54,7 @@
         <x-slot:title>New Order</x-slot:title>
         <form action="{{ route('orders.store') }}" method="POST">
             @csrf
-            <x-input id="date" name="date" label="Date" placeholder="Date" />
+            <x-input id="date" name="date" label="Date" placeholder="Date"  type="date"/>
             <div class="mb-3">
                 <label for="order" class="form-label">Orders</label>
                 <textarea class="form-control" id="order" name="order" rows="4" placeholder="Order"></textarea>

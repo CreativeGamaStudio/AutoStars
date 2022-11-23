@@ -80,7 +80,8 @@ class RegistrationController extends Controller
      */
     public function edit(Registration $registration)
     {
-        //
+        return redirect()->route('registrations.index')->with('success', 'Registration created successfully.');
+
     }
 
     /**

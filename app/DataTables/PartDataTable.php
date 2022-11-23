@@ -79,7 +79,7 @@ class PartDataTable extends DataTable
             Column::make('barcode'),
             Column::make('name'),
             Column::make('qty'),
-            Column::make('seliing_price'),
+            Column::make('selling_price'),
             Column::make('purchase_price'),
             Column::make('action')->title('Actions')->orderable(false)->searchable(false),
             // Column::make('updated_at'),

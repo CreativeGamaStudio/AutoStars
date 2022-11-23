@@ -37,14 +37,14 @@ class InvoiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'invoices_date' => 'required',
+            'invoice_date' => 'required',
             'total' => 'required',
             'paid' => 'required',
         ]);
 
         // create user
         $invoice = Invoice::create([
-            'invoices_date' => $request->invoices_date,
+            'invoice_date' => $request->invoice_date,
             'total' => $request->total,
             'paid' => $request->paid,
         ]);
@@ -73,7 +73,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        
+        return redirect()->route('invoices.index')->with('success', 'Invoices created successfully.');
     }
 
     /**
@@ -83,9 +83,20 @@ class InvoiceController extends Controller
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Invoice $invoice)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'invoice_date' => 'required',
+            'total' => 'required',
+            'paid' => 'required',
+        ]);
+        $item = Item::find($id);
+        $item->invoice_date = $request->invoice_date;
+        $item->total = $request->total;
+        $item->paid = $request->paid;
+        $item->save();
+        
+        return redirect()->route('items.index')->with('success', 'item has been updated successfully.');
     }
 
     /**

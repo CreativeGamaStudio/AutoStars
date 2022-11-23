@@ -52,7 +52,7 @@
     2. sesuaikan form -->
     <x-modal id="modal-new-service">
         <x-slot:title>New Service</x-slot:title>
-        <form action="{{ route('users.store') }}" method="POST">
+        <form action="{{ route('services.store') }}" method="POST">
             @csrf
 
             <x-input id="name" name="name" label="Name" placeholder="Name" />

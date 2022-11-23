@@ -72,7 +72,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return redirect()->route('services.index')->with('success', 'Services updated successfully.');
     }
 
     /**

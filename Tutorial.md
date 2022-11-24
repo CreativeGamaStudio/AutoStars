@@ -82,9 +82,9 @@ goto function dataTable
 public function dataTable(QueryBuilder $query) :EloquentDataTable
 
 add column
-->addColumn('action',  function ($user) {
+
+            })->addColumn('action',  function ($user) {
                 return '<a href="'.route('users.edit', $user->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
-            })
 ```
 
 

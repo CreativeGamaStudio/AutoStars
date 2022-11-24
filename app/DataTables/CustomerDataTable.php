@@ -27,7 +27,20 @@ class CustomerDataTable extends DataTable
                 $itemasjson = json_encode($item);
                 $itemasjson = str_replace("\"", "'", $itemasjson);
                 $itemasjson = str_replace("\r\n", ' ', $itemasjson);
-                return '<a class="btn btn-xs btn-primary" data-bs-toggle="modal" data-bs-target="#modal-edit-customer" data-bs-customer="' . $itemasjson . '"><i class="fas fa-eye"> Edit</i></a>';
+                return '<div>
+                    <a href="' . route('customers.edit', $item->id) . '" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Edit
+                    </a>
+                    <a href="' . route('customers.show', $item->id) . '" class="btn btn-xs btn-info">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        View
+                    </a>
+                    <a href="' . route('customers.destroy', $item->id) . '" class="btn btn-xs btn-danger">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Delete
+                    </a>
+                </div>';
             })
             ->setRowId('id');
     }

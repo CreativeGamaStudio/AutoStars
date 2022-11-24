@@ -43,11 +43,11 @@ class PartController extends Controller
             'qty' => 'required',
             'selling_price' => 'required',
             'purchase_price' => 'required',
-            
+
         ]);
 
-         // create parts
-         $part = Part::create([
+        // create parts
+        $part = Part::create([
             'name' => $request->name,
             'barcode' => $request->barcode,
             'qty' => $request->qty,
@@ -104,7 +104,7 @@ class PartController extends Controller
         $item->purchase_price = $request->purchase_price;
         $item->selling_price = $request->selling_price;
         $item->save();
-        
+
         return redirect()->route('parts.index')->with('success', 'Parts has been updated successfully.');
     }
 
@@ -116,6 +116,7 @@ class PartController extends Controller
      */
     public function destroy(Part $part)
     {
-        //
+        $part->delete();
+        return redirect()->route('companies.index')->with('success', 'Part has been deleted successfully');
     }
 }

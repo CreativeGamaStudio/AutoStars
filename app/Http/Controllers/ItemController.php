@@ -70,7 +70,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        return redirect()->route('items.index')->with('success', 'item has been updated successfully.');
     }
 
     /**

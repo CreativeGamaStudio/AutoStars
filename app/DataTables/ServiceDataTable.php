@@ -23,9 +23,24 @@ class ServiceDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action',  function ($service) {
-            return '<a href="'.route('services.edit', $service->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
-        })
+            ->addColumn('action', function ($item) {
+                $itemasjson = json_encode($item);
+                $itemasjson = str_replace("\"", "'", $itemasjson);
+                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+                return '<div>
+                    <a href="' . route('services.edit', $item->id) . '" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Edit
+                    </a>
+                    <a href="' . route('services.show', $item->id) . '" class="btn btn-xs btn-info">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        View
+                    </a>
+                    <a href="' . route('services.destroy', $item->id) . '" class="btn btn-xs btn-danger">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Delete
+                    </a>';
+            })
             ->setRowId('id');
     }
 
@@ -48,20 +63,21 @@ class ServiceDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('service-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        // Button::make('excel'),
-                        // Button::make('csv'),
-                        // Button::make('pdf'),
-                        // Button::make('print'),
-                        // Button::make('reset'),
-                        // Button::make('reload')
-                    ]);
+            ->setTableId('service-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+                //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                // Button::make('excel'),
+                // Button::make('csv'),
+                // Button::make('pdf'),
+                // Button::make('print'),
+                // Button::make('reset'),
+                // Button::make('reload')
+
+            ]);
     }
 
     /**

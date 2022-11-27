@@ -1,7 +1,77 @@
 # Laravel
 
 ## Tutorial CRUD
+reference : https://www.tutsmake.com/laravel-9-crud-application-tutorial-with-example/
 
+```
+## ADD
+1. create
+goto controller
+
+goto funtion store
+public function store(Request $request)
+
+this is the code
+$request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required',
+            'status' => 'required',
+        ]);
+
+        // create user
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => $request->role,
+            'status' => $request->status,
+        ]);
+
+        // redirect to users.index
+        return redirect()->route('users.index')->with('success', 'User created successfully.');
+
+```
+
+```
+### Edit
+
+1. goto views
+
+tambahin modal edit dan script js edit
+
+ref : [./views/items/index.blade.php](./views)
+
+2. Update Controller edit
+
+tambahin di function update
+$request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
+        $item = Item::find($id);
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->price = $request->price;
+        $item->save();
+        
+        return redirect()->route('items.index')->with('success', 'item has been updated successfully.');
+
+3. goto datatable
+->addColumn('action', function ($item) {
+                $itemasjson = json_encode($item);
+                $itemasjson = str_replace("\"", "'", $itemasjson);
+                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+                return '<a class="btn btn-xs btn-primary" data-bs-toggle="modal" data-bs-target="#modal-edit-item" data-bs-item="' . $itemasjson . '"><i class="fas fa-eye"></i> Edit</a>';
+            })
+
+```
+
+
+
+## Tutorial Action Button
 Tombol edit
 ```
 
@@ -12,9 +82,9 @@ goto function dataTable
 public function dataTable(QueryBuilder $query) :EloquentDataTable
 
 add column
-->addColumn('action',  function ($user) {
+
+            })->addColumn('action',  function ($user) {
                 return '<a href="'.route('users.edit', $user->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
-            })
 ```
 
 

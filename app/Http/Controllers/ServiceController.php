@@ -37,7 +37,20 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'cost' => 'required',
+        ]);
+
+        // create user
+        $service = Service::create([
+            'name' => $request->name,
+            'cost' => $request->cost,
+        ]);
+
+        // redirect to index
+        return redirect()->route('services.index')->with('success', 'Services created successfully.');
+
     }
 
     /**
@@ -59,7 +72,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return redirect()->route('services.index')->with('success', 'Services updated successfully.');
     }
 
     /**
@@ -69,10 +82,21 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'cost' => 'required',
+        ]);
+
+        $item = Service::find($id);
+        $item->name = $request->name;
+        $item->cost = $request->cost;
+        $item->save();
+
+        return redirect()->route('services.index')->with('success', 'Services updated successfully.');
     }
+
 
     /**
      * Remove the specified resource from storage.

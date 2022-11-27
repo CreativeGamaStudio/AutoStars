@@ -23,9 +23,25 @@ class EmployeeDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action',  function ($employee) {
-            return '<a href="'.route('employees.edit', $employee->id).'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
-        })
+            ->addColumn('action', function ($item) {
+                $itemasjson = json_encode($item);
+                $itemasjson = str_replace("\"", "'", $itemasjson);
+                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+                return '<div>
+                    <a href="' . route('employees.edit', $item->id) . '" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Edit
+                    </a>
+                    <a href="' . route('employees.show', $item->id) . '" class="btn btn-xs btn-info">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        View
+                    </a>
+                    <a href="' . route('employees.destroy', $item->id) . '" class="btn btn-xs btn-danger">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Delete
+                    </a>
+                </div>';
+            })
             ->setRowId('id');
     }
 
@@ -48,20 +64,21 @@ class EmployeeDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('employee-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        // Button::make('excel'),
-                        // Button::make('csv'),
-                        // Button::make('pdf'),
-                        // Button::make('print'),
-                        // Button::make('reset'),
-                        // Button::make('reload')
-                    ]);
+            ->setTableId('employee-table')
+            ->columns($this->getColumns())
+            ->minifiedAjax()
+                //->dom('Bfrtip')
+            ->orderBy(1)
+            ->selectStyleSingle()
+            ->buttons([
+                // Button::make('excel'),
+                // Button::make('csv'),
+                // Button::make('pdf'),
+                // Button::make('print'),
+                // Button::make('reset'),
+                // Button::make('reload')
+
+            ]);
     }
 
     /**
@@ -74,7 +91,7 @@ class EmployeeDataTable extends DataTable
         return [
             Column::make('id'),
             Column::make('name'),
-            Column::make('phone'),
+            Column::make('phone_number'),
             Column::make('address'),
             Column::make('position'),
             Column::make('action')->title('Actions')->orderable(false)->searchable(false),

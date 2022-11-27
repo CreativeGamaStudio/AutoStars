@@ -36,7 +36,21 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'date' => 'required',
+            'order' => 'required',
+            'complaint' => 'required',
+        ]);
+
+        // create user
+        $order = Order::create([
+            'date' => $request->date,
+            'order' => $request->order,
+            'complaint' => $request->complaint,
+        ]);
+
+        // redirect to users.index
+        return redirect()->route('orders.index')->with('success', 'Orders created successfully.');
     }
 
     /**
@@ -58,7 +72,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return redirect()->route('orders.index')->with('success', 'Orders created successfully.');
     }
 
     /**
@@ -68,9 +82,21 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'date' => 'required',
+            'order' => 'required',
+            'complaint' => 'required',
+        ]);
+
+        $item = Order::find($id);
+        $item->date = $request->date;
+        $item->order = $request->order;
+        $item->complaint = $request->complaint;
+        $item->save();
+
+        return redirect()->route('orders.index')->with('success', 'Orders created successfully.');
     }
 
     /**

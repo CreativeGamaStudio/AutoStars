@@ -37,7 +37,28 @@ class RegistrationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'barcode' => 'required',
+            'police_number' => 'required',
+            'date' => 'required',
+            'odometer' => 'required',
+            'pkb_flag' => 'required',
+            'status' => 'required',
+        ]);
+
+        // create user
+        $registration = Registration::create([
+            'barcode' => $request->barcode,
+            'date' => $request->date,
+            'police_number' => $request->police_number,
+            'odometer' => $request->odometer,
+            'pkb_flag' => $request->pkb_flag,
+            'status' => $request->status,
+        ]);
+
+        // redirect to users.index
+        return redirect()->route('registrations.index')->with('success', 'Registration created successfully.');
+
     }
 
     /**
@@ -59,7 +80,8 @@ class RegistrationController extends Controller
      */
     public function edit(Registration $registration)
     {
-        //
+        return redirect()->route('registrations.index')->with('success', 'Registration created successfully.');
+
     }
 
     /**
@@ -69,9 +91,26 @@ class RegistrationController extends Controller
      * @param  \App\Models\Registration  $registration
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Registration $registration)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'barcode' => 'required',
+            'police_number' => 'required',
+            'date' => 'required',
+            'odometer' => 'required',
+            'pkb_flag' => 'required',
+            'status' => 'required',
+        ]);
+        $item = Registration::find($id);
+        $item->barcode = $request->barcode;
+        $item->police_number = $request->police_number;
+        $item->date = $request->date;
+        $item->odometer = $request->odometer;
+        $item->pkb_flag = $request->pkb_flag;
+        $item->status = $request->status;
+        $item->save();
+
+        return redirect()->route('registrations.index')->with('success', 'Registration created successfully.');
     }
 
     /**

@@ -36,7 +36,18 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'date' => 'required',
+        ]);
+
+        // create user
+        $note = Note::create([
+            'date' => $request->date,
+        ]);
+
+        // redirect to index
+        return redirect()->route('notes.index')->with('success', 'Notes created successfully.');
+
     }
 
     /**

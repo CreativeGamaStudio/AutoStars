@@ -77,7 +77,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return redirect()->route('users.index')->with('success', 'User Edited successfully.');
     }
 
     /**
@@ -87,9 +87,24 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required',
+            'status' => 'required',
+        ]);
+        $item = User::find($id);
+        $item->name = $request->name;
+        $item->email = $request->email;
+        $item->password = bcrypt($request->password);
+        $item->role = $request->role;
+        $item->status = $request->status;
+        $item->save();
+
+        return redirect()->route('users.index')->with('success', 'User has been updated successfully.');
     }
 
     /**

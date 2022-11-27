@@ -23,8 +23,24 @@ class OrderDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($order) {
-                return '<a href="' . route('orders.edit', $order->id) . '" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-edit"></i> Edit</a>';
+            ->addColumn('action', function ($item) {
+                $itemasjson = json_encode($item);
+                $itemasjson = str_replace("\"", "'", $itemasjson);
+                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+                return '<div>
+                    <a href="' . route('orders.edit', $item->id) . '" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Edit
+                    </a>
+                    <a href="' . route('orders.show', $item->id) . '" class="btn btn-xs btn-info">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        View
+                    </a>
+                    <a href="' . route('orders.destroy', $item->id) . '" class="btn btn-xs btn-danger">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Delete
+                    </a>
+                </div>';
             })
             ->setRowId('id');
     }

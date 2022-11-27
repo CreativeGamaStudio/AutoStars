@@ -37,22 +37,23 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
-            'name' => 'required|string|max:25',
-            'address' => 'required|string|address|max:100',
-            'phone_number' => 'required|string|phone_number|max:15',
-            'city' => 'required|string|city|max:25',
+            'name' => 'required',
+            'phone_number' => 'required|max:13',
+            'address' => 'required',
+            'city' => 'required',
         ]);
 
+        // create user
         $customer = Customer::create([
             'name' => $request->name,
-            'address' => $request->address,
             'phone_number' => $request->phone_number,
+            'address' => $request->address,
             'city' => $request->city,
         ]);
 
-        return redirect()->route('customer.index')->with('success', 'Customer created successfully.');
+        // redirect to users.index
+        return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
     }
 
     /**
@@ -74,7 +75,7 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
     }
 
     /**
@@ -84,9 +85,23 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'phone_number' => 'required|max:13',
+            'address' => 'required',
+            'city' => 'required',
+        ]);
+
+        $item = Customer::find($id);
+        $item->name = $request->name;
+        $item->phone_number = $request->phone_number;
+        $item->address = $request->address;
+        $item->city = $request->city;
+        $item->save();
+
+        return redirect()->route('customers.index')->with('success', 'Costumer has been updated successfully.');
     }
 
     /**

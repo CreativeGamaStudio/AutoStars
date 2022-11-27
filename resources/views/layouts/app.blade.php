@@ -16,6 +16,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/css/tabler.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@tabler/core@latest/dist/js/tabler.min.js"></script>
 </head>
@@ -32,40 +33,40 @@
                 </button>
                 <div class="navbar-nav flex-row order-md-last">
                     @guest
-                    @if (Route::has('login'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
-                    @endif
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                        @endif
 
-                    @if (Route::has('register'))
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                    </li>
-                    @endif
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
                     @else
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
-                            aria-label="Open user menu">
-                            <span class="avatar avatar-sm"
-                                style="background-image: url(./static/avatars/000m.jpg)"></span>
-                            <div class="d-none d-xl-block ps-2">
-                                <div>{{ Auth::user()->name }}</div>
-                                <!-- <div class="mt-1 small text-muted">UI Designer</div> -->
-                            </div>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <a href="{{ route('settings') }}" class="dropdown-item">Settings</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">{{ __('Logout')
-                                }}</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
+                                aria-label="Open user menu">
+                                <span class="avatar avatar-sm"
+                                    style="background-image: url(./static/avatars/000m.jpg)"></span>
+                                <div class="d-none d-xl-block ps-2">
+                                    <div>{{ Auth::user()->name }}</div>
+                                    <!-- <div class="mt-1 small text-muted">UI Designer</div> -->
+                                </div>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                <a href="{{ route('settings') }}" class="dropdown-item">Settings</a>
+                                <div class="dropdown-divider"></div>
+                                <a href="{{ route('logout') }}" class="dropdown-item"
+                                    onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                @csrf
-                            </form>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
                         </div>
-                    </div>
 
                     @endguest
 
@@ -98,50 +99,21 @@
         <main class="page-wrapper">
             @yield('content')
         </main>
-
+        <div role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-bs-autohide="false">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small>11 mins ago</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Hello, world! This is a toast message.
+            </div>
+        </div>
         @stack('scripts')
+        @include('components.notification')
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/js/bootstrap-notify.js"></script>
-        <link rel="stylesheet" type="text/css"
-            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-notify/0.2.0/css/bootstrap-notify.css">
-        <div class='notifications top-right'></div>
-        <script>
-            @if (Session:: has('success'))
-            $('.top-right').notify({
-                message: { text: "{{ Session::get('success') }}" }
-            }).show();
-            @php
-            Session:: forget('success');
-            @endphp
-            @endif
-            @if (Session:: has('info'))
-            $('.top-right').notify({
-                message: { text: "{{ Session::get('info') }}" },
-                type: 'info'
-            }).show();
-            @php
-            Session:: forget('info');
-            @endphp
-            @endif
-            @if (Session:: has('warning'))
-            $('.top-right').notify({
-                message: { text: "{{ Session::get('warning') }}" },
-                type: 'warning'
-            }).show();
-            @php
-            Session:: forget('warning');
-            @endphp
-            @endif
-            @if (Session:: has('error'))
-            $('.top-right').notify({
-                message: { text: "{{ Session::get('error') }}" },
-                type: 'danger'
-            }).show();
-            @php
-            Session:: forget('error');
-            @endphp
-            @endif  
-        </script>
+
     </div>
 </body>
 

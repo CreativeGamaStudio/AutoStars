@@ -227,10 +227,6 @@
                                 <a class="dropdown-item" href="./users">
                                     User
                                 </a>
-                                <a class="dropdown-item" href="./items">
-                                    Menu User
-                                </a>
-                                
                             </div>
 
                         </div>

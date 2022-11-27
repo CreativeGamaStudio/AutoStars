@@ -16,6 +16,7 @@ return new class extends Migration {
         Schema::create(
             'invoice', function (Blueprint $table) {
                 $table->id();
+                //$table->dateTime('date');
                 $table->dateTime('invoice_date');
                 //$table->float('total', 9, 20);
                 $table->bigInteger('total');

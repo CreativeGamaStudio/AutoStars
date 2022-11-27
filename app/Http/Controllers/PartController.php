@@ -38,6 +38,9 @@ class PartController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'barcode' => 'required|string|'
+        ])
     }
 
     /**

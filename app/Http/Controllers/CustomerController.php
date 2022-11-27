@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\CustomerDataTable;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\DataTables\CustomerDataTable;
 
 class CustomerController extends Controller
 {
@@ -17,7 +17,7 @@ class CustomerController extends Controller
     {
         return $dataTable->render('customers.index');
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -38,6 +38,21 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'name' => 'required|string|max:25',
+            'address' => 'required|string|address|max:100',
+            'phone_number' => 'required|string|phone_number|max:15',
+            'city' => 'required|string|city|max:25',
+        ]);
+
+        $customer = Customer::create([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone_number' => $request->phone_number,
+            'city' => $request->city,
+        ]);
+
+        return redirect()->route('customer.index')->with('success', 'Customer created successfully.');
     }
 
     /**

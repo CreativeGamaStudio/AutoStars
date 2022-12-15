@@ -105,8 +105,14 @@ class InvoiceController extends Controller
      * @param  \App\Models\Invoice  $invoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Invoice $invoice)
+    public function destroy(Request $request, $id)
     {
-        //
+        $item = Invoice::find($request->id);
+        if ($item)
+        {
+            $item->delete();
+        }
+
+        return redirect()->route('invoices.index')->with('success', 'Invoices has been deleted successfully.');
     }
 }

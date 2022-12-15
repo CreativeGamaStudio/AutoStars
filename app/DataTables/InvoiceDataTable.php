@@ -36,10 +36,11 @@ class InvoiceDataTable extends DataTable
                         <i class="glyphicon glyphicon-edit"></i>
                         View
                     </a>
-                    <a href="' . route('invoices.destroy', $item->id) . '" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Delete
                     </a>
+                    <a class="btn btn-danger delete" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#modal-delete-invoice"
+                    data-bs-ids="'.$item->id.'">Delete</a>
                 </div>';
             })
             ->setRowId('id');

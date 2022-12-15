@@ -36,8 +36,7 @@ class ItemDataTable extends DataTable
                         <i class="glyphicon glyphicon-edit"></i>
                         View
                     </a>
-                    <a 
-                    class="btn btn-danger delete" 
+                    <a class="btn btn-danger delete" 
                     data-bs-toggle="modal" 
                     data-bs-target="#modal-delete-item"
                     data-bs-ids="'.$item->id.'">Delete</a>

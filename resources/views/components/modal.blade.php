@@ -1,7 +1,9 @@
+
+@props(['size' => 'sm', 'md', 'lg'])
 <!-- Cek id, arialabel, dan $slot -->
 <div class="modal modal-blur modal-fade-show" id="{{ $attributes->get('id') }}" aria-labelledby="{{ $attributes->get('id') }}-label"
     aria-modal="true" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div {{ $attributes->merge(['class' => 'modal-dialog modal-dialog-centered modal-'.$size]) }}  role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="{{ $attributes->get('id') }}-label">{{ $title }}</h5>

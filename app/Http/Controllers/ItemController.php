@@ -102,9 +102,19 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Item $item)
+    // public function destroy(Item $item)
+    // {
+    //     $item->delete();
+
+    //     return redirect()->route('items.index')->with('success', 'item has been deleted successfully.');
+    // }
+    public function destroy(Request $request, $id)
     {
-        $item->delete();
+        $item = Item::find($request->id);
+        if ($item)
+        {
+            $item->delete();
+        }
 
         return redirect()->route('items.index')->with('success', 'item has been deleted successfully.');
     }

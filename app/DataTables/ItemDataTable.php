@@ -36,10 +36,11 @@ class ItemDataTable extends DataTable
                         <i class="glyphicon glyphicon-edit"></i>
                         View
                     </a>
-                    <a href="' . route('items.destroy', $item->id) . '" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Delete
-                    </a>
+                    <a 
+                    class="btn btn-danger delete" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#modal-delete-item"
+                    data-bs-ids="'.$item->id.'">Delete</a>
                 </div>';
             })
             ->setRowId('id');

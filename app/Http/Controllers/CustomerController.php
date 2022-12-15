@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\CustomerDataTable;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use App\DataTables\CustomerDataTable;
 
 class CustomerController extends Controller
 {
@@ -100,7 +100,7 @@ class CustomerController extends Controller
         $item->address = $request->address;
         $item->city = $request->city;
         $item->save();
-        
+
         return redirect()->route('customers.index')->with('success', 'Costumer has been updated successfully.');
     }
 

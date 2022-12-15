@@ -56,7 +56,6 @@ class PartController extends Controller
         ]);
 
         return redirect()->route('parts.index')->with('success', 'Parts has been updated successfully.');
-
     }
 
     /**

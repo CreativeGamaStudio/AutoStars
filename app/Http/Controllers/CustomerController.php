@@ -38,10 +38,10 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'phone_number' => 'required|max:13',
-            'address' => 'required',
-            'city' => 'required',
+            'name' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:13',
+            'address' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
         ]);
 
         // create user
@@ -110,8 +110,19 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    // public function destroy(Customer $customer)
+    // {
+    //     $customer->delete();
+
+    //     return redirect()->route('customers.index')->with('success', 'customer has been deleted successfully.');
+    // }
+    public function destroy(Request $request, $id)
     {
-        //
+        $customer = Customer::find($request->id);
+        if ($customer) {
+            $customer->delete();
+        }
+
+        return redirect()->route('customers.index')->with('success', 'customer has been deleted successfully.');
     }
 }

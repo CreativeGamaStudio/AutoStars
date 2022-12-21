@@ -23,23 +23,23 @@ class PartDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($item) {
-                $itemasjson = json_encode($item);
-                $itemasjson = str_replace("\"", "'", $itemasjson);
-                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+            ->addColumn('action', function ($part) {
+                $partasjson = json_encode($part);
+                $partasjson = str_replace("\"", "'", $partasjson);
+                $partasjson = str_replace("\r\n", ' ', $partasjson);
                 return '<div>
-                    <a href="' . route('parts.edit', $item->id) . '" class="btn btn-xs btn-primary">
+                    <a href="' . route('parts.edit', $part->id) . '" class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </a>
-                    <a href="' . route('parts.show', $item->id) . '" class="btn btn-xs btn-info">
+                    <a href="' . route('parts.show', $part->id) . '" class="btn btn-xs btn-info">
                         <i class="glyphicon glyphicon-edit"></i>
                         View
                     </a>
-                    <a href="' . route('parts.destroy', $item->id) . '" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Delete
-                    </a>
+                    <a class="btn btn-danger delete" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#modal-delete-part"
+                    data-bs-ids="' . $part->id . '">Delete</a>
                 </div>';
             })
             // ->addColumn('action', function ($part) {
@@ -70,7 +70,7 @@ class PartDataTable extends DataTable
             ->setTableId('part-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-                //->dom('Bfrtip')
+            //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([

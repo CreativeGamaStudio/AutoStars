@@ -23,23 +23,24 @@ class ServiceDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($item) {
-                $itemasjson = json_encode($item);
-                $itemasjson = str_replace("\"", "'", $itemasjson);
-                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+            ->addColumn('action', function ($service) {
+                $serviceasjson = json_encode($service);
+                $serviceasjson = str_replace("\"", "'", $serviceasjson);
+                $serviceasjson = str_replace("\r\n", ' ', $serviceasjson);
                 return '<div>
-                    <a href="' . route('services.edit', $item->id) . '" class="btn btn-xs btn-primary">
+                    <a href="' . route('services.edit', $service->id) . '" class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </a>
-                    <a href="' . route('services.show', $item->id) . '" class="btn btn-xs btn-info">
+                    <a href="' . route('services.show', $service->id) . '" class="btn btn-xs btn-info">
                         <i class="glyphicon glyphicon-edit"></i>
                         View
                     </a>
-                    <a href="' . route('services.destroy', $item->id) . '" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Delete
-                    </a>';
+                    <a class="btn btn-danger delete" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#modal-delete-service"
+                    data-bs-ids="' . $service->id . '">Delete</a>
+                </div>';
             })
             ->setRowId('id');
     }
@@ -66,7 +67,7 @@ class ServiceDataTable extends DataTable
             ->setTableId('service-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-                //->dom('Bfrtip')
+            //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([

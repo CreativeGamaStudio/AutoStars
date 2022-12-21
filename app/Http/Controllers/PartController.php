@@ -113,9 +113,13 @@ class PartController extends Controller
      * @param  \App\Models\Part  $part
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Part $part)
+    public function destroy(Request $request, $id)
     {
-        $part->delete();
-        return redirect()->route('companies.index')->with('success', 'Part has been deleted successfully');
+        $part = part::find($request->id);
+        if ($part) {
+            $part->delete();
+        }
+
+        return redirect()->route('parts.index')->with('success', 'part has been deleted successfully.');
     }
 }

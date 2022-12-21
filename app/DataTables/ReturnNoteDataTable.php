@@ -23,24 +23,25 @@ class ReturnNoteDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', function ($item) {
-            $itemasjson = json_encode($item);
-            $itemasjson = str_replace("\"", "'", $itemasjson);
-            $itemasjson = str_replace("\r\n", ' ', $itemasjson);
-            return '<div>
-                <a href="' . route('return_notes.edit', $item->id) . '" class="btn btn-xs btn-primary">
-                    <i class="glyphicon glyphicon-edit"></i>
-                    Edit
-                </a>
-                <a href="' . route('return_notes.show', $item->id) . '" class="btn btn-xs btn-info">
-                    <i class="glyphicon glyphicon-edit"></i>
-                    View
-                </a>
-                <a href="' . route('return_notes.destroy', $item->id) . '" class="btn btn-xs btn-danger">
-                    <i class="glyphicon glyphicon-edit"></i>
-                    Delete
-                </a>';
-        })
+            ->addColumn('action', function ($returnnote) {
+                $returnnoteasjson = json_encode($returnnote);
+                $returnnoteasjson = str_replace("\"", "'", $returnnoteasjson);
+                $returnnoteasjson = str_replace("\r\n", ' ', $returnnoteasjson);
+                return '<div>
+                    <a href="' . route('returnnotes.edit', $returnnote->id) . '" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Edit
+                    </a>
+                    <a href="' . route('returnnotes.show', $returnnote->id) . '" class="btn btn-xs btn-info">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        View
+                    </a>
+                    <a class="btn btn-danger delete" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#modal-delete-returnnote"
+                    data-bs-ids="' . $returnnote->id . '">Delete</a>
+                </div>';
+            })
             ->setRowId('id');
     }
 
@@ -66,7 +67,7 @@ class ReturnNoteDataTable extends DataTable
             ->setTableId('returnnote-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-                //->dom('Bfrtip')
+            //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([

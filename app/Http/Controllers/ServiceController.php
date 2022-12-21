@@ -17,7 +17,7 @@ class ServiceController extends Controller
     {
         return $dataTable->render('services.index');
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -50,7 +50,6 @@ class ServiceController extends Controller
 
         // redirect to index
         return redirect()->route('services.index')->with('success', 'Services created successfully.');
-
     }
 
     /**
@@ -104,8 +103,13 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy(Request $request, $id)
     {
-        //
+        $service = service::find($request->id);
+        if ($service) {
+            $service->delete();
+        }
+
+        return redirect()->route('services.index')->with('success', 'service has been deleted successfully.');
     }
 }

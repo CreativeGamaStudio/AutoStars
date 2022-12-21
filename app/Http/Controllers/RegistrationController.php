@@ -17,7 +17,7 @@ class RegistrationController extends Controller
     {
         return $dataTable->render('registrations.index');
     }
- 
+
 
     /**
      * Show the form for creating a new resource.
@@ -58,7 +58,6 @@ class RegistrationController extends Controller
 
         // redirect to users.index
         return redirect()->route('registrations.index')->with('success', 'Registration created successfully.');
-
     }
 
     /**
@@ -81,7 +80,6 @@ class RegistrationController extends Controller
     public function edit(Registration $registration)
     {
         return redirect()->route('registrations.index')->with('success', 'Registration created successfully.');
-
     }
 
     /**
@@ -119,8 +117,13 @@ class RegistrationController extends Controller
      * @param  \App\Models\Registration  $registration
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Registration $registration)
+    public function destroy(Request $request, $id)
     {
-        //
+        $registration = registration::find($request->id);
+        if ($registration) {
+            $registration->delete();
+        }
+
+        return redirect()->route('registrations.index')->with('success', 'registration has been deleted successfully.');
     }
 }

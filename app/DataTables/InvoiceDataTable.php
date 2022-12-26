@@ -34,7 +34,7 @@ class InvoiceDataTable extends DataTable
                     </a>
                     <a href="' . route('invoices.show', $item->id) . '" class="btn btn-xs btn-info">
                         <i class="glyphicon glyphicon-edit"></i>
-                        View
+                        View  
                     </a>
                     </a>
                     <a class="btn btn-danger delete" 

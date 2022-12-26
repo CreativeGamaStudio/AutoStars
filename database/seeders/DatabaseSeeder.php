@@ -22,5 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         \App\Models\Item::factory(10)->create();
+
+        \App\Models\Invoice::factory(10)->create();
     }
 }

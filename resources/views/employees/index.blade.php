@@ -77,6 +77,53 @@
         </form>
     </x-modal>
 
+    <x-modal id="model-delete-employee" size="sm">
+        <x-slot:title>Delete</x-slot:title>
+        <div class="Modal-body text-center py-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M12 9v2m) 4v.01"></path>
+                <path d="M5 19h14a2 2 0 0 0 2 -2v-11a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v11a2 2 0 0 0 2 2">
+                </path>
+            </svg>
+            <h3>Are you sure?</h3>
+            <div class="text-muted">Apakah anda yakin ingin menghapus data ini?</div>
+            <input id="dataId" type="text"/>
+        <form ction="{{ route('items.destroy', 'id') }}" method="post">
+            @csrf
+            @method('DELETE')
+            <input id="id" name="id" hidden>
+
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="row">
+                        <div class="col"><a href="#" class="btn w-100" type="button" data-bs-dismiss="modal">
+                                Cancel
+                            </a></div>
+                        <div class="col">
+                            <button class="btn btn-danger w-100" type="submit">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </x-modal>
+
+    {{-- script delete --}}
+    <script>
+        var exampleModal = document.getElementById('model-delete-employee')
+        exampleModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget
+            var recipient = button.getAttribute('data-bs-ids') 
+            console.log(recipient)
+            modalBodyInput.value = recipient
+        })
+        </script>
+
     {{-- script --}} 
     <script>
         var exampleModal = document.getElementById('modal-edit-employee')

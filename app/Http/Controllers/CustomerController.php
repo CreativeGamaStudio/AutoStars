@@ -70,37 +70,12 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * 
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function edit(Customer $customer)
     {
-        return redirect()->route('customers.index')->with('success', 'Customer created successfully.');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required',
-            'phone_number' => 'required|max:13',
-            'address' => 'required',
-            'city' => 'required',
-        ]);
-
-        $item = Customer::find($id);
-        $item->name = $request->name;
-        $item->phone_number = $request->phone_number;
-        $item->address = $request->address;
-        $item->city = $request->city;
-        $item->save();
-
         return redirect()->route('customers.index')->with('success', 'Costumer has been updated successfully.');
     }
 

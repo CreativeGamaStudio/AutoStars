@@ -63,11 +63,11 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-                        2. sesuaikan form -->
+        2. sesuaikan form -->
     {{-- modal edit item --}}
     <x-modal id="modal-edit-item">
         <x-slot:title>Edit</x-slot:title>
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" action="{{route('items.update', $item->id)}}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <x-input id="name" name="name" label="Name" placeholder="Name" />
@@ -91,7 +91,7 @@
             </svg>
             <h3>Are you sure?</h3>
             <div class="text-muted">Apakah anda yakin ingin menghapus data ini?</div>
-            <input id="dataId" type="text"/>
+            {{-- <input id="dataId" type="text"/> --}}
         </div>
         <form action="{{ route('items.destroy', 'id') }}" method="post">
             @csrf

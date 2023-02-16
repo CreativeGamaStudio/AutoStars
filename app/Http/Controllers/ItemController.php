@@ -116,6 +116,6 @@ class ItemController extends Controller
             $item->delete();
         }
 
-        return redirect()->route('items.index')->with('success', 'item has been deleted successfully.');
+        return redirect()->route('items.index')->with('danger', 'item has been deleted successfully.');
     }
 }

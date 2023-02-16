@@ -88,13 +88,8 @@ class ReturnNoteController extends Controller
      * @param  \App\Models\ReturnNote  $returnNote
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
+    public function destroy(ReturnNote $returnNote)
     {
-        $returnnote = returnnote::find($request->id);
-        if ($returnnote) {
-            $returnnote->delete();
-        }
-
-        return redirect()->route('returnnotes.index')->with('success', 'returnnote has been deleted successfully.');
+        //
     }
 }

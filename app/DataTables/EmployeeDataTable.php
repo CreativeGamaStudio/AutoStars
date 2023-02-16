@@ -28,7 +28,11 @@ class EmployeeDataTable extends DataTable
                 $employeeasjson = str_replace("\"", "'", $employeeasjson);
                 $employeeasjson = str_replace("\r\n", ' ', $employeeasjson);
                 return '<div>
-                    <a href="' . route('employees.edit', $employee->id) . '" class="btn btn-xs btn-primary">
+                    <a 
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-edit-employee"
+                        data-bs-ids="' . $employee->id . '"
+                        class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </a>

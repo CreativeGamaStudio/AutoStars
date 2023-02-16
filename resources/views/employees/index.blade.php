@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 
-
 @section('content')
     <div class="page-header d-print-none">
         <div class="container-xl">
@@ -49,13 +48,13 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-        2. sesuaikan form -->
+    2. sesuaikan form -->
     <x-modal id="modal-new-employee">
         <x-slot:title>New Employee</x-slot:title>
         <form action="{{ route('employees.store') }}" method="POST">
             @csrf
             <x-input id="name" name="name" label="Name" placeholder="Name" />
-            <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="number" />
+            <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="number"/>
             <x-input id="address" name="address" label="Address" placeholder="Address" />
             <x-input id="position" name="position" label="Position" placeholder="Position" />
 
@@ -63,14 +62,14 @@
         </form>
     </x-modal>
 
-    {{-- modal edit --}}
+{{-- modal edit --}}
     <x-modal id="modal-edit-employee">
         <x-slot:title>Edit</x-slot:title>
         <form method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <x-input id="name" name="name" label="Name" placeholder="Name" />
-            <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="number" />
+            <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="number"/>
             <x-input id="address" name="address" label="Address" placeholder="Address" />
             <x-input id="position" name="position" label="Position" placeholder="Position" />
 
@@ -78,22 +77,21 @@
         </form>
     </x-modal>
 
-    <x-modal id="modal-delete-employee" size="sm">
+    <x-modal id="model-delete-employee" size="sm">
         <x-slot:title>Delete</x-slot:title>
-        <div class="modal-body text-center py-4">
+        <div class="Modal-body text-center py-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24"
                 viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M12 9v2m0 4v.01"></path>
-                <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75">
+                <path d="M12 9v2m) 4v.01"></path>
+                <path d="M5 19h14a2 2 0 0 0 2 -2v-11a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v11a2 2 0 0 0 2 2">
                 </path>
             </svg>
             <h3>Are you sure?</h3>
             <div class="text-muted">Apakah anda yakin ingin menghapus data ini?</div>
-            <input id="dataId" type="text" />
-        </div>
-        <form action="{{ route('items.destroy', 'id') }}" method="post">
+            <input id="dataId" type="text"/>
+        <form ction="{{ route('items.destroy', 'id') }}" method="post">
             @csrf
             @method('DELETE')
             <input id="id" name="id" hidden>
@@ -112,24 +110,21 @@
                     </div>
                 </div>
             </div>
-
-
         </form>
     </x-modal>
 
     {{-- script delete --}}
     <script>
-        var exampleModal = document.getElementById('modal-delete-employee')
-        var modalBodyInput = document.getElementById('id')
+        var exampleModal = document.getElementById('model-delete-employee')
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
-            var recipient = button.getAttribute('data-bs-ids')
+            var recipient = button.getAttribute('data-bs-ids') 
             console.log(recipient)
             modalBodyInput.value = recipient
         })
-    </script>
+        </script>
 
-    {{-- script --}}
+    {{-- script --}} 
     <script>
         var exampleModal = document.getElementById('modal-edit-employee')
         exampleModal.addEventListener('show.bs.modal', function(event) {
@@ -151,7 +146,7 @@
             var modalTitle = exampleModal.querySelector('.modal-title')
 
             modalTitle.textContent = 'Edit ' + json.name
-
+            
             // set action to form
             var modalForm = document.getElementById('modal-edit-employee').querySelector('form');
             modalForm.action = "{{ route('employees.update', '') }}/" + json.id;

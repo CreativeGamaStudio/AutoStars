@@ -49,17 +49,17 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-        2. sesuaikan form -->
+    2. sesuaikan form -->
     <x-modal id="modal-new-registration">
         <x-slot:title>New Registration</x-slot:title>
         <form action="{{ route('registrations.store') }}" method="POST">
             @csrf
             <x-input id="barcode" name="barcode" label="Barcode" placeholder="Barcode" />
             <x-input id="police_number" name="police_number" label="Police Mumber" placeholder="Police Mumber" />
-            <x-input id="date" name="date" label="Date" placeholder="Date" type="date" />
-            <x-input id="odometer" name="odometer" label="Odometer" placeholder="Odometer" type="number" />
-            <x-input id="pkb_flag" name="pkb_flag" label="PKB Flag" placeholder="PKB Flag" type="number" />
-            <x-input id="status" name="status" label="Status" placeholder="Status" />
+            <x-input id="date" name="date" label="Date" placeholder="Date" type="date"/>
+            <x-input id="odometer" name="odometer" label="Odometer" placeholder="Odometer" type="number"/>
+            <x-input id="pkb_flag" name="pkb_flag" label="PKB Flag" placeholder="PKB Flag" type="number"/>
+            <x-input id="status" name="status" label="Status" placeholder="Status"/>
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -72,67 +72,16 @@
             @method('PUT')
             <x-input id="barcode" name="barcode" label="Barcode" placeholder="Barcode" />
             <x-input id="police_number" name="police_number" label="Police Mumber" placeholder="Police Mumber" />
-            <x-input id="date" name="date" label="Date" placeholder="Date" type="date" />
-            <x-input id="odometer" name="odometer" label="Odometer" placeholder="Odometer" type="number" />
-            <x-input id="pkb_flag" name="pkb_flag" label="PKB Flag" placeholder="PKB Flag" type="number" />
-            <x-input id="status" name="status" label="Status" placeholder="Status" />
+            <x-input id="date" name="date" label="Date" placeholder="Date" type="date"/>
+            <x-input id="odometer" name="odometer" label="Odometer" placeholder="Odometer" type="number"/>
+            <x-input id="pkb_flag" name="pkb_flag" label="PKB Flag" placeholder="PKB Flag" type="number"/>
+            <x-input id="status" name="status" label="Status" placeholder="Status"/>
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </x-modal>
 
-    <x-modal id="modal-delete-registration" size="sm">
-        <x-slot:title>Delete</x-slot:title>
-        <div class="modal-body text-center py-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24"
-                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M12 9v2m0 4v.01"></path>
-                <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75">
-                </path>
-            </svg>
-            <h3>Are you sure?</h3>
-            <div class="text-muted">Apakah anda yakin ingin menghapus data ini?</div>
-            <input id="dataId" type="text" />
-        </div>
-        <form action="{{ route('registrations.destroy', 'id') }}" method="post">
-            @csrf
-            @method('DELETE')
-            <input id="id" name="id" hidden>
-
-            <div class="modal-footer">
-                <div class="w-100">
-                    <div class="row">
-                        <div class="col"><a href="#" class="btn w-100" type="button" data-bs-dismiss="modal">
-                                Cancel
-                            </a></div>
-                        <div class="col">
-                            <button class="btn btn-danger w-100" type="submit">
-                                Delete
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </form>
-    </x-modal>
-
-    {{-- script delete --}}
-    <script>
-        var exampleModal = document.getElementById('modal-delete-registration')
-        var modalBodyInput = document.getElementById('id')
-        exampleModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget
-            var recipient = button.getAttribute('data-bs-ids')
-            console.log(recipient)
-            modalBodyInput.value = recipient
-        })
-    </script>
-
-    {{-- script --}}
+    {{-- script --}} 
     <script>
         var exampleModal = document.getElementById('modal-edit-registration')
         exampleModal.addEventListener('show.bs.modal', function(event) {
@@ -142,7 +91,7 @@
             var json = JSON.parse(data);
 
             var inputBarcode = exampleModal.getElementById('modal-edit-registration').querySelector('#barcode');
-            var inputPolice = document.getElementById('modal-edit-registration').querySelector('#police_number');
+            var inputPolice= document.getElementById('modal-edit-registration').querySelector('#police_number');
             var inputDate = document.getElementById('modal-edit-registration').querySelector('#date');
             var inputOdometer = document.getElementById('modal-edit-registration').querySelector('#odometer');
             var inputPkbFlag = document.getElementById('modal-edit-registration').querySelector('#pkb_flag');
@@ -158,7 +107,7 @@
             var modalTitle = exampleModal.querySelector('.modal-title')
 
             modalTitle.textContent = 'Edit ' + json.name
-
+            
             // set action to form
             var modalForm = document.getElementById('modal-edit-registration').querySelector('form');
             modalForm.action = "{{ route('registrations.update', '') }}/" + json.id;

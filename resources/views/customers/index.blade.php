@@ -4,7 +4,7 @@
 @section('content')
     <div class="page-header d-print-none">
         <div class="container-xl">
-            <div class="row g-2 align-items-center">
+            <div class="row g-2 align-customers-center">
                 <div class="col">
                     <!-- Page pre-title -->
                     <div class="page-pretitle">
@@ -28,7 +28,7 @@
                                 <line x1="12" y1="5" x2="12" y2="19"></line>
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
                             </svg>
-                            New Item
+                            New customer
                         </a>
                     </div>
                 </div>
@@ -46,9 +46,9 @@
     </div>
 
 
-    <!-- x-modal item -->
+    <!-- x-modal customer -->
     <!-- 1. ganti modal id
-                2. sesuaikan form -->
+                    2. sesuaikan form -->
     <x-modal id="modal-new-customer">
         <x-slot:title>New Customer</x-slot:title>
         <form action="{{ route('customers.store') }}" method="POST">
@@ -62,10 +62,10 @@
         </form>
     </x-modal>
 
-    <!-- x-modal item -->
+    <!-- x-modal customer -->
     <!-- 1. ganti modal id
-            2. sesuaikan form -->
-    {{-- modal edit item --}}
+                2. sesuaikan form -->
+    {{-- modal edit customer --}}
     <x-modal id="modal-edit-customer">
         <x-slot:title>Edit</x-slot:title>
         {{ Form::open(['url' => '/', 'method' => 'PUT', 'class' => 'col-md-12']) }}
@@ -95,7 +95,7 @@
             <div class="text-muted">Apakah anda yakin ingin menghapus data ini?</div>
             {{-- <input id="dataId" type="text"/> --}}
         </div>
-        <form action="{{ route('items.destroy', 'id') }}" method="post">
+        <form action="{{ route('customers.destroy', 'id') }}" method="post">
             @csrf
             @method('DELETE')
             <input id="id" name="id" hidden>

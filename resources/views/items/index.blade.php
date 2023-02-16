@@ -67,7 +67,7 @@
     {{-- modal edit item --}}
     <x-modal id="modal-edit-item">
         <x-slot:title>Edit</x-slot:title>
-        <form method="POST" action="{{route('items.update', $item->id)}}" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <x-input id="name" name="name" label="Name" placeholder="Name" />
@@ -118,13 +118,13 @@
     </x-modal>
 
     {{-- script delete --}}
-    <script> 
+    <script>
 
         var exampleModal = document.getElementById('modal-delete-item')
         var modalBodyInput = document.getElementById('id')
-        exampleModal.addEventListener('show.bs.modal', function(event) { 
+        exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
-            var recipient = button.getAttribute('data-bs-ids') 
+            var recipient = button.getAttribute('data-bs-ids')
             console.log(recipient)
             modalBodyInput.value = recipient
         })

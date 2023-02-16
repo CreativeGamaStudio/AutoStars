@@ -59,7 +59,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        return view('items.show', compact('item'));
+        return view('items.index', compact('item'));
     }
 
     /**

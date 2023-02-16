@@ -67,15 +67,15 @@
     {{-- modal edit item --}}
     <x-modal id="modal-edit-item">
         <x-slot:title>Edit</x-slot:title>
-        <form method="POST" enctype="multipart/form-data">
+        {{ Form::open(array('url' => '/', 'method' => 'PUT', 'class'=>'col-md-12')) }}
+            <input type="hidden" name="_method" value="PUT"/>
             @csrf
-            @method('PUT')
             <x-input id="name" name="name" label="Name" placeholder="Name" />
             <x-input id="price" name="price" label="Price" placeholder="Price" type="number" />
             <x-input id="description" name="description" label="Description" placeholder="Description" />
 
             <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        {{ Form::close()}}
     </x-modal>
 
     <x-modal id="modal-delete-item" size="sm">
@@ -136,6 +136,7 @@
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
             var data = button.getAttribute('data-bs-item')
+            console.log(data);
             data = data.replace(/'/g, '"');
             var json = JSON.parse(data);
 
@@ -153,8 +154,7 @@
 
             // set action to form
             var modalForm = document.getElementById('modal-edit-item').querySelector('form');
-            modalForm.action = "{{ route('items.update', '') }}/" + json.id;
-            modalForm.method = "PUT";
+            modalForm.action = "/items/" + json.id ;
         })
     </script>
 

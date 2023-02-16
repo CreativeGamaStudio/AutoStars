@@ -18,6 +18,10 @@ class EmployeeFactory extends Factory
     {
         return [
             //
+            'name' => fake()->name(),
+            'phone_number' => fake()->phoneNumber(),
+            'address' => fake()->address(),
+            'position' => 'staff',
         ];
     }
 }

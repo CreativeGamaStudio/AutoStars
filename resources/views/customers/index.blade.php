@@ -48,7 +48,7 @@
 
     <!-- x-modal customer -->
     <!-- 1. ganti modal id
-                    2. sesuaikan form -->
+                                    2. sesuaikan form -->
     <x-modal id="modal-new-customer">
         <x-slot:title>New Customer</x-slot:title>
         <form action="{{ route('customers.store') }}" method="POST">
@@ -64,7 +64,7 @@
 
     <!-- x-modal customer -->
     <!-- 1. ganti modal id
-                2. sesuaikan form -->
+                        2. sesuaikan form -->
     {{-- modal edit customer --}}
     <x-modal id="modal-edit-customer">
         <x-slot:title>Edit</x-slot:title>
@@ -137,6 +137,7 @@
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
             var data = button.getAttribute('data-bs-customer')
+            console.log(data);
             data = data.replace(/'/g, '"');
             var json = JSON.parse(data);
 

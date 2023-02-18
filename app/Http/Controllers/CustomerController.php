@@ -90,14 +90,13 @@ class CustomerController extends Controller
         // validate
         $request->validate([
             'name' => 'required',
-            'phone_number' => 'required',
-            'address' => 'required',
-            'city' => 'required'
+            'description' => 'required',
+            'price' => 'required'
         ]);
-        $customer = Customer::find($id);
+        $customer = customer::find($id);
         $customer->name = $request->name;
-        $customer->phone_number = $request->phone_number;
         $customer->address = $request->address;
+        $customer->phone_number = $request->phone_number;
         $customer->city = $request->city;
         $customer->save();
         return redirect()->route('customers.index')->with('success', 'customer has been updated successfully.');

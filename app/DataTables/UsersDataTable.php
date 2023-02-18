@@ -23,24 +23,24 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', function ($item) {
-            $itemasjson = json_encode($item);
-            $itemasjson = str_replace("\"", "'", $itemasjson);
-            $itemasjson = str_replace("\r\n", ' ', $itemasjson);
-            return '<div>
-                <a href="' . route('users.edit', $item->id) . '" class="btn btn-xs btn-primary">
-                    <i class="glyphicon glyphicon-edit"></i>
-                    Edit
-                </a>
-                <a href="' . route('users.show', $item->id) . '" class="btn btn-xs btn-info">
-                    <i class="glyphicon glyphicon-edit"></i>
-                    View
-                </a>
-                <a href="' . route('users.destroy', $item->id) . '" class="btn btn-xs btn-danger">
-                    <i class="glyphicon glyphicon-edit"></i>
-                    Delete
-                </a>';
-        })
+            ->addColumn('action', function ($user) {
+                $userasjson = json_encode($user);
+                $userasjson = str_replace("\"", "'", $userasjson);
+                $userasjson = str_replace("\r\n", ' ', $userasjson);
+                return '<div>
+                    <a
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-edit-user"
+                        data-bs-user="' . $userasjson . '" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Edit
+                    </a>
+                    <a class="btn btn-danger delete"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-delete-user"
+                    data-bs-ids="' . $user->id . '">Delete</a>
+                </div>';
+            })
             ->setRowId('id');
     }
 
@@ -66,7 +66,7 @@ class UsersDataTable extends DataTable
             ->setTableId('users-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-                //->dom('Bfrtip')
+            //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([

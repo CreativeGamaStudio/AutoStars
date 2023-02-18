@@ -28,18 +28,18 @@ class CustomerDataTable extends DataTable
                 $customerasjson = str_replace("\"", "'", $customerasjson);
                 $customerasjson = str_replace("\r\n", ' ', $customerasjson);
                 return '<div>
-                    <a
-                        data-bs-toggle="modal"
-                        data-bs-target="#modal-edit-costomer"
-                        data-bs-customer="' . $customerasjson . '" class="btn btn-xs btn-primary">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Edit
-                    </a>
-                    <a class="btn btn-danger delete"
-                    data-bs-toggle="modal"
-                    data-bs-target="#modal-delete-customer"
-                    data-bs-ids="' . $customer->id . '">Delete</a>
-                </div>';
+                <a
+                data-bs-toggle="modal"
+                data-bs-target="#modal-edit-customer"
+                data-bs-customer="' . $customerasjson . '" class="btn btn-xs btn-primary">
+                <i class="glyphicon glyphicon-edit"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger delete"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-delete-customer"
+            data-bs-ids="' . $customer->id . '">Delete</a>
+        </div>';
             })
             ->setRowId('id');
     }

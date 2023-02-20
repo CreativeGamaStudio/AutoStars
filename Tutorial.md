@@ -21,7 +21,7 @@ $request->validate([
         ]);
 
         // create user
-        $user = User::create([
+        $user = User::create([ //user diganti
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
@@ -30,7 +30,23 @@ $request->validate([
         ]);
 
         // redirect to users.index
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
+        return redirect()->route('users.index')->with('success', 'User created successfully.'); //user diganti
+
+2. index
+<x-modal id="modal-new-payment"> //ganti payment
+        <x-slot:title>New Payment</x-slot:title> //ganti payment
+        <form action="{{ route('payments.store') }}" method="POST"> //ganti payments
+            @csrf
+
+            <x-input id="date" name="date" label="Date" placeholder="Date" type="date" />
+            <x-input id="price" name="price" label="Price" placeholder="Price" type="number" />
+            <x-input id="discount" name="discount" label="Discount" placeholder="Discount" type="number" />
+            <x-input id="card_number" name="card_number" label="Card Number" placeholder="Card Number" type="text" />
+            <x-input id="giro_number" name="giro_number" label="Giro Number" placeholder="Giro Number" type="text" />
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </x-modal>
 
 ```
 

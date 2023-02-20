@@ -120,6 +120,6 @@ class PaymentController extends Controller
             $item->delete();
         }
 
-        return redirect()->route('payments.index')->with('danger', 'Invoices has been deleted successfully.');
+        return redirect()->route('payments.index')->with('success', 'Invoices has been deleted successfully.');
     }
 }

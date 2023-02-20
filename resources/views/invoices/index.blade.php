@@ -90,7 +90,7 @@
             </svg>
             <h3>Are you sure?</h3>
             <div class="text-muted">Apakah anda yakin ingin menghapus data ini?</div>
-            <input id="dataId" type="text" />
+            {{-- <input id="dataId" type="text" /> --}}
         </div>
         <form action="{{ route('invoices.destroy', 'id') }}" method="post">
             @csrf

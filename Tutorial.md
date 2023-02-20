@@ -204,7 +204,7 @@ public function definition()
         ];
     }
 
--. type php artisan db:seed
+-. type php artisan db:seed di terminal
 
 -. php artisan migrate:fresh --seed ( untuk reset ulang)
 

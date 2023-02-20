@@ -25,7 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/settings', [App\Http\Controllers\HomeController::class, 'settings'])->name('settings');
 
 Route::resource('items', App\Http\Controllers\ItemController::class, [
-    'except' => [ 'show' ]
+    'except' => ['show']
 ]);
 
 // Route::resource('clients', App\Http\Controllers\ClientController::class);
@@ -37,7 +37,9 @@ Route::resource('invoices', App\Http\Controllers\InvoiceController::class, [
 
 Route::resource('users', App\Http\Controllers\UserController::class);
 
-Route::resource('customers', App\Http\Controllers\CustomerController::class);
+Route::resource('customers', App\Http\Controllers\CustomerController::class, [
+    'except' => ['show']
+]);
 
 Route::resource('services', App\Http\Controllers\ServiceController::class);
 

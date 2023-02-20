@@ -64,19 +64,42 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('customers.index', compact('customer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * 
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
     public function edit(Customer $customer)
     {
-        return redirect()->route('customers.index')->with('success', 'Costumer has been updated successfully.');
+        return redirect()->route('customers.index')->with('success', 'customer has been updated successfully.');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Customer  $customer
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        // validate
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
+        ]);
+        $customer = customer::find($id);
+        $customer->name = $request->name;
+        $customer->address = $request->address;
+        $customer->phone_number = $request->phone_number;
+        $customer->city = $request->city;
+        $customer->save();
+        return redirect()->route('customers.index')->with('success', 'customer has been updated successfully.');
     }
 
     /**
@@ -85,8 +108,19 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    // public function destroy(Customer $customer)
+    // {
+    //     $customer->delete();
+
+    //     return redirect()->route('customers.index')->with('success', 'customer has been deleted successfully.');
+    // }
+    public function destroy(Request $request, $id)
     {
-        //
+        $customer = Customer::find($request->id);
+        if ($customer) {
+            $customer->delete();
+        }
+
+        return redirect()->route('customers.index')->with('danger', 'customer has been deleted successfully.');
     }
 }

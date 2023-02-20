@@ -43,7 +43,7 @@
         </div>
     </div>
 
-{{-- modal new user --}}
+    {{-- modal new user --}}
     <x-modal id="modal-new-user">
         <x-slot:title>New User</x-slot:title>
         <form action="{{ route('users.store') }}" method="POST">
@@ -67,7 +67,7 @@
     </x-modal>
 
 
-{{-- modal edit user --}}
+    {{-- modal edit user --}}
     <x-modal id="modal-edit-user">
         <x-slot:title>Edit</x-slot:title>
         <form method="POST" enctype="multipart/form-data">
@@ -117,7 +117,7 @@
             var modalTitle = exampleModal.querySelector('.modal-title')
 
             modalTitle.textContent = 'Edit ' + json.name
-            
+
             // set action to form
             var modalForm = document.getElementById('modal-edit-user').querySelector('form');
             modalForm.action = "{{ route('users.update', '') }}/" + json.id;

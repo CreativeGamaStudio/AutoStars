@@ -49,13 +49,13 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-    2. sesuaikan form -->
+        2. sesuaikan form -->
     <x-modal id="modal-new-invoice">
         <x-slot:title>New Invoice</x-slot:title>
         <form action="{{ route('invoices.store') }}" method="POST">
             @csrf
 
-            <x-input id="invoice_date" name="invoice_date" label="Date" placeholder="Date" type="date"/>
+            <x-input id="invoice_date" name="invoice_date" label="Date" placeholder="Date" type="date" />
             <x-input id="total" name="total" label="Total" placeholder="Total" type="number" />
             <x-input id="paid" name="paid" label="Paid" placeholder="Paid" type="number" />
 
@@ -66,15 +66,15 @@
     {{-- edit form --}}
     <x-modal id="modal-edit-invoice">
         <x-slot:title>Edit</x-slot:title>
-        {{ Form::open(array('url' => '/', 'method' => 'PUT', 'class'=>'col-md-12')) }}
-            <input type="hidden" name="_method" value="PUT"/>
-            @csrf
-            <x-input id="invoice_date" name="invoice_date" label="Date" placeholder="Date" type="date"/>
-            <x-input id="total" name="total" label="Total" placeholder="Total" type="number" />
-            <x-input id="paid" name="paid" label="Paid" placeholder="Paid" type="number" />
+        {{ Form::open(['url' => '/', 'method' => 'PUT', 'class' => 'col-md-12']) }}
+        <input type="hidden" name="_method" value="PUT" />
+        @csrf
+        <x-input id="invoice_date" name="invoice_date" label="Date" placeholder="Date" type="date" />
+        <x-input id="total" name="total" label="Total" placeholder="Total" type="number" />
+        <x-input id="paid" name="paid" label="Paid" placeholder="Paid" type="number" />
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        {{ Form::close()}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+        {{ Form::close() }}
     </x-modal>
 
     <x-modal id="modal-delete-invoice" size="sm">
@@ -90,7 +90,7 @@
             </svg>
             <h3>Are you sure?</h3>
             <div class="text-muted">Apakah anda yakin ingin menghapus data ini?</div>
-            <input id="dataId" type="text"/>
+            <input id="dataId" type="text" />
         </div>
         <form action="{{ route('invoices.destroy', 'id') }}" method="post">
             @csrf
@@ -117,50 +117,49 @@
     </x-modal>
 
     {{-- script delete --}}
-    <script> 
-
+    <script>
         var exampleModal = document.getElementById('modal-delete-invoice')
         var modalBodyInput = document.getElementById('id')
-        exampleModal.addEventListener('show.bs.modal', function(event) { 
+        exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
-            var recipient = button.getAttribute('data-bs-ids') 
+            var recipient = button.getAttribute('data-bs-ids')
             console.log(recipient)
             modalBodyInput.value = recipient
         })
     </script>
 
-    {{-- script --}} 
+    {{-- script --}}
     <script>
         var exampleModal = document.getElementById('modal-edit-invoice')
         exampleModal.addEventListener('show.bs.modal', function(event) {
 
-            try{
+            try {
 
-            var button = event.relatedTarget
-            var data = button.getAttribute('data-bs-item')
-            console.log(data);
-            data = data.replace(/'/g, '"');
-            var json = JSON.parse(data);
+                var button = event.relatedTarget
+                var data = button.getAttribute('data-bs-item')
+                console.log(data);
+                data = data.replace(/'/g, '"');
+                var json = JSON.parse(data);
 
-            var inputDate = document.getElementById('modal-edit-invoice').querySelector('#invoice_date');
-            var inputTotal = document.getElementById('modal-edit-invoice').querySelector('#total');
-            var inputPaid = document.getElementById('modal-edit-invoice').querySelector('#paid');
+                var inputDate = document.getElementById('modal-edit-invoice').querySelector('#invoice_date');
+                var inputTotal = document.getElementById('modal-edit-invoice').querySelector('#total');
+                var inputPaid = document.getElementById('modal-edit-invoice').querySelector('#paid');
 
-            inputDate.value = json.invoice_date;
-            inputTotal.value = json.total;
-            inputPaid.value = json.paid;
+                inputDate.value = json.invoice_date;
+                inputTotal.value = json.total;
+                inputPaid.value = json.paid;
 
-            var modalTitle = exampleModal.querySelector('.modal-title')
+                var modalTitle = exampleModal.querySelector('.modal-title')
 
-            modalTitle.textContent = 'Edit ' + json.name
-            
-            // set action to form
-            var modalForm = document.getElementById('modal-edit-invoice').querySelector('form');
-            modalForm.action = "/invoices/" + json.id ;
+                modalTitle.textContent = 'Edit ' + json.name
 
-                 }catch(e){
+                // set action to form
+                var modalForm = document.getElementById('modal-edit-invoice').querySelector('form');
+                modalForm.action = "/invoices/" + json.id;
+
+            } catch (e) {
                 console.log(e);
-                 }
+            }
             //modalForm.action = "{{ route('invoices.update', '') }}/" + json.id;
             //modalForm.method = "PUT";
         })

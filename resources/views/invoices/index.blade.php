@@ -66,15 +66,15 @@
     {{-- edit form --}}
     <x-modal id="modal-edit-invoice">
         <x-slot:title>Edit</x-slot:title>
-        <form method="POST" enctype="multipart/form-data">
+        {{ Form::open(array('url' => '/', 'method' => 'PUT', 'class'=>'col-md-12')) }}
+            <input type="hidden" name="_method" value="PUT"/>
             @csrf
-            @method('PUT')
             <x-input id="invoice_date" name="invoice_date" label="Date" placeholder="Date" type="date"/>
             <x-input id="total" name="total" label="Total" placeholder="Total" type="number" />
             <x-input id="paid" name="paid" label="Paid" placeholder="Paid" type="number" />
 
             <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        {{ Form::close()}}
     </x-modal>
 
     <x-modal id="modal-delete-invoice" size="sm">
@@ -133,8 +133,12 @@
     <script>
         var exampleModal = document.getElementById('modal-edit-invoice')
         exampleModal.addEventListener('show.bs.modal', function(event) {
+
+            try{
+
             var button = event.relatedTarget
-            var data = button.getAttribute('data-bs-invoice')
+            var data = button.getAttribute('data-bs-item')
+            console.log(data);
             data = data.replace(/'/g, '"');
             var json = JSON.parse(data);
 
@@ -152,8 +156,13 @@
             
             // set action to form
             var modalForm = document.getElementById('modal-edit-invoice').querySelector('form');
-            modalForm.action = "{{ route('invoices.update', '') }}/" + json.id;
-            modalForm.method = "PUT";
+            modalForm.action = "/invoices/" + json.id ;
+
+                 }catch(e){
+                console.log(e);
+                 }
+            //modalForm.action = "{{ route('invoices.update', '') }}/" + json.id;
+            //modalForm.method = "PUT";
         })
     </script>
 

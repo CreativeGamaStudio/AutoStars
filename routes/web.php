@@ -30,7 +30,10 @@ Route::resource('items', App\Http\Controllers\ItemController::class, [
 
 // Route::resource('clients', App\Http\Controllers\ClientController::class);
 
-Route::resource('invoices', App\Http\Controllers\InvoiceController::class);
+Route::resource('invoices', App\Http\Controllers\InvoiceController::class, [
+    'except' => [ 'show' ]
+]);
+
 
 Route::resource('users', App\Http\Controllers\UserController::class);
 

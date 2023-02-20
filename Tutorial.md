@@ -183,3 +183,38 @@ php artisan make:Controller NamaController --resource --model=Nama
 5. Koneksikan ke [./routes/web.php](./routes)
 
 
+##databaseseeder
+
+-. Buka terminal
+
+php artisan make:factory NamaFactory --model=Item
+
+
+-. Goto database/seeders/DatabaseSeeder.php
+
+ \App\Models\Employee::factory(10)->create();
+
+-. goto  database/factories/InvoiceFactory.php
+public function definition()
+    {
+        return [
+            'name' => fake()->name(),
+            'description' => fake()->text(),
+            'price' => fake()->numberBetween(1000, 100000),
+        ];
+    }
+
+-. type php artisan db:seed
+
+-. php artisan migrate:fresh --seed ( untuk reset ulang)
+
+
+##Delete
+
+1.  app/DataTables/InvoiceDataTable.php
+
+<a class="btn btn-danger delete" 
+    data-bs-toggle="modal" 
+    data-bs-target="#modal-delete-invoice"
+    data-bs-ids="'.$item->id.'">Delete</a>
+

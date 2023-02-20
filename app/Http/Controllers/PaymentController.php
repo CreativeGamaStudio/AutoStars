@@ -112,8 +112,14 @@ class PaymentController extends Controller
      * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Payment $payment)
+    public function destroy(Request $request, $id)
     {
-        //
+        $item = Payment::find($request->id);
+        if ($item)
+        {
+            $item->delete();
+        }
+
+        return redirect()->route('payments.index')->with('danger', 'Invoices has been deleted successfully.');
     }
 }

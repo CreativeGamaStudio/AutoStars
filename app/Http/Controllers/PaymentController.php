@@ -49,7 +49,7 @@ class PaymentController extends Controller
             'discount' => $request->discount,
             'date' => $request->date,
             'card_number' => $request->card_number,
-            'giro_number' => $request->paid,
+            'giro_number' => $request->giro_number,
         ]);
 
         // redirect to index
@@ -103,7 +103,7 @@ class PaymentController extends Controller
         $item->giro_number = $request->giro_number;
         $item->save();
         
-        return redirect()->route('payments.index')->with('success', 'Invoices created successfully.');
+        return redirect()->route('payments.index')->with('success', 'Payment created successfully.');
     }
 
     /**

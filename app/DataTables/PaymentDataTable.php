@@ -28,15 +28,14 @@ class PaymentDataTable extends DataTable
             $itemasjson = str_replace("\"", "'", $itemasjson);
             $itemasjson = str_replace("\r\n", ' ', $itemasjson);
             return '<div>
-                <a href="' . route('payments.edit', $item->id) . '" class="btn btn-xs btn-primary">
-                    <i class="glyphicon glyphicon-edit"></i>
-                    Edit
-                </a>
-                <a href="' . route('payments.show', $item->id) . '" class="btn btn-xs btn-info">
-                    <i class="glyphicon glyphicon-edit"></i>
-                    View
-                </a>
-                <a class="btn btn-danger delete" 
+            <a
+            data-bs-toggle="modal"
+            data-bs-target="#modal-edit-item"
+            data-bs-item="'. $itemasjson .'" class="btn btn-xs btn-primary">
+            <i class="glyphicon glyphicon-edit"></i>
+            Edit </a>
+            
+            <a class="btn btn-danger delete" 
                 data-bs-toggle="modal"  
                 data-bs-target="#modal-delete-payment"
                 data-bs-ids="'.$item->id.'">Delete</a>
@@ -74,8 +73,8 @@ class PaymentDataTable extends DataTable
                 // Button::make('excel'),
                 // Button::make('csv'),
                 // Button::make('pdf'),
-                Button::make('print'),
-                Button::make('reset'),
+                // Button::make('print'),
+                // Button::make('reset'),
                 Button::make('reload')
             ]);
     }

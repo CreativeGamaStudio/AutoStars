@@ -30,14 +30,14 @@ class UsersDataTable extends DataTable
             return '<div>
                 <a
                     data-bs-toggle="modal"
-                    data-bs-target="#modal-edit-item"
+                    data-bs-target="#modal-edit-user"
                     data-bs-item="'. $itemasjson .'" class="btn btn-xs btn-primary">
                     <i class="glyphicon glyphicon-edit"></i>
                     Edit
                 </a>
                 <a class="btn btn-danger delete"
                 data-bs-toggle="modal"
-                data-bs-target="#modal-delete-user" 
+                data-bs-target="#modal-delete-user"
                 data-bs-ids="'.$item->id.'">Delete</a>
             </div>';
         })

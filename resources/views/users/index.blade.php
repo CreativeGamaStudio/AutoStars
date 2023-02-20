@@ -73,11 +73,11 @@
         <form method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <<x-input id="name" name="name" label="Name" placeholder="Name" />
+            <x-input id="name" name="name" label="Name" placeholder="Name" />
             <x-input id="email" name="email" label="Email" placeholder="Email" type="email" />
-            <x-input id="password" name="password" label="Password" placeholder="Password" />
+            <!-- <x-input id="password" name="password" label="Password" placeholder="Password" />
             <x-input id="password_confirmation" name="password_confirmation" label="Password Confirmation"
-                placeholder="Password Confirmation" />
+                placeholder="Password Confirmation" /> -->
             <x-input id="role" name="role" label="Role" placeholder="Role" />
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
@@ -96,21 +96,21 @@
         var exampleModal = document.getElementById('modal-edit-user')
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
-            var data = button.getAttribute('data-bs-user')
+            var data = button.getAttribute('data-bs-item')
             data = data.replace(/'/g, '"');
             var json = JSON.parse(data);
 
             var inputName = document.getElementById('modal-edit-user').querySelector('#name');
             var inputEmail = document.getElementById('modal-edit-user').querySelector('#email');
-            var inputPass = document.getElementById('modal-edit-user').querySelector('#password');
-            var inputPassConf = document.getElementById('modal-edit-user').querySelector('#password_confirmation');
+            // var inputPass = document.getElementById('modal-edit-user').querySelector('#password');
+            // var inputPassConf = document.getElementById('modal-edit-user').querySelector('#password_confirmation');
             var inputRole = document.getElementById('modal-edit-user').querySelector('#role');
             var inputStatus = document.getElementById('modal-edit-user').querySelector('#status');
 
             inputName.value = json.name;
             inputEmail.value = json.email;
-            inputPass.value = json.password;
-            inputPassConf.value = json.password_confirmation;
+            // inputPass.value = json.password;
+            // inputPassConf.value = json.password_confirmation;
             inputRole.value = json.role;
             inputStatus.value = json.status;
 
@@ -166,12 +166,12 @@
     </x-modal>
 
     {{-- script delete --}}
-    <script> 
+    <script>
         var exampleModal = document.getElementById('modal-delete-user')
         var modalBodyInput = document.getElementById('id')
-        exampleModal.addEventListener('show.bs.modal', function(event) { 
+        exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
-            var recipient = button.getAttribute('data-bs-ids') 
+            var recipient = button.getAttribute('data-bs-ids')
             console.log(recipient)
             modalBodyInput.value = recipient
         })

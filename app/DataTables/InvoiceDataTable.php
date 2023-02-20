@@ -30,7 +30,7 @@ class InvoiceDataTable extends DataTable
                 return '<div>
                     <a
                         data-bs-toggle="modal"
-                        data-bs-target="#modal-edit-item"
+                        data-bs-target="#modal-edit-invoice"
                         data-bs-item="'. $itemasjson .'" class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit

@@ -53,7 +53,13 @@
             <x-input id="password" name="password" label="Password" placeholder="Password" />
             <x-input id="password_confirmation" name="password_confirmation" label="Password Confirmation"
                 placeholder="Password Confirmation" />
-            <x-input id="role" name="role" label="Role" placeholder="Role" />
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" name="role" placeholder="Pilih Peran">
+                    <option value="admin">Admin</option>
+                    <option value="user">user</option>
+                </select>
+            </div>
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
                 <select class="form-select" id="status" name="status">
@@ -70,25 +76,31 @@
     {{-- modal edit user --}}
     <x-modal id="modal-edit-user">
         <x-slot:title>Edit</x-slot:title>
-        <form method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <x-input id="name" name="name" label="Name" placeholder="Name" />
-            <x-input id="email" name="email" label="Email" placeholder="Email" type="email" />
-            <!-- <x-input id="password" name="password" label="Password" placeholder="Password" />
-            <x-input id="password_confirmation" name="password_confirmation" label="Password Confirmation"
-                placeholder="Password Confirmation" /> -->
-            <x-input id="role" name="role" label="Role" placeholder="Role" />
-            <div class="mb-3">
-                <label for="status" class="form-label">Status</label>
-                <select class="form-select" id="status" name="status">
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
-                </select>
-            </div>
+        {{ Form::open(['url' => '/', 'method' => 'PUT', 'class' => 'col-md-12']) }}
+        @csrf
+        <input type="hidden" name="_method" value="PUT" />
+        <x-input id="name" name="name" label="Name" placeholder="Name" />
+        <x-input id="email" name="email" label="Email" placeholder="Email" type="email" />
+        <!-- <x-input id="password" name="password" label="Password" placeholder="Password" />
+                    <x-input id="password_confirmation" name="password_confirmation" label="Password Confirmation"
+                        placeholder="Password Confirmation" /> -->
+        <div class="mb-3">
+            <label for="role" class="form-label">Role</label>
+            <select class="form-select" id="role" name="role" placeholder="Pilih Peran">
+                <option value="admin">Admin</option>
+                <option value="user">user</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" id="status" name="status">
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+        </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        {{ Form::close() }}
     </x-modal>
 
     {{-- script --}}
@@ -120,12 +132,11 @@
 
             // set action to form
             var modalForm = document.getElementById('modal-edit-user').querySelector('form');
-            modalForm.action = "{{ route('users.update', '') }}/" + json.id;
-            modalForm.method = "PUT";
+            modalForm.action = "/users/" + json.id;
         })
     </script>
 
-{{-- Delete --}}
+    {{-- Delete --}}
     <x-modal id="modal-delete-user" size="sm">
         <x-slot:title>Delete</x-slot:title>
         <div class="modal-body text-center py-4">

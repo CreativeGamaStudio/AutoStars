@@ -96,7 +96,7 @@ class InvoiceController extends Controller
         $item->paid = $request->paid;
         $item->save();
         
-        return redirect()->route('items.index')->with('success', 'item has been updated successfully.');
+        return redirect()->route('invoices.index')->with('success', 'Invoice has been updated successfully.');
     }
 
     /**

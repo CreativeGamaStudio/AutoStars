@@ -96,13 +96,13 @@ class UserController extends Controller
             'role' => 'required',
             'status' => 'required',
         ]);
-        $item = User::find($id);
-        $item->name = $request->name;
-        $item->email = $request->email;
-        $item->password = bcrypt($request->password);
-        $item->role = $request->role;
-        $item->status = $request->status;
-        $item->save();
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role = $request->role;
+        $user->status = $request->status;
+        $user->save();
 
         return redirect()->route('users.index')->with('success', 'User has been updated successfully.');
     }
@@ -116,7 +116,7 @@ class UserController extends Controller
     public function destroy(Request $request, $id)
     {
         $user = User::find($request->id);
-        if ($user) 
+        if ($user)
         {
             $user->delete();
             

@@ -36,7 +36,6 @@
     </div>
     <div class="container mt-3">
         <div class="card">
-
             <div class="card-body">
                 {{ $dataTable->table() }}
             </div>
@@ -53,7 +52,13 @@
             <x-input id="password" name="password" label="Password" placeholder="Password" />
             <x-input id="password_confirmation" name="password_confirmation" label="Password Confirmation"
                 placeholder="Password Confirmation" />
-            <x-input id="role" name="role" label="Role" placeholder="Role" />
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" name="role" placeholder="Pilih Peran">
+                    <option value="admin">Admin</option>
+                    <option value="user">user</option>
+                </select>
+            </div>
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
                 <select class="form-select" id="status" name="status">
@@ -67,7 +72,7 @@
     </x-modal>
 
 
-{{-- modal edit user --}}
+    {{-- modal edit user --}}
     <x-modal id="modal-edit-user">
         <x-slot:title>Edit</x-slot:title>
         {{ Form::open(array('url' => '/', 'method' => 'PUT', 'class'=>'col-md-12')) }}
@@ -155,22 +160,22 @@
 
             var inputName = document.getElementById('modal-edit-user').querySelector('#name');
             var inputEmail = document.getElementById('modal-edit-user').querySelector('#email');
-            var inputPass = document.getElementById('modal-edit-user').querySelector('#password');
-            var inputPassConf = document.getElementById('modal-edit-user').querySelector('#password_confirmation');
+            // var inputPass = document.getElementById('modal-edit-user').querySelector('#password');
+            // var inputPassConf = document.getElementById('modal-edit-user').querySelector('#password_confirmation');
             var inputRole = document.getElementById('modal-edit-user').querySelector('#role');
             var inputStatus = document.getElementById('modal-edit-user').querySelector('#status');
 
             inputName.value = json.name;
             inputEmail.value = json.email;
-            inputPass.value = json.password;
-            inputPassConf.value = json.password_confirmation;
+            // inputPass.value = json.password;
+            // inputPassConf.value = json.password_confirmation;
             inputRole.value = json.role;
             inputStatus.value = json.status;
 
             var modalTitle = exampleModal.querySelector('.modal-title')
 
             modalTitle.textContent = 'Edit ' + json.name
-            
+
             // set action to form
             var modalForm = document.getElementById('modal-edit-user').querySelector('form');
             modalForm.action = "/users/" + json.id ;

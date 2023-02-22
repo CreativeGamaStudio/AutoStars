@@ -36,14 +36,13 @@
     </div>
     <div class="container mt-3">
         <div class="card">
-
             <div class="card-body">
                 {{ $dataTable->table() }}
             </div>
         </div>
     </div>
 
-    {{-- modal new user --}}
+    <!-- {{-- modal new user --}} -->
     <x-modal id="modal-new-user">
         <x-slot:title>New User</x-slot:title>
         <form action="{{ route('users.store') }}" method="POST">
@@ -53,7 +52,13 @@
             <x-input id="password" name="password" label="Password" placeholder="Password" />
             <x-input id="password_confirmation" name="password_confirmation" label="Password Confirmation"
                 placeholder="Password Confirmation" />
-            <x-input id="role" name="role" label="Role" placeholder="Role" />
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" name="role" placeholder="Pilih Peran">
+                    <option value="admin">Admin</option>
+                    <option value="user">user</option>
+                </select>
+            </div>
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
                 <select class="form-select" id="status" name="status">
@@ -70,14 +75,14 @@
     {{-- modal edit user --}}
     <x-modal id="modal-edit-user">
         <x-slot:title>Edit</x-slot:title>
-        <form method="POST" enctype="multipart/form-data">
+        {{ Form::open(array('url' => '/', 'method' => 'PUT', 'class'=>'col-md-12')) }}
+        <input type="hidden" name="_method" value="PUT"/>
             @csrf
-            @method('PUT')
-            <x-input id="name" name="name" label="Name" placeholder="Name" />
+            <<x-input id="name" name="name" label="Name" placeholder="Name" />
             <x-input id="email" name="email" label="Email" placeholder="Email" type="email" />
-            <!-- <x-input id="password" name="password" label="Password" placeholder="Password" />
+            <x-input id="password" name="password" label="Password" placeholder="Password" />
             <x-input id="password_confirmation" name="password_confirmation" label="Password Confirmation"
-                placeholder="Password Confirmation" /> -->
+                placeholder="Password Confirmation" />
             <x-input id="role" name="role" label="Role" placeholder="Role" />
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
@@ -88,44 +93,9 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        {{ Form::close()}}
     </x-modal>
 
-    {{-- script --}}
-    <script>
-        var exampleModal = document.getElementById('modal-edit-user')
-        exampleModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget
-            var data = button.getAttribute('data-bs-item')
-            data = data.replace(/'/g, '"');
-            var json = JSON.parse(data);
-
-            var inputName = document.getElementById('modal-edit-user').querySelector('#name');
-            var inputEmail = document.getElementById('modal-edit-user').querySelector('#email');
-            // var inputPass = document.getElementById('modal-edit-user').querySelector('#password');
-            // var inputPassConf = document.getElementById('modal-edit-user').querySelector('#password_confirmation');
-            var inputRole = document.getElementById('modal-edit-user').querySelector('#role');
-            var inputStatus = document.getElementById('modal-edit-user').querySelector('#status');
-
-            inputName.value = json.name;
-            inputEmail.value = json.email;
-            // inputPass.value = json.password;
-            // inputPassConf.value = json.password_confirmation;
-            inputRole.value = json.role;
-            inputStatus.value = json.status;
-
-            var modalTitle = exampleModal.querySelector('.modal-title')
-
-            modalTitle.textContent = 'Edit ' + json.name
-
-            // set action to form
-            var modalForm = document.getElementById('modal-edit-user').querySelector('form');
-            modalForm.action = "{{ route('users.update', '') }}/" + json.id;
-            modalForm.method = "PUT";
-        })
-    </script>
-
-{{-- Delete --}}
     <x-modal id="modal-delete-user" size="sm">
         <x-slot:title>Delete</x-slot:title>
         <div class="modal-body text-center py-4">
@@ -167,6 +137,7 @@
 
     {{-- script delete --}}
     <script>
+
         var exampleModal = document.getElementById('modal-delete-user')
         var modalBodyInput = document.getElementById('id')
         exampleModal.addEventListener('show.bs.modal', function(event) {
@@ -174,6 +145,40 @@
             var recipient = button.getAttribute('data-bs-ids')
             console.log(recipient)
             modalBodyInput.value = recipient
+        })
+    </script>
+
+    {{-- script --}}
+    <script>
+        var exampleModal = document.getElementById('modal-edit-user')
+        exampleModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget
+            var data = button.getAttribute('data-bs-user')
+            console.log(data);
+            data = data.replace(/'/g, '"');
+            var json = JSON.parse(data);
+
+            var inputName = document.getElementById('modal-edit-user').querySelector('#name');
+            var inputEmail = document.getElementById('modal-edit-user').querySelector('#email');
+            // var inputPass = document.getElementById('modal-edit-user').querySelector('#password');
+            // var inputPassConf = document.getElementById('modal-edit-user').querySelector('#password_confirmation');
+            var inputRole = document.getElementById('modal-edit-user').querySelector('#role');
+            var inputStatus = document.getElementById('modal-edit-user').querySelector('#status');
+
+            inputName.value = json.name;
+            inputEmail.value = json.email;
+            // inputPass.value = json.password;
+            // inputPassConf.value = json.password_confirmation;
+            inputRole.value = json.role;
+            inputStatus.value = json.status;
+
+            var modalTitle = exampleModal.querySelector('.modal-title')
+
+            modalTitle.textContent = 'Edit ' + json.name
+
+            // set action to form
+            var modalForm = document.getElementById('modal-edit-user').querySelector('form');
+            modalForm.action = "/users/" + json.id ;
         })
     </script>
 @endsection

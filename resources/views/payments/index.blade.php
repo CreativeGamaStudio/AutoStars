@@ -49,7 +49,7 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-        2. sesuaikan form -->
+                2. sesuaikan form -->
     <x-modal id="modal-new-payment">
         <x-slot:title>New Payment</x-slot:title>
         <form action="{{ route('payments.store') }}" method="POST">
@@ -68,20 +68,61 @@
     {{-- edit form --}}
     <x-modal id="modal-edit-payment">
         <x-slot:title>Edit</x-slot:title>
-        <form method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <x-input id="date" name="date" label="Date" placeholder="Date" type="date" />
-            <x-input id="price" name="price" label="Price" placeholder="Price" type="number" />
-            <x-input id="discount" name="discount" label="Discount" placeholder="Discount" type="number" />
-            <x-input id="card_number" name="card_number" label="Card Number" placeholder="Card Number" type="text" />
-            <x-input id="giro_number" name="giro_number" label="Giro Number" placeholder="Giro Number" type="text" />
+        {{ Form::open(['url' => '/', 'method' => 'PUT', 'class' => 'col-md-12']) }}
+        <input type="hidden" name="_method" value="PUT" />
+        @csrf
+        <x-input id="date" name="date" label="Date" placeholder="Date" type="date" />
+        <x-input id="price" name="price" label="Price" placeholder="Price" type="number" />
+        <x-input id="discount" name="discount" label="Discount" placeholder="Discount" type="number" />
+        <x-input id="card_number" name="card_number" label="Card Number" placeholder="Card Number" type="text" />
+        <x-input id="giro_number" name="giro_number" label="Giro Number" placeholder="Giro Number" type="text" />
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        {{ Form::close() }}
     </x-modal>
 
-    {{-- script --}} 
+    {{-- script edit --}}
+    <script>
+        var exampleModal = document.getElementById('modal-edit-payment')
+        exampleModal.addEventListener('show.bs.modal', function(event) {
+
+            try {
+
+                var button = event.relatedTarget
+                var data = button.getAttribute('data-bs-item')
+                console.log(data);
+                data = data.replace(/'/g, '"');
+                var json = JSON.parse(data);
+
+                var inputDate = document.getElementById('modal-edit-payment').querySelector('#date');
+                var inputPrice = document.getElementById('modal-edit-payment').querySelector('#price');
+                var inputDiscount = document.getElementById('modal-edit-payment').querySelector('#discount');
+                var inputCardNumber = document.getElementById('modal-edit-payment').querySelector('#card_number');
+                var inputGiroNumber = document.getElementById('modal-edit-payment').querySelector('#giro_number');
+
+                inputDate.value = json.date;
+                inputPrice.value = json.price;
+                inputDiscount.value = json.discount;
+                inputCardNumber.value = json.card_number;
+                inputGiroNumber.value = json.giro_number;
+
+                var modalTitle = exampleModal.querySelector('.modal-title')
+
+                modalTitle.textContent = 'Edit ' + json.name
+
+                // set action to form
+                var modalForm = document.getElementById('modal-edit-payment').querySelector('form');
+                modalForm.action = "/payments/" + json.id;
+
+            } catch (e) {
+                console.log(e);
+            }
+            //modalForm.action = "{{ route('invoices.update', '') }}/" + json.id;
+            //modalForm.method = "PUT";
+        })
+    </script>
+
+    {{-- script --}}
     <script>
         var exampleModal = document.getElementById('modal-edit-payment')
         exampleModal.addEventListener('show.bs.modal', function(event) {
@@ -95,7 +136,7 @@
             var inputDiscount = document.getElementById('modal-edit-payment').querySelector('#discount');
             var inputCardNumber = document.getElementById('modal-edit-payment').querySelector('#card_number');
             var inputGiroNumber = document.getElementById('modal-edit-payment').querySelector('#giro_number');
-            
+
             inputDate.value = json.date;
             inputPrice.value = json.price;
             inputDiscount.value = json.discount;
@@ -106,7 +147,7 @@
             var modalTitle = exampleModal.querySelector('.modal-title')
 
             modalTitle.textContent = 'Edit ' + json.name
-            
+
             // set action to form
             var modalForm = document.getElementById('modal-edit-payment').querySelector('form');
             modalForm.action = "{{ route('payments.update', '') }}/" + json.id;
@@ -154,12 +195,12 @@
     </x-modal>
 
     {{-- script delete --}}
-    <script> 
+    <script>
         var exampleModal = document.getElementById('modal-delete-payment')
         var modalBodyInput = document.getElementById('id')
-        exampleModal.addEventListener('show.bs.modal', function(event) { 
+        exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
-            var recipient = button.getAttribute('data-bs-ids') 
+            var recipient = button.getAttribute('data-bs-ids')
             console.log(recipient)
             modalBodyInput.value = recipient
         })

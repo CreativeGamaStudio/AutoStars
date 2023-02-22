@@ -128,7 +128,7 @@
         })
     </script>
 
-    {{-- script --}}
+    {{-- script edit --}}
     <script>
         var exampleModal = document.getElementById('modal-edit-invoice')
         exampleModal.addEventListener('show.bs.modal', function(event) {

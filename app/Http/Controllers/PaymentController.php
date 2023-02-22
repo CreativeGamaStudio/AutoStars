@@ -65,7 +65,7 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        return view('payments.index', compact('payment'));
     }
 
     /**
@@ -76,7 +76,7 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        return redirect()->route('payments.index')->with('success', 'Invoices created successfully.');
+        return redirect()->route('payments.index')->with('success', 'Payment created successfully.');
     }
 
     /**

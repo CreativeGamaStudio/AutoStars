@@ -49,7 +49,7 @@ class PaymentController extends Controller
             'discount' => $request->discount,
             'date' => $request->date,
             'card_number' => $request->card_number,
-            'giro_number' => $request->paid,
+            'giro_number' => $request->giro_number,
         ]);
 
         // redirect to index
@@ -65,7 +65,7 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        return view('payments.index', compact('payment'));
     }
 
     /**
@@ -76,7 +76,7 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        return redirect()->route('payments.index')->with('success', 'Invoices created successfully.');
+        return redirect()->route('payments.index')->with('success', 'Payment created successfully.');
     }
 
     /**
@@ -103,7 +103,7 @@ class PaymentController extends Controller
         $item->giro_number = $request->giro_number;
         $item->save();
         
-        return redirect()->route('payments.index')->with('success', 'Invoices created successfully.');
+        return redirect()->route('payments.index')->with('success', 'Payment created successfully.');
     }
 
     /**
@@ -112,8 +112,14 @@ class PaymentController extends Controller
      * @param  \App\Models\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Payment $payment)
+    public function destroy(Request $request, $id)
     {
-        //
+        $item = Payment::find($request->id);
+        if ($item)
+        {
+            $item->delete();
+        }
+
+        return redirect()->route('payments.index')->with('success', 'Invoices has been deleted successfully.');
     }
 }

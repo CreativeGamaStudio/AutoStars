@@ -23,24 +23,23 @@ class CustomerDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($item) {
-                $itemasjson = json_encode($item);
-                $itemasjson = str_replace("\"", "'", $itemasjson);
-                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+            ->addColumn('action', function ($customer) {
+                $customerasjson = json_encode($customer);
+                $customerasjson = str_replace("\"", "'", $customerasjson);
+                $customerasjson = str_replace("\r\n", ' ', $customerasjson);
                 return '<div>
-                    <a href="' . route('customers.edit', $item->id) . '" class="btn btn-xs btn-primary">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Edit
-                    </a>
-                    <a href="' . route('customers.show', $item->id) . '" class="btn btn-xs btn-info">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        View
-                    </a>
-                    <a href="' . route('customers.destroy', $item->id) . '" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Delete
-                    </a>
-                </div>';
+                <a
+                data-bs-toggle="modal"
+                data-bs-target="#modal-edit-customer"
+                data-bs-customer="' . $customerasjson . '" class="btn btn-xs btn-primary">
+                <i class="glyphicon glyphicon-edit"></i>
+                Edit
+            </a>
+            <a class="btn btn-danger delete"
+            data-bs-toggle="modal"
+            data-bs-target="#modal-delete-customer"
+            data-bs-ids="' . $customer->id . '">Delete</a>
+        </div>';
             })
             ->setRowId('id');
     }
@@ -67,7 +66,7 @@ class CustomerDataTable extends DataTable
             ->setTableId('customer-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-                //->dom('Bfrtip')
+            //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([
@@ -76,7 +75,7 @@ class CustomerDataTable extends DataTable
                 // Button::make('pdf'),
                 // Button::make('print'),
                 // Button::make('reset'),
-                // Button::make('reload')
+                Button::make('reload')
 
             ]);
     }

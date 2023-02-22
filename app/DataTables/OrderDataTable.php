@@ -74,8 +74,8 @@ class OrderDataTable extends DataTable
                 // Button::make('excel'),
                 // Button::make('csv'),
                 // Button::make('pdf'),
-                Button::make('print'),
-                Button::make('reset'),
+                // Button::make('print'),
+                // Button::make('reset'),
                 Button::make('reload')
             ]);
     }

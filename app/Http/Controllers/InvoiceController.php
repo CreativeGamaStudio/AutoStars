@@ -62,7 +62,7 @@ class InvoiceController extends Controller
      */
     public function show(Invoice $invoice)
     {
-        //
+        return view('invoices.index', compact('invoice'));
     }
 
     /**
@@ -73,7 +73,7 @@ class InvoiceController extends Controller
      */
     public function edit(Invoice $invoice)
     {
-        return redirect()->route('invoices.index')->with('success', 'Invoices created successfully.');
+        return redirect()->route('invoices.index')->with('success', 'Invoices has been updated successfully.');
     }
 
     /**
@@ -96,7 +96,7 @@ class InvoiceController extends Controller
         $item->paid = $request->paid;
         $item->save();
         
-        return redirect()->route('items.index')->with('success', 'item has been updated successfully.');
+        return redirect()->route('invoices.index')->with('success', 'Invoice has been updated successfully.');
     }
 
     /**

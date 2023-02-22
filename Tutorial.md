@@ -21,7 +21,7 @@ $request->validate([
         ]);
 
         // create user
-        $user = User::create([
+        $user = User::create([ //user diganti
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
@@ -30,7 +30,23 @@ $request->validate([
         ]);
 
         // redirect to users.index
-        return redirect()->route('users.index')->with('success', 'User created successfully.');
+        return redirect()->route('users.index')->with('success', 'User created successfully.'); //user diganti
+
+2. index
+<x-modal id="modal-new-payment"> //ganti payment
+        <x-slot:title>New Payment</x-slot:title> //ganti payment
+        <form action="{{ route('payments.store') }}" method="POST"> //ganti payments
+            @csrf
+
+            <x-input id="date" name="date" label="Date" placeholder="Date" type="date" />
+            <x-input id="price" name="price" label="Price" placeholder="Price" type="number" />
+            <x-input id="discount" name="discount" label="Discount" placeholder="Discount" type="number" />
+            <x-input id="card_number" name="card_number" label="Card Number" placeholder="Card Number" type="text" />
+            <x-input id="giro_number" name="giro_number" label="Giro Number" placeholder="Giro Number" type="text" />
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </x-modal>
 
 ```
 
@@ -183,3 +199,122 @@ php artisan make:Controller NamaController --resource --model=Nama
 5. Koneksikan ke [./routes/web.php](./routes)
 
 
+##databaseseeder
+
+-. Buka terminal
+
+php artisan make:factory NamaFactory --model=Item
+
+
+-. Goto database/seeders/DatabaseSeeder.php
+
+ \App\Models\Employee::factory(10)->create();
+
+-. goto  database/factories/InvoiceFactory.php
+public function definition()
+    {
+        return [
+            'name' => fake()->name(),
+            'description' => fake()->text(),
+            'price' => fake()->numberBetween(1000, 100000),
+        ];
+    }
+
+-. type php artisan db:seed di terminal
+
+-. php artisan migrate:fresh --seed ( untuk reset ulang)
+
+
+##Delete
+
+1.  app/DataTables/InvoiceDataTable.php
+
+->addColumn('action', function ($item) {
+                $itemasjson = json_encode($item);
+                $itemasjson = str_replace("\"", "'", $itemasjson);
+                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+                return '<div>
+                    <a
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-edit-item"
+                        data-bs-item="'. $itemasjson .'" class="btn btn-xs btn-primary">
+                        <i class="glyphicon glyphicon-edit"></i>
+                        Edit
+                    </a>
+                    <a class="btn btn-danger delete"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-delete-invoice" //yg diganti cuma modal-delete-.....
+                    data-bs-ids="'.$item->id.'">Delete</a>
+                </div>';
+            })
+
+NB : item gausah diganti
+
+2. goto app/Http/Controllers/InvoiceController.php
+
+ public function destroy(Request $request, $id)
+    {
+        //
+        $item = Invoice::find($request->id); //invoice ginti
+        if ($item)
+        {
+            $item->delete();
+        }
+
+        return redirect()->route('invoices.index')->with('success', 'Invoices has been deleted successfully.'); //invoice ginti
+    }
+
+
+3. goto view
+
+resources/views/invoices/index.blade.php
+
+<x-modal id="modal-delete-invoice" size="sm"> //invoice diganti
+        <x-slot:title>Delete</x-slot:title>
+        <div class="modal-body text-center py-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M12 9v2m0 4v.01"></path>
+                <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75">
+                </path>
+            </svg>
+            <h3>Are you sure?</h3>
+            <div class="text-muted">Apakah anda yakin ingin menghapus data ini?</div>
+        </div>
+        <form action="{{ route('invoices.destroy', 'id') }}" method="post"> //invoice diganti
+            @csrf
+            @method('DELETE')
+            <input id="id" name="id" hidden>
+
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="row">
+                        <div class="col"><a href="#" class="btn w-100" type="button" data-bs-dismiss="modal">
+                                Cancel
+                            </a></div>
+                        <div class="col">
+                            <button class="btn btn-danger w-100" type="submit">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </x-modal>
+
+    {{-- script delete --}}
+    <script> 
+        var exampleModal = document.getElementById('modal-delete-invoice')
+        var modalBodyInput = document.getElementById('id')
+        exampleModal.addEventListener('show.bs.modal', function(event) { 
+            var button = event.relatedTarget
+            var recipient = button.getAttribute('data-bs-ids') 
+            console.log(recipient)
+            modalBodyInput.value = recipient
+        })
+    </script>

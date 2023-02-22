@@ -28,17 +28,15 @@ class InvoiceDataTable extends DataTable
                 $itemasjson = str_replace("\"", "'", $itemasjson);
                 $itemasjson = str_replace("\r\n", ' ', $itemasjson);
                 return '<div>
-                    <a href="' . route('invoices.edit', $item->id) . '" class="btn btn-xs btn-primary">
+                    <a
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-edit-invoice"
+                        data-bs-item="'. $itemasjson .'" class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </a>
-                    <a href="' . route('invoices.show', $item->id) . '" class="btn btn-xs btn-info">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        View
-                    </a>
-                    </a>
-                    <a class="btn btn-danger delete" 
-                    data-bs-toggle="modal" 
+                    <a class="btn btn-danger delete"
+                    data-bs-toggle="modal"
                     data-bs-target="#modal-delete-invoice"
                     data-bs-ids="'.$item->id.'">Delete</a>
                 </div>';
@@ -77,7 +75,7 @@ class InvoiceDataTable extends DataTable
                 // Button::make('pdf'),
                 // Button::make('print'),
                 // Button::make('reset'),
-                // Button::make('reload')
+                Button::make('reload')
 
             ]);
     }

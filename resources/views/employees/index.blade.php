@@ -38,7 +38,6 @@
     <!-- cek datatable -->
     <div class="container mt-3">
         <div class="card">
-
             <div class="card-body">
                 {{ $dataTable->table() }}
             </div>
@@ -65,16 +64,16 @@
 {{-- modal edit --}}
     <x-modal id="modal-edit-employee">
         <x-slot:title>Edit</x-slot:title>
-        <form method="POST" enctype="multipart/form-data">
+        {{ Form::open(array('url' => '/', 'method' => 'PUT', 'class'=>'col-md-12')) }}
+            <input type="hidden" name="_method" value="PUT"/>
             @csrf
-            @method('PUT')
             <x-input id="name" name="name" label="Name" placeholder="Name" />
             <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="number"/>
             <x-input id="address" name="address" label="Address" placeholder="Address" />
             <x-input id="position" name="position" label="Position" placeholder="Position" />
 
             <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            {{ Form::close()}}
     </x-modal>
 
     <x-modal id="model-delete-employee" size="sm">
@@ -90,7 +89,8 @@
             </svg>
             <h3>Are you sure?</h3>
             <div class="text-muted">Apakah anda yakin ingin menghapus data ini?</div>
-            <input id="dataId" type="text"/>
+            {{-- <input id="dataId" type="text"/> --}}
+        </div>
         <form ction="{{ route('items.destroy', 'id') }}" method="post">
             @csrf
             @method('DELETE')
@@ -116,6 +116,7 @@
     {{-- script delete --}}
     <script>
         var exampleModal = document.getElementById('model-delete-employee')
+        var modalBodyInput = document.getElementById('id')
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
             var recipient = button.getAttribute('data-bs-ids') 
@@ -130,6 +131,7 @@
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
             var data = button.getAttribute('data-bs-employee')
+            console.log(data);
             data = data.replace(/'/g, '"');
             var json = JSON.parse(data);
 
@@ -149,8 +151,7 @@
             
             // set action to form
             var modalForm = document.getElementById('modal-edit-employee').querySelector('form');
-            modalForm.action = "{{ route('employees.update', '') }}/" + json.id;
-            modalForm.method = "PUT";
+            modalForm.action = "/employees/" + json.id ;
         })
     </script>
 

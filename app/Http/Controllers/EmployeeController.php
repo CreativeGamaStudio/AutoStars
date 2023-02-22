@@ -63,7 +63,7 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
-        //
+        return view('items.index', compact('item'));
     }
 
     /**
@@ -87,8 +87,8 @@ class EmployeeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:40',
-            'phone_number' => 'required|max:13',
+            'name' => 'required',
+            'phone_number' => 'required',
             'address' => 'required',
             'position' => 'required',
         ]);
@@ -108,15 +108,15 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy(Request $request, $id)
     {
-        $employee = Employee::find($employee->id);
+        $employee = Employee::find($request->id);
         if ($employee) 
         {
             $employee->delete();
             
         }
-        return redirect()->route('employees.index')->with('success', 'employee has been deleted successfully.');
+        return redirect()->route('employees.index')->with('danger', 'employee has been deleted successfully.');
         //
     }
 }

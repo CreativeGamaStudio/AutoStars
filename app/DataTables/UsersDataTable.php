@@ -23,24 +23,24 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', function ($item) {
-            $itemasjson = json_encode($item);
-            $itemasjson = str_replace("\"", "'", $itemasjson);
-            $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+        ->addColumn('action', function ($user) {
+            $userasjson = json_encode($user);
+            $userasjson = str_replace("\"", "'", $userasjson);
+            $userasjson = str_replace("\r\n", ' ', $userasjson);
             return '<div>
                 <a
                     data-bs-toggle="modal"
                     data-bs-target="#modal-edit-user"
-                    data-bs-item="'. $itemasjson .'" class="btn btn-xs btn-primary">
+                    data-bs-item="'. $userasjson .'" class="btn btn-xs btn-primary">
                     <i class="glyphicon glyphicon-edit"></i>
                     Edit
                 </a>
                 <a class="btn btn-danger delete"
                 data-bs-toggle="modal"
                 data-bs-target="#modal-delete-user"
-                data-bs-ids="'.$item->id.'">Delete</a>
+                data-bs-ids="'.$user->id.'">Delete</a>
             </div>';
-        })
+            })
             ->setRowId('id');
     }
 
@@ -74,7 +74,7 @@ class UsersDataTable extends DataTable
 
                 // Button::make('print'),
                 // Button::make('reset'),
-                Button::make('reload')
+                // Button::make('reload')
             ]);
     }
 

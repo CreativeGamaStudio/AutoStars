@@ -38,9 +38,9 @@ class UserController extends Controller
     {
         // validate name email password and password confirmation, role and status
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
             'role' => 'required',
             'status' => 'required',
         ]);
@@ -90,9 +90,9 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
             'role' => 'required',
             'status' => 'required',
         ]);
@@ -116,10 +116,12 @@ class UserController extends Controller
     public function destroy(Request $request, $id)
     {
         $user = User::find($request->id);
-        if ($user) {
+        if ($user)
+        {
             $user->delete();
+            
         }
 
-        return redirect()->route('users.index')->with('success', 'user has been deleted successfully.');
+        return redirect()->route('users.index')->with('danger', 'User has been deleted successfully.');
     }
 }

@@ -90,15 +90,16 @@ class CustomerController extends Controller
         // validate
         $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'price' => 'required'
+            'phone_number' => 'required|max:13',
+            'address' => 'required',
+            'city' => 'required',
         ]);
-        $customer = customer::find($id);
-        $customer->name = $request->name;
-        $customer->address = $request->address;
-        $customer->phone_number = $request->phone_number;
-        $customer->city = $request->city;
-        $customer->save();
+        $item = Customer::find($id);
+        $item->name = $request->name;
+        $item->address = $request->address;
+        $item->phone_number = $request->phone_number;
+        $item->city = $request->city;
+        $item->save();
         return redirect()->route('customers.index')->with('success', 'customer has been updated successfully.');
     }
 
@@ -116,11 +117,11 @@ class CustomerController extends Controller
     // }
     public function destroy(Request $request, $id)
     {
-        $customer = Customer::find($request->id);
-        if ($customer) {
-            $customer->delete();
+        $item = Customer::find($request->id);
+        if ($item) {
+            $item->delete();
         }
 
-        return redirect()->route('customers.index')->with('danger', 'customer has been deleted successfully.');
+        return redirect()->route('customers.index')->with('success', 'customer has been deleted successfully.');
     }
 }

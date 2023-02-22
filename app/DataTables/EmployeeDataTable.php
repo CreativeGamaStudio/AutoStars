@@ -31,14 +31,9 @@ class EmployeeDataTable extends DataTable
                     <a 
                         data-bs-toggle="modal"
                         data-bs-target="#modal-edit-employee"
-                        data-bs-ids="' . $employee->id . '"
-                        class="btn btn-xs btn-primary">
+                        data-bs-item="'. $employeeasjson .'" class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
-                    </a>
-                    <a href="' . route('employees.show', $employee->id) . '" class="btn btn-xs btn-info">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        View
                     </a>
                     <a class="btn btn-danger delete" 
                     data-bs-toggle="modal" 

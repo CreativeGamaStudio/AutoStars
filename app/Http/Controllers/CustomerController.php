@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\DataTables\CustomerDataTable;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
@@ -39,7 +40,7 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone_number' => 'required|max:13',
+            'phone_number' => 'required|max:14',
             'address' => 'required',
             'city' => 'required',
         ]);
@@ -62,9 +63,9 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $item)
+    public function show(Customer $customer)
     {
-        return view('customers.index', compact('item'));
+        return view('customers.index', compact('customer'));
     }
 
     /**
@@ -73,7 +74,7 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $item)
+    public function edit(Customer $customer)
     {
         return redirect()->route('customers.index')->with('success', 'customer has been updated successfully.');
     }
@@ -88,12 +89,21 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         // validate
-        $request->validate([
+
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'phone_number' => 'required|max:13',
+            'phone_number' => 'required|max:14',
             'address' => 'required',
             'city' => 'required',
         ]);
+        if ($validator->fails()) {
+            $messages = $validator->messages()->all();
+            return redirect()->route('customers.index')->with(
+                'error',
+                implode(", ", $messages)
+            );
+        }
         $item = Customer::find($id);
         $item->name = $request->name;
         $item->address = $request->address;

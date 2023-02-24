@@ -104,7 +104,7 @@
 
             // set action to form
             var modalForm = document.getElementById('modal-edit-customer').querySelector('form');
-            modalForm.action = "/customers" + json.id;
+            modalForm.action = "/customers/" + json.id;
         })
     </script>
 

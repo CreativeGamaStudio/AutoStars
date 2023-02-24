@@ -23,8 +23,8 @@ class CustomerDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($customer) {
-                $itemasjson = json_encode($customer);
+            ->addColumn('action', function ($item) {
+                $itemasjson = json_encode($item);
                 $itemasjson = str_replace("\"", "'", $itemasjson);
                 $itemasjson = str_replace("\r\n", ' ', $itemasjson);
                 return '<div>
@@ -39,7 +39,7 @@ class CustomerDataTable extends DataTable
                     <a class="btn btn-danger delete"
                     data-bs-toggle="modal"
                     data-bs-target="#modal-delete-customer"
-                    data-bs-ids="' . $customer->id . '">Delete</a>
+                    data-bs-ids="' . $item->id . '">Delete</a>
                 </div>';
             })
             ->setRowId('id');

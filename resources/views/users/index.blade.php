@@ -78,12 +78,19 @@
         {{ Form::open(array('url' => '/', 'method' => 'PUT', 'class'=>'col-md-12')) }}
         <input type="hidden" name="_method" value="PUT"/>
             @csrf
-            <<x-input id="name" name="name" label="Name" placeholder="Name" />
+            <x-input id="name" name="name" label="Name" placeholder="Name" />
             <x-input id="email" name="email" label="Email" placeholder="Email" type="email" />
             <x-input id="password" name="password" label="Password" placeholder="Password" />
             <x-input id="password_confirmation" name="password_confirmation" label="Password Confirmation"
                 placeholder="Password Confirmation" />
-            <x-input id="role" name="role" label="Role" placeholder="Role" />
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" name="role">
+                    <option value="admin">Admin</option>
+                    <option value="staff">Staf</option>
+                    <option value="staff">User</option>
+                </select>
+            </div>
             <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
                 <select class="form-select" id="status" name="status">
@@ -153,7 +160,7 @@
         var exampleModal = document.getElementById('modal-edit-user')
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
-            var data = button.getAttribute('data-bs-user')
+            var data = button.getAttribute('data-bs-item')
             console.log(data);
             data = data.replace(/'/g, '"');
             var json = JSON.parse(data);

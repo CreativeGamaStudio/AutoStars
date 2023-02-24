@@ -44,7 +44,7 @@ class EmployeeController extends Controller
         ]);
 
         // create user
-        $employee = Employee::create([
+        $item = Employee::create([
             'name' => $request->name,
             'phone_number' => $request->phone_number,
             'address' => $request->address,
@@ -61,7 +61,7 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show(Employee $item)
     {
         return view('items.index', compact('item'));
     }
@@ -72,7 +72,7 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit(Employee $item)
     {
         return redirect()->route('employees.index')->with('success', 'Employee created successfully.');
     }
@@ -88,7 +88,7 @@ class EmployeeController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone_number' => 'required',
+            'phone_number' => 'required|max:13',
             'address' => 'required',
             'position' => 'required',
         ]);
@@ -110,11 +110,9 @@ class EmployeeController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $employee = Employee::find($request->id);
-        if ($employee) 
-        {
-            $employee->delete();
-            
+        $item = Employee::find($request->id);
+        if ($item) {
+            $item->delete();
         }
         return redirect()->route('employees.index')->with('danger', 'employee has been deleted successfully.');
         //

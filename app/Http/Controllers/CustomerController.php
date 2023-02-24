@@ -45,7 +45,7 @@ class CustomerController extends Controller
         ]);
 
         // create user
-        $customer = Customer::create([
+        $item = Customer::create([
             'name' => $request->name,
             'phone_number' => $request->phone_number,
             'address' => $request->address,
@@ -62,9 +62,9 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show(Customer $item)
     {
-        return view('customers.index', compact('customer'));
+        return view('customers.index', compact('item'));
     }
 
     /**
@@ -73,7 +73,7 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit(Customer $item)
     {
         return redirect()->route('customers.index')->with('success', 'customer has been updated successfully.');
     }
@@ -109,12 +109,6 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    // public function destroy(Customer $customer)
-    // {
-    //     $customer->delete();
-
-    //     return redirect()->route('customers.index')->with('success', 'customer has been deleted successfully.');
-    // }
     public function destroy(Request $request, $id)
     {
         $item = Customer::find($request->id);

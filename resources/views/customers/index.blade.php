@@ -39,7 +39,6 @@
     <!-- cek datatable -->
     <div class="container mt-3">
         <div class="card">
-
             <div class="card-body">
                 {{ $dataTable->table() }}
             </div>
@@ -49,14 +48,14 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-                                                2. sesuaikan form -->
+                                                            2. sesuaikan form -->
     <x-modal id="modal-new-customer">
         <x-slot:title>New Customer</x-slot:title>
         <form action="{{ route('customers.store') }}" method="POST">
             @csrf
 
             <x-input id="name" name="name" label="Name" placeholder="Name" />
-            <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="Number" />
+            <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" />
             <x-input id="address" name="address" label="Address" placeholder="Address" />
             <x-input id="city" name="city" label="City" placeholder="City" />
 
@@ -70,73 +69,34 @@
         {{ Form::open(['url' => '/', 'method' => 'PUT', 'class' => 'col-md-12']) }}
         <input type="hidden" name="_method" value="PUT" />
         @csrf
-        <x-input id="name" name="name" label="Name" placeholder="Name" />
-        <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="number" />
-        <x-input id="address" name="address" label="Address" placeholder="Address" />
-        <x-input id="city" name="city" label="City" placeholder="City" />
+        <x-input id="name" name="name" label="Name" placeholder="Name" type="text" />
+        <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="text" />
+        <x-input id="address" name="address" label="Address" placeholder="Address" type="text" />
+        <x-input id="city" name="city" label="City" placeholder="City" type="text" />
 
         <button type="submit" class="btn btn-primary">Submit</button>
         {{ Form::close() }}
     </x-modal>
 
-    {{-- Script --}}
-    <script>
-        var exampleModal = document.getElementById('modal-edit-customer')
-        exampleModal.addEventListener('show.bs.modal', function(event) {
-
-            try {
-
-                var button = event.relatedTarget
-                var data = button.getAttribute('data-bs-customer')
-                console.log(data);
-                data = data.replace(/'/g, '"');
-                var json = JSON.parse(data);
-
-                var inputName = document.getElementById('modal-edit-customer').querySelector('#name');
-                var inputPhoneNumber = document.getElementById('modal-edit-customer').querySelector(
-                '#phone_number');
-                var inputAddress = document.getElementById('modal-edit-customer').querySelector('#address');
-                var inputCity = document.getElementById('modal-edit-customer').querySelector('#city');
-
-                inputName.value = json.name;
-                inputPhoneNumber.value = json.phone_number;
-                inputAddress.value = json.address;
-                inputCity.value = json.city;
-
-                var modalTitle = exampleModal.querySelector('.modal-title')
-
-                modalTitle.textContent = 'Edit ' + json.name
-
-                // set action to form
-                var modalForm = document.getElementById('modal-edit-customer').querySelector('form');
-                modalForm.action = "/customers" + json.id;
-            } catch (e) {
-                console.log(e);
-            }
-            //modalForm.action = "{{ route('customers.update', '') }}/" + json.id;
-            //modalForm.method = "PUT";
-        })
-    </script>
-
-    {{-- script --}}
+    {{-- Script edit --}}
     <script>
         var exampleModal = document.getElementById('modal-edit-customer')
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
-            var data = button.getAttribute('data-bs-payment')
+            var data = button.getAttribute('data-bs-item')
+            console.log(data);
             data = data.replace(/'/g, '"');
             var json = JSON.parse(data);
 
             var inputName = document.getElementById('modal-edit-customer').querySelector('#name');
+            var inputPhone = document.getElementById('modal-edit-customer').querySelector('#phone_number');
             var inputAddress = document.getElementById('modal-edit-customer').querySelector('#address');
-            var inputPhoneNumber = document.getElementById('modal-edit-customer').querySelector('#phone_number');
             var inputCity = document.getElementById('modal-edit-customer').querySelector('#city');
 
             inputName.value = json.name;
+            inputPhone.value = json.phone_number;
             inputAddress.value = json.address;
-            inputPhoneNumber.value = json.phone_number;
-            inputCity.value = json.card_number;
-
+            inputCity.value = json.city;
 
             var modalTitle = exampleModal.querySelector('.modal-title')
 
@@ -144,8 +104,7 @@
 
             // set action to form
             var modalForm = document.getElementById('modal-edit-customer').querySelector('form');
-            modalForm.action = "{{ route('payments.update', '') }}/" + json.id;
-            modalForm.method = "PUT";
+            modalForm.action = "/customers" + json.id;
         })
     </script>
 
@@ -183,8 +142,6 @@
                     </div>
                 </div>
             </div>
-
-
         </form>
     </x-modal>
 

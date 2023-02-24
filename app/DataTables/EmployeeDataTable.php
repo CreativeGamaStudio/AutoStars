@@ -24,21 +24,21 @@ class EmployeeDataTable extends DataTable
     {
         return (new EloquentDataTable($query))
             ->addColumn('action', function ($employee) {
-                $employeeasjson = json_encode($employee);
-                $employeeasjson = str_replace("\"", "'", $employeeasjson);
-                $employeeasjson = str_replace("\r\n", ' ', $employeeasjson);
+                $itemasjson = json_encode($employee);
+                $itemasjson = str_replace("\"", "'", $itemasjson);
+                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
                 return '<div>
                     <a 
                         data-bs-toggle="modal"
                         data-bs-target="#modal-edit-employee"
-                        data-bs-item="'. $employeeasjson .'" class="btn btn-xs btn-primary">
+                        data-bs-item="' . $itemasjson . '" class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </a>
                     <a class="btn btn-danger delete" 
                     data-bs-toggle="modal" 
-                    data-bs-target="#modal-delete-item"
-                    data-bs-ids="'.$employee->id.'">Delete</a>
+                    data-bs-target="#modal-delete-employee"
+                    data-bs-ids="' . $employee->id . '">Delete</a>
                 </div>';
             })
             ->setRowId('id');
@@ -66,7 +66,7 @@ class EmployeeDataTable extends DataTable
             ->setTableId('employee-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-                //->dom('Bfrtip')
+            //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([

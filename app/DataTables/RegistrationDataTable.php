@@ -23,24 +23,24 @@ class RegistrationDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($item) {
-                $itemasjson = json_encode($item);
-                $itemasjson = str_replace("\"", "'", $itemasjson);
-                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
-                return '<div>
-                    <a href="' . route('registrations.edit', $item->id) . '" class="btn btn-xs btn-primary">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Edit
-                    </a>
-                    <a href="' . route('registrations.show', $item->id) . '" class="btn btn-xs btn-info">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        View
-                    </a>
-                    <a href="' . route('registrations.destroy', $item->id) . '" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Delete
-                    </a>';
-            })
+        ->addColumn('action', function ($item) {
+            $itemasjson = json_encode($item);
+            $itemasjson = str_replace("\"", "'", $itemasjson);
+            $itemasjson = str_replace("\r\n", ' ', $itemasjson);
+            return '<div>
+            <a
+            data-bs-toggle="modal"
+            data-bs-target="#modal-edit-registration"
+            data-bs-item="'. $itemasjson .'" class="btn btn-xs btn-primary">
+            <i class="glyphicon glyphicon-edit"></i>
+            Edit </a>
+            
+            <a class="btn btn-danger delete" 
+                data-bs-toggle="modal"  
+                data-bs-target="#modal-delete-registration"
+                data-bs-ids="'.$item->id.'">Delete</a>
+            </div>';
+        })
             ->setRowId('id');
     }
 

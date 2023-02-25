@@ -69,7 +69,7 @@ class RegistrationController extends Controller
      */
     public function show(Registration $registration)
     {
-        //
+        return view('registrations.index', compact('registration'));
     }
 
     /**
@@ -113,14 +113,22 @@ class RegistrationController extends Controller
         return redirect()->route('registrations.index')->with('success', 'Registration created successfully.');
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Registration  $registration
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Registration $registration)
+    public function destroy(Request $request, $id)
     {
         //
+        $item = Registration::find($request->id); //invoice ginti
+        if ($item)
+        {
+            $item->delete();
+        }
+
+        return redirect()->route('registrations.index')->with('success', 'Register has been deleted successfully.'); //invoice ginti
     }
 }

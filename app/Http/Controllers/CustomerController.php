@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\DataTables\CustomerDataTable;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
@@ -39,13 +40,13 @@ class CustomerController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone_number' => 'required|max:13',
+            'phone_number' => 'required|max:14',
             'address' => 'required',
             'city' => 'required',
         ]);
 
         // create user
-        $customer = Customer::create([
+        $item = Customer::create([
             'name' => $request->name,
             'phone_number' => $request->phone_number,
             'address' => $request->address,
@@ -88,17 +89,27 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
         // validate
-        $request->validate([
+
+
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'description' => 'required',
-            'price' => 'required'
+            'phone_number' => 'required|max:14',
+            'address' => 'required',
+            'city' => 'required',
         ]);
-        $customer = customer::find($id);
-        $customer->name = $request->name;
-        $customer->address = $request->address;
-        $customer->phone_number = $request->phone_number;
-        $customer->city = $request->city;
-        $customer->save();
+        if ($validator->fails()) {
+            $messages = $validator->messages()->all();
+            return redirect()->route('customers.index')->with(
+                'error',
+                implode(", ", $messages)
+            );
+        }
+        $item = Customer::find($id);
+        $item->name = $request->name;
+        $item->address = $request->address;
+        $item->phone_number = $request->phone_number;
+        $item->city = $request->city;
+        $item->save();
         return redirect()->route('customers.index')->with('success', 'customer has been updated successfully.');
     }
 
@@ -108,19 +119,13 @@ class CustomerController extends Controller
      * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    // public function destroy(Customer $customer)
-    // {
-    //     $customer->delete();
-
-    //     return redirect()->route('customers.index')->with('success', 'customer has been deleted successfully.');
-    // }
     public function destroy(Request $request, $id)
     {
-        $customer = Customer::find($request->id);
-        if ($customer) {
-            $customer->delete();
+        $item = Customer::find($request->id);
+        if ($item) {
+            $item->delete();
         }
 
-        return redirect()->route('customers.index')->with('danger', 'customer has been deleted successfully.');
+        return redirect()->route('customers.index')->with('success', 'customer has been deleted successfully.');
     }
 }

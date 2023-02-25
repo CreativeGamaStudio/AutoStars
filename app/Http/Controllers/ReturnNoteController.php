@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\ReturnNoteDataTable;
 use App\Models\ReturnNote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReturnNoteController extends Controller
 {
@@ -56,7 +57,7 @@ class ReturnNoteController extends Controller
      */
     public function show(ReturnNote $returnNote)
     {
-        //
+        return view('return_notes.index', compact('returnNote'));
     }
 
     /**
@@ -67,7 +68,7 @@ class ReturnNoteController extends Controller
      */
     public function edit(ReturnNote $returnNote)
     {
-        //
+        return redirect()->route('return_notes.index')->with('success', 'Return Notes edited successfully.');
     }
 
     /**
@@ -77,10 +78,24 @@ class ReturnNoteController extends Controller
      * @param  \App\Models\ReturnNote  $returnNote
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReturnNote $returnNote)
+    public function update(Request $request,$id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'date' => 'required',
+        ]);
+        if ($validator->fails()) {
+            $messages = $validator->messages()->all();
+            return redirect()->route('return_notes.index')->with(
+                'error',
+                implode(", ", $messages)
+            );
+        }
+        $item = ReturnNote::find($id);
+        $item->date = $request->date;
+        $item->save();
+        return redirect()->route('return_notes.index')->with('success', 'Return Notes has been updated successfully.');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -88,8 +103,13 @@ class ReturnNoteController extends Controller
      * @param  \App\Models\ReturnNote  $returnNote
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReturnNote $returnNote)
+    public function destroy(Request $request, $id)
     {
-        //
+        $item = ReturnNote::find($request->id);
+        if ($item) {
+            $item->delete();
+        }
+
+        return redirect()->route('return_notes.index')->with('success', 'Return Notes has been deleted successfully.');
     }
 }

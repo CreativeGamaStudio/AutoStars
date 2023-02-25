@@ -35,7 +35,10 @@ Route::resource('invoices', App\Http\Controllers\InvoiceController::class, [
 ]);
 
 
-Route::resource('users', App\Http\Controllers\UserController::class);
+Route::resource('users', App\Http\Controllers\UserController::class, [
+    'except' => ['show']
+]);
+
 
 Route::resource('customers', App\Http\Controllers\CustomerController::class, [
     'except' => ['show']
@@ -43,7 +46,10 @@ Route::resource('customers', App\Http\Controllers\CustomerController::class, [
 
 Route::resource('services', App\Http\Controllers\ServiceController::class);
 
-Route::resource('employees', App\Http\Controllers\EmployeeController::class);
+Route::resource('employees', App\Http\Controllers\EmployeeController::class, [
+    'except' => ['show']
+]);
+
 
 Route::resource('vehicles', App\Http\Controllers\VehicleController::class);
 
@@ -53,8 +59,13 @@ Route::resource('registrations', App\Http\Controllers\RegistrationController::cl
 
 Route::resource('orders', App\Http\Controllers\OrderController::class);
 
-Route::resource('payments', App\Http\Controllers\PaymentController::class);
+Route::resource('payments', App\Http\Controllers\PaymentController::class, [
+    'except' => ['show']
+]);
 
 Route::resource('notes', App\Http\Controllers\NoteController::class);
 
-Route::resource('return_notes', App\Http\Controllers\ReturnNoteController::class);
+Route::resource('return_notes', App\Http\Controllers\ReturnNoteController::class, [
+    'except' => ['show']
+]);
+

@@ -47,13 +47,14 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-    2. sesuaikan form -->
+                        2. sesuaikan form -->
     <x-modal id="modal-new-employee">
         <x-slot:title>New Employee</x-slot:title>
         <form action="{{ route('employees.store') }}" method="POST">
             @csrf
+
             <x-input id="name" name="name" label="Name" placeholder="Name" />
-            <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="number"/>
+            <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" />
             <x-input id="address" name="address" label="Address" placeholder="Address" />
             <x-input id="position" name="position" label="Position" placeholder="Position" />
 
@@ -61,20 +62,50 @@
         </form>
     </x-modal>
 
-{{-- modal edit --}}
+    {{-- edit form --}}
     <x-modal id="modal-edit-employee">
         <x-slot:title>Edit</x-slot:title>
-        {{ Form::open(array('url' => '/', 'method' => 'PUT', 'class'=>'col-md-12')) }}
-            <input type="hidden" name="_method" value="PUT"/>
-            @csrf
-            <x-input id="name" name="name" label="Name" placeholder="Name" />
-            <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="number"/>
-            <x-input id="address" name="address" label="Address" placeholder="Address" />
-            <x-input id="position" name="position" label="Position" placeholder="Position" />
+        {{ Form::open(['url' => '/', 'method' => 'PUT', 'class' => 'col-md-12']) }}
+        <input type="hidden" name="_method" value="PUT" />
+        @csrf
+        <x-input id="name" name="name" label="Name" placeholder="Name" type="text" />
+        <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="text" />
+        <x-input id="address" name="address" label="Address" placeholder="Address" type="text" />
+        <x-input id="position" name="position" label="Position" placeholder="Position" type="text" />
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-            {{ Form::close()}}
+        <button type="submit" class="btn btn-primary">Submit</button>
+        {{ Form::close() }}
     </x-modal>
+
+    {{-- script edit --}}
+    <script>
+        var exampleModal = document.getElementById('modal-edit-employee')
+        exampleModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget
+            var data = button.getAttribute('data-bs-item')
+            console.log(data);
+            data = data.replace(/'/g, '"');
+            var json = JSON.parse(data);
+
+            var inputName = document.getElementById('modal-edit-employee').querySelector('#name');
+            var inputPhone = document.getElementById('modal-edit-employee').querySelector('#phone_number');
+            var inputAddress = document.getElementById('modal-edit-employee').querySelector('#address');
+            var inputPosition = document.getElementById('modal-edit-employee').querySelector('#position');
+
+            inputName.value = json.name;
+            inputPhone.value = json.phone_number;
+            inputAddress.value = json.address;
+            inputPosition.value = json.position;
+
+            var modalTitle = exampleModal.querySelector('.modal-title')
+
+            modalTitle.textContent = 'Edit ' + json.name
+
+            // set action to form
+            var modalForm = document.getElementById('modal-edit-employee').querySelector('form');
+            modalForm.action = "/employees/" + json.id;
+        })
+    </script>
 
     <x-modal id="model-delete-employee" size="sm">
         <x-slot:title>Delete</x-slot:title>
@@ -119,42 +150,11 @@
         var modalBodyInput = document.getElementById('id')
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
-            var recipient = button.getAttribute('data-bs-ids') 
+            var recipient = button.getAttribute('data-bs-ids')
             console.log(recipient)
             modalBodyInput.value = recipient
         })
-        </script>
-
-    {{-- script --}} 
-    <script>
-        var exampleModal = document.getElementById('modal-edit-employee')
-        exampleModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget
-            var data = button.getAttribute('data-bs-employee')
-            console.log(data);
-            data = data.replace(/'/g, '"');
-            var json = JSON.parse(data);
-
-            var inputName = document.getElementById('modal-edit-employee').querySelector('#name');
-            var inputPhone = document.getElementById('modal-edit-employee').querySelector('#phone_number');
-            var inputAddress = document.getElementById('modal-edit-employee').querySelector('#address');
-            var inputPosition = document.getElementById('modal-edit-employee').querySelector('#position');
-
-            inputName.value = json.name;
-            inputPhone.value = json.phone_number;
-            inputAddress.value = json.address;
-            inputPosition.value = json.position;
-
-            var modalTitle = exampleModal.querySelector('.modal-title')
-
-            modalTitle.textContent = 'Edit ' + json.name
-            
-            // set action to form
-            var modalForm = document.getElementById('modal-edit-employee').querySelector('form');
-            modalForm.action = "/employees/" + json.id ;
-        })
     </script>
-
 
     <!-- end section -->
 @endsection

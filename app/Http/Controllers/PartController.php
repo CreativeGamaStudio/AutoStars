@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\PartDataTable;
 use App\Models\Part;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PartController extends Controller
 {
@@ -47,7 +48,7 @@ class PartController extends Controller
         ]);
 
         // create parts
-        $part = Part::create([
+        $item = Part::create([
             'name' => $request->name,
             'barcode' => $request->barcode,
             'qty' => $request->qty,
@@ -66,7 +67,7 @@ class PartController extends Controller
      */
     public function show(Part $part)
     {
-        //
+        return view('parts.index', compact('part'));
     }
 
     /**
@@ -89,13 +90,20 @@ class PartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request-> all(), [
             'barcode' => 'required',
             'name' => 'required',
             'qty' => 'required',
             'purchase_price' => 'required',
             'selling_price' => 'required',
         ]);
+        if ($validator->fails()) {
+            $messages = $validator->messages()->all();
+            return redirect()->route('parts.index')->with(
+                'error', 
+                implode(", ", $messages)
+            );
+        }
         $item = Part::find($id);
         $item->name = $request->name;
         $item->barcode = $request->barcode;
@@ -113,9 +121,13 @@ class PartController extends Controller
      * @param  \App\Models\Part  $part
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Part $part)
+    public function destroy(Request $request, $id)
     {
-        $part->delete();
-        return redirect()->route('companies.index')->with('success', 'Part has been deleted successfully');
+        $item = Part::find($request->id);
+        if ($item) {
+            $item->delete();
+        }
+        
+        return redirect()->route('parts.index')->with('success', 'Part has been deleted successfully');
     }
 }

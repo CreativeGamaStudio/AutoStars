@@ -53,7 +53,6 @@
         <x-slot:title>New Customer</x-slot:title>
         <form action="{{ route('customers.store') }}" method="POST">
             @csrf
-
             <x-input id="name" name="name" label="Name" placeholder="Name" />
             <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" />
             <x-input id="address" name="address" label="Address" placeholder="Address" />

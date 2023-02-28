@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\DataTables\UsersDataTable;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -46,7 +47,7 @@ class UserController extends Controller
         ]);
 
         // create user
-        $user = User::create([
+        $item = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
@@ -77,7 +78,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return redirect()->route('users.index')->with('success', 'User Edited successfully.');
+        return redirect()->route('users.index')->with('success', 'User has been updated successfully.');
     }
 
     /**
@@ -89,13 +90,20 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
             'role' => 'required',
             'status' => 'required',
         ]);
+        if ($validator->fails()) {
+            $messages = $validator->messages()->all();
+            return redirect()->route('users.index')->with(
+                'error',
+                implode(", ", $messages)
+            );
+        }
         $user = User::find($id);
         $user->name = $request->name;
         $user->email = $request->email;
@@ -115,13 +123,11 @@ class UserController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        $user = User::find($request->id);
-        if ($user)
-        {
-            $user->delete();
-            
+        $item = User::find($request->id);
+        if ($item) {
+            $item->delete();
         }
 
-        return redirect()->route('users.index')->with('danger', 'User has been deleted successfully.');
+        return redirect()->route('users.index')->with('success', 'User has been deleted successfully.');
     }
 }

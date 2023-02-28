@@ -23,23 +23,24 @@ class ServiceDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($service) {
-                $serviceasjson = json_encode($service);
-                $serviceasjson = str_replace("\"", "'", $serviceasjson);
-                $serviceasjson = str_replace("\r\n", ' ', $serviceasjson);
+            ->addColumn('action', function ($item) {
+                $itemasjson = json_encode($item);
+                $itemasjson = str_replace("\"", "'", $itemasjson);
+                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
                 return '<div>
-                    <a
-                        data-bs-toggle="modal"
-                        data-bs-target="#modal-edit-service"
-                        data-bs-service="' . $serviceasjson . '" class="btn btn-xs btn-primary">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Edit
-                    </a>
-                    <a class="btn btn-danger delete"
+                <a
                     data-bs-toggle="modal"
-                    data-bs-target="#modal-delete-service"
-                    data-bs-ids="' . $service->id . '">Delete</a>
-                </div>';
+                    data-bs-target="#modal-edit-service"
+                    data-bs-item="' . $itemasjson . '" class="btn btn-xs btn-primary">
+                    <i class="glyphicon glyphicon-edit"></i>
+                    Edit  
+                </a>
+   
+                <a class="btn btn-danger delete"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-delete-service"
+                data-bs-ids="' . $item->id . '">Delete</a>
+            </div>';
             })
             ->setRowId('id');
     }

@@ -63,21 +63,46 @@
     <!-- x-modal item -->
     <!-- 1. ganti modal id
             2. sesuaikan form -->
-    {{-- modal edit service --}}
+    {{-- edit form --}}
     <x-modal id="modal-edit-service">
         <x-slot:title>Edit</x-slot:title>
         {{ Form::open(['url' => '/', 'method' => 'PUT', 'class' => 'col-md-12']) }}
         <input type="hidden" name="_method" value="PUT" />
         @csrf
-        @method('PUT')
-        <x-input id="name" name="name" label="Name" placeholder="Name" />
+        <x-input id="name" name="name" label="Name" placeholder="Name" type="text" />
         <x-input id="cost" name="cost" label="Cost" placeholder="Cost" type="number" />
 
         <button type="submit" class="btn btn-primary">Submit</button>
         {{ Form::close() }}
     </x-modal>
 
-    <x-modal id="modal-delete-item" size="sm">
+    {{-- script edit --}}
+    <script>
+        var exampleModal = document.getElementById('modal-edit-service')
+        exampleModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget
+            var data = button.getAttribute('data-bs-item')
+            console.log(data);
+            data = data.replace(/'/g, '"');
+            var json = JSON.parse(data);;
+
+            var inputName = document.getElementById('modal-edit-service').querySelector('#name');
+            var inputCost = document.getElementById('modal-edit-service').querySelector('#cost');
+
+            inputName.value = json.name;
+            inputCost.value = json.cost;
+
+            var modalTitle = exampleModal.querySelector('.modal-title')
+
+            modalTitle.textContent = 'Edit ' + json.name
+
+            // set action to form
+            var modalForm = document.getElementById('modal-edit-service').querySelector('form');
+            modalForm.action = "/services/" + json.id;
+        })
+    </script>
+
+    <x-modal id="modal-delete-service" size="sm">
         <x-slot:title>Delete</x-slot:title>
         <div class="modal-body text-center py-4">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24"
@@ -92,10 +117,10 @@
             <div class="text-muted">Apakah anda yakin ingin menghapus data ini?</div>
             {{-- <input id="dataId" type="text"/> --}}
         </div>
-        <form action="{{ route('items.destroy', 'id') }}" method="post">
+        <form action="{{ route('services.destroy', 'id') }}" method="post">
             @csrf
             @method('DELETE')
-            <input id="id" name="id" hidden>
+            <input id="id" name="id" hidden>    
 
             <div class="modal-footer">
                 <div class="w-100">
@@ -111,14 +136,12 @@
                     </div>
                 </div>
             </div>
-
-
         </form>
     </x-modal>
 
     {{-- script delete --}}
     <script>
-        var exampleModal = document.getElementById('modal-delete-item')
+        var exampleModal = document.getElementById('modal-delete-service')
         var modalBodyInput = document.getElementById('id')
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
@@ -128,31 +151,7 @@
         })
     </script>
 
-    {{-- script --}}
-    <script>
-        var exampleModal = document.getElementById('modal-edit-service')
-        exampleModal.addEventListener('show.bs.modal', function(event) {
-            var button = event.relatedTarget
-            var data = button.getAttribute('data-bs-service')
-            data = data.replace(/'/g, '"');
-            var json = JSON.parse(data);
-
-            var inputName = document.getElementById('modal-edit-service').querySelector('#name');
-            var inputCost = document.getElementById('modal-edit-service').querySelector('#cost');
-
-            inputName.value = json.name;
-            inputCost.value = json.cost;
-
-            var modalTitle = exampleModal.querySelector('.modal-title')
-
-            modalTitle.textContent = 'Edit ' + json.name
-
-            // set action to form
-            var modalForm = document.getElementById('modal-edit-service').querySelector('form');
-            modalForm.action = "{{ route('services.update', '') }}/" + json.id;
-            modalForm.method = "PUT";
-        })
-    </script>
+    
 
     <!-- end section -->
 @endsection

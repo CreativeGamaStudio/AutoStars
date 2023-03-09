@@ -48,22 +48,16 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-                2. sesuaikan form -->
+                    2. sesuaikan form -->
     <x-modal id="modal-new-order">
         <x-slot:title>New Order</x-slot:title>
         <form action="{{ route('orders.store') }}" method="POST">
             @csrf
-            <x-input id="date" name="date" label="Date" placeholder="Date" type="date" />
-            <div class="mb-3">
-                <label for="order" class="form-label">Orders</label>
-                <textarea class="form-control" id="order" name="order" rows="4" placeholder="Order"></textarea>
-                <!-- <input type="text" class="form-control" id="address" name="address" placeholder="Address"> -->
-            </div>
-            <div class="mb-3">
-                <label for="complaint" class="form-label">Complaint</label>
-                <textarea class="form-control" id="complaint" name="complaint" rows="4" placeholder="Complaint"></textarea>
-                <!-- <input type="text" class="form-control" id="address" name="address" placeholder="Address"> -->
-            </div>
+
+            <x-input id="date" name="date" label="Date" placeholder="Date" />
+            <x-input id="order" name="order" label="Order" placeholder="Order" />
+            <x-input id="complaint" name="complaint" label="Complaint" placeholder="Complaint" />
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </x-modal>
@@ -73,12 +67,12 @@
         <x-slot:title>Edit</x-slot:title>
         {{ Form::open(['url' => '/', 'method' => 'PUT', 'class' => 'col-md-12']) }}
         <input type="hidden" name="_method" value="PUT" />
-            @csrf
-            <x-input id="date" name="date" label="Date" placeholder="Date" type="date" />
-            <x-input id="order" name="order" label="Order" placeholder="Order" type="text" />
-            <x-input id="complaint" name="complaint" label="Complaint" placeholder="Complaint" type="text" />
-            <button type="submit" class="btn btn-primary">Submit</button>
-            {{ Form::close() }}
+        @csrf
+        <x-input id="date" name="date" label="Date" placeholder="Date" type="date" />
+        <x-input id="order" name="order" label="Order" placeholder="Order" type="text" />
+        <x-input id="complaint" name="complaint" label="Complaint" placeholder="Complaint" type="text" />
+        <button type="submit" class="btn btn-primary">Submit</button>
+        {{ Form::close() }}
     </x-modal>
 
     {{-- script --}}

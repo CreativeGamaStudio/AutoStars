@@ -85,18 +85,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'date' => 'required',
             'order' => 'required',
             'complaint' => 'required',
         ]);
-        if ($validator->fails()) {
-            $messages = $validator->messages()->all();
-            return redirect()->route('orders.index')->with(
-                'error',
-                implode(", ", $messages)
-            );
-        }
+
 
         $item = Order::find($id);
         $item->date = $request->date;

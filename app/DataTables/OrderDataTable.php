@@ -27,20 +27,20 @@ class OrderDataTable extends DataTable
                 $itemasjson = json_encode($item);
                 $itemasjson = str_replace("\"", "'", $itemasjson);
                 $itemasjson = str_replace("\r\n", ' ', $itemasjson);
-                return '<div>
-                    <a href="' . route('orders.edit', $item->id) . '" class="btn btn-xs btn-primary">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Edit
-                    </a>
-                    <a href="' . route('orders.show', $item->id) . '" class="btn btn-xs btn-info">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        View
-                    </a>
-                    <a href="' . route('orders.destroy', $item->id) . '" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Delete
-                    </a>
-                </div>';
+                return '<a class="btn btn-xs btn-primary" 
+                <a
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-edit-order"
+                    data-bs-item="' . $itemasjson . '" class="btn btn-xs btn-primary">
+                    <i class="glyphicon glyphicon-edit"></i>
+                    Edit  
+                </a>
+       
+                <a class="btn btn-danger delete"
+                data-bs-toggle="modal"
+                data-bs-target="#modal-delete-order"
+                data-bs-ids="' . $item->id . '">Delete</a>
+            </div>';
             })
             ->setRowId('id');
     }
@@ -67,7 +67,7 @@ class OrderDataTable extends DataTable
             ->setTableId('order-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
-                //->dom('Bfrtip')
+            //->dom('Bfrtip')
             ->orderBy(1)
             ->selectStyleSingle()
             ->buttons([

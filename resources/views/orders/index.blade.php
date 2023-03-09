@@ -39,7 +39,6 @@
     <!-- cek datatable -->
     <div class="container mt-3">
         <div class="card">
-
             <div class="card-body">
                 {{ $dataTable->table() }}
             </div>
@@ -49,12 +48,12 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-        2. sesuaikan form -->
+                2. sesuaikan form -->
     <x-modal id="modal-new-order">
         <x-slot:title>New Order</x-slot:title>
         <form action="{{ route('orders.store') }}" method="POST">
             @csrf
-            <x-input id="date" name="date" label="Date" placeholder="Date"  type="date"/>
+            <x-input id="date" name="date" label="Date" placeholder="Date" type="date" />
             <div class="mb-3">
                 <label for="order" class="form-label">Orders</label>
                 <textarea class="form-control" id="order" name="order" rows="4" placeholder="Order"></textarea>
@@ -72,26 +71,17 @@
     {{-- edit modal --}}
     <x-modal id="modal-edit-order">
         <x-slot:title>Edit</x-slot:title>
-        <form method="POST" enctype="multipart/form-data">
+        {{ Form::open(['url' => '/', 'method' => 'PUT', 'class' => 'col-md-12']) }}
+        <input type="hidden" name="_method" value="PUT" />
             @csrf
-            @method('PUT')
             <x-input id="date" name="date" label="Date" placeholder="Date" type="date" />
-            <div class="mb-3">
-                <label for="order" class="form-label">Orders</label>
-                <textarea class="form-control" id="order" name="order" rows="4" placeholder="Order"></textarea>
-                <!-- <input type="text" class="form-control" id="address" name="address" placeholder="Address"> -->
-            </div>
-            <div class="mb-3">
-                <label for="complaint" class="form-label">Complaint</label>
-                <textarea class="form-control" id="complaint" name="complaint" rows="4" placeholder="Complaint"></textarea>
-                <!-- <input type="text" class="form-control" id="address" name="address" placeholder="Address"> -->
-            </div>
-
+            <x-input id="order" name="order" label="Order" placeholder="Order" type="text" />
+            <x-input id="complaint" name="complaint" label="Complaint" placeholder="Complaint" type="text" />
             <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+            {{ Form::close() }}
     </x-modal>
 
-    {{-- script --}} 
+    {{-- script --}}
     <script>
         var exampleModal = document.getElementById('modal-edit-order')
         exampleModal.addEventListener('show.bs.modal', function(event) {
@@ -111,14 +101,62 @@
             var modalTitle = exampleModal.querySelector('.modal-title')
 
             modalTitle.textContent = 'Edit ' + json.name
-            
+
             // set action to form
             var modalForm = document.getElementById('modal-edit-order').querySelector('form');
-            modalForm.action = "{{ route('orders.update', '') }}/" + json.id;
-            modalForm.method = "PUT";
+            modalForm.action = "/orders/" + json.id;
         })
     </script>
 
+    <x-modal id="modal-delete-order" size="sm">
+        <x-slot:title>Delete</x-slot:title>
+        <div class="modal-body text-center py-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon mb-2 text-danger icon-lg" width="24" height="24"
+                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                <path d="M12 9v2m0 4v.01"></path>
+                <path d="M5 19h14a2 2 0 0 0 1.84 -2.75l-7.1 -12.25a2 2 0 0 0 -3.5 0l-7.1 12.25a2 2 0 0 0 1.75 2.75">
+                </path>
+            </svg>
+            <h3>Are you sure?</h3>
+            <div class="text-muted">Apakah anda yakin ingin menghapus data ini?</div>
+        </div>
+        <form action="{{ route('orders.destroy', 'id') }}" method="post">
+            @csrf
+            @method('DELETE')
+            <input id="id" name="id" hidden>
+
+            <div class="modal-footer">
+                <div class="w-100">
+                    <div class="row">
+                        <div class="col"><a href="#" class="btn w-100" type="button" data-bs-dismiss="modal">
+                                Cancel
+                            </a></div>
+                        <div class="col">
+                            <button class="btn btn-danger w-100" type="submit">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </x-modal>
+
+    {{-- script delete --}}
+    <script>
+        var exampleModal = document.getElementById('modal-delete-order')
+        var modalBodyInput = document.getElementById('id')
+        exampleModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget
+            var recipient = button.getAttribute('data-bs-ids')
+            console.log(recipient)
+            modalBodyInput.value = recipient
+        })
+    </script>
 
 
     <!-- end section -->

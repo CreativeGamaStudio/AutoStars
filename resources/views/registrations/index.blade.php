@@ -39,7 +39,6 @@
     <!-- cek datatable -->
     <div class="container mt-3">
         <div class="card">
-
             <div class="card-body">
                 {{ $dataTable->table() }}
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\OrderDataTable;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
@@ -61,7 +62,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('orders.index', compact('order'));
     }
 
     /**
@@ -90,12 +91,12 @@ class OrderController extends Controller
             'complaint' => 'required',
         ]);
 
+
         $item = Order::find($id);
         $item->date = $request->date;
         $item->order = $request->order;
         $item->complaint = $request->complaint;
         $item->save();
-
         return redirect()->route('orders.index')->with('success', 'Orders created successfully.');
     }
 
@@ -105,8 +106,13 @@ class OrderController extends Controller
      * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Request $request, $id)
     {
-        //
+        $item = Order::find($request->id);
+        if ($item) {
+            $item->delete();
+        }
+
+        return redirect()->route('orders.index')->with('success', 'customer has been deleted successfully.');
     }
 }

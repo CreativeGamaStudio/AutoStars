@@ -28,18 +28,18 @@ class PartDataTable extends DataTable
                 $itemasjson = str_replace("\"", "'", $itemasjson);
                 $itemasjson = str_replace("\r\n", ' ', $itemasjson);
                 return '<div>
-                    <a href="' . route('parts.edit', $item->id) . '" class="btn btn-xs btn-primary">
+                    <a
+                        data-bs-toggle="modal"
+                        data-bs-target="#modal-edit-part"
+                        data-bs-item="'. $itemasjson .'" class="btn btn-xs btn-primary">
                         <i class="glyphicon glyphicon-edit"></i>
                         Edit
                     </a>
-                    <a href="' . route('parts.show', $item->id) . '" class="btn btn-xs btn-info">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        View
-                    </a>
-                    <a href="' . route('parts.destroy', $item->id) . '" class="btn btn-xs btn-danger">
-                        <i class="glyphicon glyphicon-edit"></i>
-                        Delete
-                    </a>
+
+                    <a class="btn btn-danger delete"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modal-delete-part"
+                    data-bs-ids="'.$item->id.'">Delete</a>
                 </div>';
             })
             // ->addColumn('action', function ($part) {

@@ -23,22 +23,23 @@ class UsersDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-        ->addColumn('action', function ($user) {
-            $userasjson = json_encode($user);
-            $userasjson = str_replace("\"", "'", $userasjson);
-            $userasjson = str_replace("\r\n", ' ', $userasjson);
+            ->addColumn('action', function ($item) {
+                $itemasjson = json_encode($item);
+                $itemasjson = str_replace("\"", "'", $itemasjson);
+                $itemasjson = str_replace("\r\n", ' ', $itemasjson);
             return '<div>
                 <a
                     data-bs-toggle="modal"
                     data-bs-target="#modal-edit-user"
-                    data-bs-item="'. $userasjson .'" class="btn btn-xs btn-primary">
+                    data-bs-item="' . $itemasjson . '" class="btn btn-xs btn-primary">
                     <i class="glyphicon glyphicon-edit"></i>
-                    Edit
+                    Edit  
                 </a>
+
                 <a class="btn btn-danger delete"
                 data-bs-toggle="modal"
                 data-bs-target="#modal-delete-user"
-                data-bs-ids="'.$user->id.'">Delete</a>
+                data-bs-ids="' . $item->id . '">Delete</a>
             </div>';
             })
             ->setRowId('id');
@@ -63,7 +64,7 @@ class UsersDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-            ->setTableId('users-table')
+            ->setTableId('user-table')
             ->columns($this->getColumns())
             ->minifiedAjax()
             //->dom('Bfrtip')
@@ -102,6 +103,6 @@ class UsersDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Users_' . date('YmdHis');
+        return 'User_' . date('YmdHis');
     }
 }

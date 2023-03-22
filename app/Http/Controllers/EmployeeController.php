@@ -114,7 +114,7 @@ class EmployeeController extends Controller
         if ($item) {
             $item->delete();
         }
-        return redirect()->route('employees.index')->with('danger', 'employee has been deleted successfully.');
+        return redirect()->route('employees.index')->with('success', 'employee has been deleted successfully.');
         //
     }
 }

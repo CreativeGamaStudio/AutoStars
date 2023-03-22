@@ -41,7 +41,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Payment::factory(10)->create();
 
-        // \App\Models\Note::factory(10)->create();
+        \App\Models\Note::factory(10)->create();
 
         \App\Models\ReturnNote::factory(10)->create();
 

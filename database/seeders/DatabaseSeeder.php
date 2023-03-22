@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\ReturnNote::factory(10)->create();
 
-        // \App\Models\Service::factory(10)->create();
+        \App\Models\Service::factory(10)->create();
 
 
     }

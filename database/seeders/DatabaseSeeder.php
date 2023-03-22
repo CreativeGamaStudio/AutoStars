@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
 
         // \App\Models\Vehicle::factory(10)->create();
 
-        // \App\Models\Part::factory(10)->create();
+        \App\Models\Part::factory(10)->create();
 
         \App\Models\Registration::factory(10)->create();
 

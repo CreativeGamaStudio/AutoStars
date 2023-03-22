@@ -74,7 +74,7 @@ class UsersDataTable extends DataTable
 
                 // Button::make('print'),
                 // Button::make('reset'),
-                // Button::make('reload')
+                Button::make('reload')
             ]);
     }
 

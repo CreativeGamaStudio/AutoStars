@@ -19,6 +19,8 @@ class CreateKendaraanTable extends Migration
             $table->string('engine_number');
             $table->string('type');
             $table->string('color');
+            $table->string('merk');
+            $table->string('year');
             $table->timestamps();
         });
     }

@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-//database jasa service
 return new class extends Migration
 {
     /**
@@ -14,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('transaction', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->bigInteger('cost');
-            $table->string('mechanics');
+            $table->string('amount');
+            $table->string('discount');
+            $table->string('payment');
+            $table->string('change');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jasaservice');
+        Schema::dropIfExists('transaction');
     }
 };

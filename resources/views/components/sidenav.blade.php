@@ -219,8 +219,27 @@
                             User
                         </span>
                     </a>
-
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="./employees">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-users"
+                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+                                <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">
+                            Karyawan
+                        </span>
+                    </a>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="false"
                         role="button" aria-expanded="true">
@@ -236,20 +255,17 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Master
+                            Customer
                         </span>
                     </a>
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="./customers">
-                                    Pelanggan
+                                    Customer
                                 </a>
-                                <a class="dropdown-item" href="./employees">
-                                    Karyawan
-                                </a>
-                                <a class="dropdown-item" href="./services">
-                                    Jasa Service
+                                <a class="dropdown-item" href="./vehicles">
+                                    Kendaraan
                                 </a>
                             </div>
                         </div>
@@ -280,6 +296,9 @@
                                 </a>
                                 <a class="dropdown-item" href="./orders">
                                     Perintah Kerja Bengkel
+                                </a>
+                                <a class="dropdown-item" href="./services">
+                                    Jasa Service
                                 </a>
                             </div>
                         </div>
@@ -315,12 +334,6 @@
                                 <a class="dropdown-item" href="./items">
                                     Barang
                                 </a>
-                                <a class="dropdown-item" href="./notes">
-                                    Nota Bengkel
-                                </a>
-                                <a class="dropdown-item" href="./return_notes">
-                                    Retur Nota Bengkel
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -328,7 +341,7 @@
 
                 <!-- Tagihan -->
 
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="true">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">
@@ -356,7 +369,7 @@
                             </div>
                         </div>
                     </div>
-                </li>
+                </li> --}}
 
                 <!-- Kasir -->
                 <li class="nav-item dropdown disabled" aria-disabled="true">
@@ -381,16 +394,22 @@
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
+                                <a class="dropdown-item" href="./notes">
+                                    Nota Bengkel
+                                </a>
                                 <a class="dropdown-item" href="./payments">
                                     Bukti Bayar
                                 </a>
+                                {{-- <a class="dropdown-item" href="./return_notes">
+                                    Retur Nota Bengkel
+                                </a> --}}
                             </div>
                         </div>
                     </div>
                 </li>
 
                 <!-- Laporan -->
-                <li class="nav-item dropdown disabled"  aria-disabled="true">
+                <li class="nav-item dropdown disabled" aria-disabled="true">
                     <a class="nav-link dropdown-toggle" href="#navbar-layout" data-bs-toggle="dropdown"
                         data-bs-auto-close="false" role="button" aria-expanded="true">
                         <span class="nav-link-icon d-md-none d-lg-inline-block">

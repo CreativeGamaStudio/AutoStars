@@ -56,8 +56,8 @@
             <div class="mb-3">
                 <label for="role" class="form-label">Role</label>
                 <select class="form-select" id="role" name="role" placeholder="Pilih Peran">
-                    <option value="admin">Admin</option>
-                    <option value="user">user</option>
+                    <option value="manager">Manager</option>
+                    <option value="kasir">Kasir</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -88,8 +88,8 @@
             <div class="mb-3">
                 <label for="role" class="form-label">Role</label>
                 <select class="form-select" id="role" name="role" placeholder="Pilih Peran">
-                    <option value="admin">Admin</option>
-                    <option value="user">user</option>
+                    <option value="manager">Manager</option>
+                    <option value="kasir">Kasir</option>
                 </select>
             </div>
             <!-- <x-input id="role" name="role" label="Role" placeholder="Role" /> -->

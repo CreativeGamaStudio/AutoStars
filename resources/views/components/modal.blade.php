@@ -12,9 +12,9 @@
             <div class="modal-body" id="{{ $attributes->get('id') }}-body">
                 {{ $slot }}
             </div>
-            <div class="modal-footer d-print-none">
+            {{-- <div class="modal-footer d-print-none">
                 {{$footer}}
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

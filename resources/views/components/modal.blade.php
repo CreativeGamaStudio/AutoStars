@@ -12,9 +12,11 @@
             <div class="modal-body" id="{{ $attributes->get('id') }}-body">
                 {{ $slot }}
             </div>
+            @if (isset($footer))
             <div class="modal-footer d-print-none">
                 {{$footer}}
             </div>
+            @endif
         </div>
     </div>
 </div>

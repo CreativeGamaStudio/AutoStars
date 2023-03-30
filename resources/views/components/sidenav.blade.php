@@ -235,7 +235,7 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Karyawan
+                            Employee
                         </span>
                     </a>
                 </li>
@@ -265,7 +265,7 @@
                                     Customer
                                 </a>
                                 <a class="dropdown-item" href="./vehicles">
-                                    Kendaraan
+                                    Vehicle
                                 </a>
                             </div>
                         </div>
@@ -292,13 +292,13 @@
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="./registrations">
-                                    Registrasi
+                                    Registration
                                 </a>
                                 <a class="dropdown-item" href="./orders">
-                                    Perintah Kerja Bengkel
+                                    Order ( Perintah Kerja Bengkel)
                                 </a>
                                 <a class="dropdown-item" href="./services">
-                                    Jasa Service
+                                    Service
                                 </a>
                             </div>
                         </div>
@@ -322,7 +322,7 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Gudang
+                            Inventory
                         </span>
                     </a>
                     <div class="dropdown-menu show">
@@ -331,9 +331,9 @@
                                 <a class="dropdown-item" href="./parts">
                                     Part
                                 </a>
-                                <a class="dropdown-item" href="./items">
+                                {{-- <a class="dropdown-item" href="./items">
                                     Barang
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     </div>
@@ -388,17 +388,17 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Kasir
+                            Cashier
                         </span>
                     </a>
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="./notes">
-                                    Nota Bengkel
+                                    Receipt (Nota Bengkel)
                                 </a>
                                 <a class="dropdown-item" href="./payments">
-                                    Bukti Bayar
+                                    Payment
                                 </a>
                                 {{-- <a class="dropdown-item" href="./return_notes">
                                     Retur Nota Bengkel
@@ -428,17 +428,17 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Laporan
+                            Report
                         </span>
                     </a>
                     <div class="dropdown-menu show">
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="./pendapatan">
-                                    Pendapatan
+                                    Income
                                 </a>
                                 <a class="dropdown-item" href="./piutang">
-                                    Piutang
+                                    Credit
                                 </a>
                             </div>
                         </div>
@@ -458,7 +458,7 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Credits
+                            Thanks to
                         </span>
                     </a>
                 </li>

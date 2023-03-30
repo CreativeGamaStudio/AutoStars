@@ -49,7 +49,7 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-                                            2. sesuaikan form -->
+                                                                    2. sesuaikan form -->
     {{-- <x-modal id="modal-new-payment">
         <x-slot:title>New Payment</x-slot:title>
         <form action="{{ route('payments.store') }}" method="POST">
@@ -128,7 +128,7 @@
         <div class="d-none d-print-block">
             <h1 class="text-center"> Payment </h1>
         </div>
-        <div class="row">
+        <div class="row d-print-block">
             <div class="col-sm-6">
                 <div class="form-group mb-3">
                     <label for="id" class="mb-2">Customer ID</label>
@@ -175,50 +175,71 @@
         <div class="row">
             <div class="col-sm-6">
                 <h3>Transaction</h3>
-                <div class="form-group mb-3">
-                    <label for="total" class="mb-2">Total</label>
-                    <input type="text" class="form-control" id="total" name="total">
+                <div class="mb-3 row">
+                    <label for="total" class="mb-2 col-3 col-form-label">Total</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="total" name="total">
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="discount" class="mb-2">Discount</label>
-                    <input type="text" class="form-control" id="discount" name="discount">
+                <div class="mb-3 row">
+                    <label for="discount" class="mb-2 col-3 col-form-label">Discount</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="discount" name="discount">
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="paid" class="mb-2">Paid</label>
-                    <input type="text" class="form-control" id="paid" name="paid">
+                <div class="mb-3 row">
+                    <label for="discount" class="mb-2 col-3 col-form-label">Discount</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="discount" name="discount">
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="change" class="mb-2">Change</label>
-                    <input type="text" class="form-control" id="change" name="change">
+                <div class="mb-3 row">
+                    <label for="Paid" class="mb-2 col-3 col-form-label">Paid</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="paid" name="paid">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="change" class="mb-2 col-3 col-form-label">Change</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="change" name="change">
+                    </div>
                 </div>
             </div>
             <div class="col-sm-6">
                 <h3>Payment Type</h3>
-                <div class="form-group mb-3">
-                    <label for="payment_type" class="mb-2">Payment Type</label>
-                    <select class="form-select" id="payment_type" name="payment_type"
-                        placeholder="Choose payment methode">
-                        <option value="cash">Cash</option>
-                        <option value="debit">Debit</option>
-                        <option value="credit">Credit</option>
-                    </select>
+                <div class="mb-3 row">
+                    <label for="payment_type" class="col-3 col-form-label">Payment Type</label>
+                    <div class="col">
+                        <select class="form-select" id="payment_type" name="payment_type" placeholder="payment_type">
+                            <option value="cash">Cash</option>
+                            <option value="debit">Debit</option>
+                            <option value="credit">Credit</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="bank" class="mb-2">Bank</label>
-                    <select class="form-select" id="bank" name="bank" placeholder="bank">
-                        <option value="BRI">BRI</option>
-                        <option value="BCA">BCA</option>
-                        <option value="Mandiri">Mandiri</option>
-                        <option value="BSI">BSI</option>
-                    </select>
+                <div class="mb-3 row">
+                    <label for="bank" class="col-3 col-form-label">Bank</label>
+                    <div class="col">
+                        <select class="form-select" id="bank" name="bank" placeholder="bank">
+                            <option value="BRI">BRI</option>
+                            <option value="BCA">BCA</option>
+                            <option value="Mandiri">Mandiri</option>
+                            <option value="BSI">BSI</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="card_number" class="mb-2">Card Number</label>
-                    <input type="text" class="form-control" id="card_number" name="card_number">
+                <div class="mb-3 row">
+                    <label for="card_number" class="mb-2 col-3 col-form-label">Card Number</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="card_number" name="card_number">
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="giro_number" class="mb-2">Giro Number</label>
-                    <input type="text" class="form-control" id="giro_number" name="giro_number">
+                <div class="mb-3 row">
+                    <label for="giro_number" class="mb-2 col-3 col-form-label">Giro Number</label>
+                    <div class="col">
+                        <input type="text" class="form-control" id="giro_number" name="giro_number">
+                    </div>
                 </div>
             </div>
         </div>
@@ -232,7 +253,7 @@
                 </div>
             </div>
         </div> --}}
-        <div class="row mt-3 ">
+        <div class="row mt-3 d-print-block"">
             <table class="table table-hover table-responsive">
                 <thead>
                     <tr>
@@ -381,4 +402,15 @@
 <!-- push script -->
 @push('scripts')
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    <script>
+        function printDiv(divName) {
+            var printContents = document.getElementById(divName).innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+
+            window.print();
+
+            document.body.innerHTML = originalContents;
+        }
+    </script>
 @endpush

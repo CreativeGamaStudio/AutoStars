@@ -90,23 +90,14 @@ class VehicleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'plate_number' => 'required',
             'engine_number' => 'required',
             'type' => 'required',
             'color' => 'required',
             'merk' => 'required',
             'year' => 'required',
-            
         ]);
-        if ($validator->fails()) {
-            $messages = $validator->messages()->all();
-            return redirect()->route("vehicles.index")->with(
-                'error', 
-                implode(", ", $messages)
-            );
-        }
-
         $item = Vehicle::find($id);
         $item->plate_number = $request->plate_number;
         $item->engine_number = $request->engine_number;

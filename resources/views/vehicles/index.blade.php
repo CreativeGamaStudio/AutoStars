@@ -48,12 +48,12 @@
         <x-slot:title>New Vehicle</x-slot:title>
         <form action="{{ route('vehicles.store') }}" method="POST">
             @csrf
-            <x-input id="plate_number" name="plate_number" label="Plate Number" placeholder="Plate Number" />
-            <x-input id="engine_number" name="engine_number" label="Engine Number" placeholder="Engine Number" />
+            <x-input id="plate_number" name="plate_number" label="Plate Number" placeholder="Plate Number" type="number"/>
+            <x-input id="engine_number" name="engine_number" label="Engine Number" placeholder="Engine Number" type="number"/>
             <x-input id="type" name="type" label="Type" placeholder="Type" />
             <x-input id="color" name="color" label="Color" placeholder="Color" />
             <x-input id="merk" name="merk" label="Merk" placeholder="Merk" />
-            <x-input id="year" name="year" label="Year" placeholder="Year" />
+            <x-input id="year" name="year" label="Year" placeholder="Year" type="number"/>
         
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

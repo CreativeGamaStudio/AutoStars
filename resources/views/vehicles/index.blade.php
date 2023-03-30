@@ -43,22 +43,6 @@
         </div>
     </div>
 
-    <!-- {{-- modal new vehicle --}} -->
-    <x-modal id="modal-new-vehicle">
-        <x-slot:title>New Vehicle</x-slot:title>
-        <form action="{{ route('vehicles.store') }}" method="POST">
-            @csrf
-            <x-input id="plate_number" name="plate_number" label="Plate Number" placeholder="Plate Number" type="number"/>
-            <x-input id="engine_number" name="engine_number" label="Engine Number" placeholder="Engine Number" type="number"/>
-            <x-input id="type" name="type" label="Type" placeholder="Type" />
-            <x-input id="color" name="color" label="Color" placeholder="Color" />
-            <x-input id="merk" name="merk" label="Merk" placeholder="Merk" />
-            <x-input id="year" name="year" label="Year" placeholder="Year" type="number"/>
-        
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </x-modal>
-
 
     {{-- edit form --}}
     <x-modal id="modal-edit-vehicle">
@@ -72,10 +56,28 @@
             <x-input id="type" name="type" label="Type" placeholder="Type" />
             <x-input id="color" name="color" label="Color" placeholder="Color" />
             <x-input id="merk" name="merk" label="Merk" placeholder="Merk" />
-            <x-input id="year" name="year" label="Year" placeholder="Year" />
+            <x-input id="year" type="number" name="year" label="Year" placeholder="Year" />
             <button type="submit" class="btn btn-primary">Submit</button>
         {{ Form::close()}}
     </x-modal>
+
+    <!-- {{-- modal new vehicle --}} -->
+    <x-modal id="modal-new-vehicle">
+        <x-slot:title>New Vehicle</x-slot:title>
+        <form action="{{ route('vehicles.store') }}" method="POST">
+            @csrf
+            <x-input id="plate_number" name="plate_number" label="Plate Number" placeholder="Plate Number" type="number"/>
+            <x-input id="engine_number" name="engine_number" label="Engine Number" placeholder="Engine Number" type="number"/>
+            <x-input id="type" name="type" label="Type" placeholder="Type" />
+            <x-input id="color" name="color" label="Color" placeholder="Color" />
+            <x-input id="merk" name="merk" label="Merk" placeholder="Merk" />
+            <x-input id="year" name="year" label="Year" placeholder="Year" type="number"/>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </x-modal>
+
+
 
     {{-- script edit --}}
     <script>
@@ -83,24 +85,25 @@
         exampleModal.addEventListener('show.bs.modal', function(event) {
             var button = event.relatedTarget
             var data = button.getAttribute('data-bs-item')
-            console.log(data);
+
             data = data.replace(/'/g, '"');
             var json = JSON.parse(data);
+            console.log(json);
 
-            var inputPlateNumber = document.getElementById('modal-edit-vehicle').querySelector('#plate_number');
-            var inputEngineNumber = document.getElementById('modal-edit-vehicle').querySelector('#engine_number');
-            var inputType = document.getElementById('modal-edit-vehicle').querySelector('#type');
-            var inputColor = document.getElementById('modal-edit-vehicle').querySelector('#color');
-            var inputMerk = document.getElementById('modal-edit-vehicle').querySelector('#merk');
-            var inputYear = document.getElementById('modal-edit-vehicle').querySelector('#year');
+            // Set the values of the input fields
+            var inputPlateNumber = document.getElementById('plate_number');
+            var inputEngineNumber = document.getElementById('engine_number');
+            var inputType = document.getElementById('type');
+            var inputColor = document.getElementById('color');
+            var inputMerk = document.getElementById('merk');
+            var inputYear = document.getElementById('year');
 
-            inputPlateNumber = json.plate_number;
-            inputEngineNumber = json.engine_number;
-            inputType = json.type;
-            inputColor = json.color;
-            inputMerk = json.merk;
-            inputYear = json.year;
-
+            inputPlateNumber.value = json.plate_number;
+            inputEngineNumber.value = json.engine_number;
+            inputType.value = json.type;
+            inputColor.value = json.color;
+            inputMerk.value = json.merk;
+            inputYear.value = json.year;
 
             var modalTitle = exampleModal.querySelector('.modal-title')
 
@@ -111,7 +114,7 @@
             modalForm.action = "/vehicles/" + json.id;
         })
     </script>
-    
+
     {{-- Delete --}}
     <x-modal id="modal-delete-vehicle" size="sm">
         <x-slot:title>Delete</x-slot:title>

@@ -19,10 +19,10 @@ class VehicleFactory extends Factory
         return [
             'plate_number' => fake()->numberBetween(1000, 100000),
             'engine_number' => fake()->numberBetween(1000, 100000),
-            'type' => fake()->word,
-            'color' => fake()->word,
-            'merk' => fake()->word,
-            'year' => fake()->year,
+            'type' => fake()->word(),
+            'color' => fake()->word(),
+            'merk' => fake()->word(),
+            'year' => fake()->year(),
         ];
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\VehicleDataTable;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class VehicleController extends Controller
 {
@@ -34,31 +35,32 @@ class VehicleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'plate_number' => 'required|string|max:16',
             'engine_number' => 'required|string|max:12',
             'type' => 'required|string|max:50',
             'color' => 'required|string|max:50',
             'merk' => 'required|string|max:50',
-            'year' => 'required|string|max:4',
+            'year' => 'required|integer|min:1900'
         ]);
 
-        // create user
-        $user = Vehicle::create([
-            'plate_number' => $request->plate_number,
-            'engine_number' => $request->engine_number,
-            'type' => $request->type,
-            'color' => $request->color,
-            'merk' => $request->merk,
-            'year' => $request->year,
-        ]);
+        $vehicle = new Vehicle();
+        $vehicle->plate_number = $validatedData['plate_number'];
+        $vehicle->engine_number = $validatedData['engine_number'];
+        $vehicle->type = $validatedData['type'];
+        $vehicle->color = $validatedData['color'];
+        $vehicle->merk = $validatedData['merk'];
+        $vehicle->year = $validatedData['year'];
 
-        // redirect to users.index
-        return redirect()->route('vehicles.index')->with('success', 'Vehicle created successfully.'); //user diganti
+        if ($vehicle->save()) {
+            return redirect()->route('vehicles.index')->with('success', 'Vehicle has been created successfully!');
+        } else {
+            return redirect()->back()->with('error', 'Failed to create vehicle. Please try again.');
+        }
     }
-
     /**
      * Display the specified resource.
      *
@@ -90,24 +92,29 @@ class VehicleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'plate_number' => 'required',
-            'engine_number' => 'required',
-            'type' => 'required',
-            'color' => 'required',
-            'merk' => 'required',
-            'year' => 'required',
+        $validatedData = $request->validate([
+            'plate_number' => 'required|string|max:16',
+            'engine_number' => 'required|string|max:12',
+            'type' => 'required|string|max:50',
+            'color' => 'required|string|max:50',
+            'merk' => 'required|string|max:50',
+            'year' => 'required|integer|min:1900'
         ]);
-        $item = Vehicle::find($id);
-        $item->plate_number = $request->plate_number;
-        $item->engine_number = $request->engine_number;
-        $item->type = $request->type;
-        $item->color = $request->color;
-        $item->merk = $request->merk;
-        $item->year = $request->year;
-        $item->save();
+        $vehicle = Vehicle::find($id);
 
-        return redirect()->route('vehicles.index')->with('success', 'Vehicle updated successfully.');
+
+        $vehicle->plate_number = $validatedData['plate_number'];
+        $vehicle->engine_number = $validatedData['engine_number'];
+        $vehicle->type = $validatedData['type'];
+        $vehicle->color = $validatedData['color'];
+        $vehicle->merk = $validatedData['merk'];
+        $vehicle->year = $validatedData['year'];
+
+        if ($vehicle->save()) {
+            return redirect()->route('vehicles.index')->with('success', 'Vehicle has been updated successfully!');
+        } else {
+            return redirect()->back()->with('error', 'Failed to update vehicle. Please try again.');
+        }
     }
 
     /**
@@ -119,7 +126,7 @@ class VehicleController extends Controller
     public function destroy(Request $request, $id)
     {
         $item = Vehicle::find($id);
-        if ( $item) {
+        if ($item) {
             $item->delete();
         }
 

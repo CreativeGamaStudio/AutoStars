@@ -47,7 +47,7 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-                                        2. sesuaikan form -->
+                                            2. sesuaikan form -->
     <x-modal id="modal-new-employee">
         <x-slot:title>New Employee</x-slot:title>
         <form action="{{ route('employees.store') }}" method="POST">
@@ -56,7 +56,13 @@
             <x-input id="name" name="name" label="Name" placeholder="Name" />
             <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" />
             <x-input id="address" name="address" label="Address" placeholder="Address" />
-            <x-input id="position" name="position" label="Position" placeholder="Position" />
+            <div class="mb-3">
+                <label for="position" class="form-label">Position</label>
+                <select class="form-select" id="position" name="position">
+                    <option value="Mechanics">Mechanics</option>
+                    <option value="Cashier">Cashier</option>
+                </select>
+            </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -71,7 +77,13 @@
         <x-input id="name" name="name" label="Name" placeholder="Name" type="text" />
         <x-input id="phone_number" name="phone_number" label="Phone" placeholder="Phone" type="text" />
         <x-input id="address" name="address" label="Address" placeholder="Address" type="text" />
-        <x-input id="position" name="position" label="Position" placeholder="Position" type="text" />
+        <div class="mb-3">
+            <label for="position" class="form-label">Position</label>
+            <select class="form-select" id="position" name="position">
+                <option value="Mechanics">Mechanics</option>
+                <option value="Cashier">Cashier</option>
+            </select>
+        </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
         {{ Form::close() }}

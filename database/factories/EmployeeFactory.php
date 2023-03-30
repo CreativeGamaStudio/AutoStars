@@ -21,7 +21,7 @@ class EmployeeFactory extends Factory
             'name' => fake()->name(),
             'phone_number' => fake()->phoneNumber(),
             'address' => fake()->address(),
-            'position' => 'staff',
+            'position' => fake()->randomElement(['Mechanics', 'Cashier']),
         ];
     }
 }

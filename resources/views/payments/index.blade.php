@@ -49,7 +49,7 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-                                        2. sesuaikan form -->
+                                            2. sesuaikan form -->
     {{-- <x-modal id="modal-new-payment">
         <x-slot:title>New Payment</x-slot:title>
         <form action="{{ route('payments.store') }}" method="POST">
@@ -176,8 +176,8 @@
             <div class="col-sm-6">
                 <h3>Transaction</h3>
                 <div class="form-group mb-3">
-                    <label for="payamount" class="mb-2">Pay Amount</label>
-                    <input type="text" class="form-control" id="payamount" name="payamount">
+                    <label for="total" class="mb-2">Total</label>
+                    <input type="text" class="form-control" id="total" name="total">
                 </div>
                 <div class="form-group mb-3">
                     <label for="discount" class="mb-2">Discount</label>
@@ -196,7 +196,8 @@
                 <h3>Payment Type</h3>
                 <div class="form-group mb-3">
                     <label for="payment_type" class="mb-2">Payment Type</label>
-                    <select class="form-select" id="payment_type" name="payment_type" placeholder="Choose payment methode">
+                    <select class="form-select" id="payment_type" name="payment_type"
+                        placeholder="Choose payment methode">
                         <option value="cash">Cash</option>
                         <option value="debit">Debit</option>
                         <option value="credit">Credit</option>
@@ -221,6 +222,7 @@
                 </div>
             </div>
         </div>
+        <hr class="hr" />
         {{-- <div class="row mt-3 bg-gray h-30  d-print-none">
             <div class="card bg-primary-lt">
                 <div class="card-body p-3">
@@ -234,26 +236,35 @@
             <table class="table table-hover table-responsive">
                 <thead>
                     <tr>
-                        <th>Barcode</th>
-                        <th>Kodepart</th>
-                        <th>Nama Part</th>
-                        <th>QTY</th>
-                        <th>Harga</th>
-                        <th>Jumlah</th>
+                        <th>Invoices</th>
+                        <th>Date</th>
+                        <th>Police Number</th>
+                        <th>Total</th>
+                        <th>Discount</th>
+                        <th>Paid</th>
+                        <th>Change</th>
                         <th class="d-print-none">Action</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     <tr>
-                        <td x-text="color">08201321038</td>
-                        <td>Kode</td>
-                        <td>Nama</td>
-                        <td contenteditable="true">2</td>
+                        <td x-text="color">0ada1231218</td>
+                        <td>27 March 2023</td>
+                        <td>AB 1234 BC</td>
+                        {{-- <td contenteditable="true">2</td> --}}
                         <td>Rp. 1000000</td>
-                        <td>Rp. 2000000</td>
+                        <td>Rp. 0</td>
+                        <td>Rp. 1500000</td>
+                        <td>Rp. 500000</td>
                         <td class="d-print-none">
-                            <button class="btn btn-icon btn-sm btn-danger"><i class="ti ti-x"></i></button>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="ispaidcheck">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Paid
+                                </label>
+                            </div>
+                            {{-- <button class="btn btn-icon btn-sm btn-danger"><i class="ti ti-x"></i></button> --}}
                         </td>
                     </tr>
                 </tbody>

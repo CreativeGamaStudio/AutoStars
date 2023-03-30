@@ -49,8 +49,8 @@
 
     <!-- x-modal item -->
     <!-- 1. ganti modal id
-                2. sesuaikan form -->
-    <x-modal id="modal-new-payment">
+                                        2. sesuaikan form -->
+    {{-- <x-modal id="modal-new-payment">
         <x-slot:title>New Payment</x-slot:title>
         <form action="{{ route('payments.store') }}" method="POST">
             @csrf
@@ -63,7 +63,7 @@
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-    </x-modal>
+    </x-modal> --}}
 
     {{-- edit form --}}
     <x-modal id="modal-edit-payment">
@@ -121,6 +121,163 @@
             //modalForm.method = "PUT";
         })
     </script>
+
+    <x-modal id="modal-new-payment" size="lg">
+        <x-slot:title>New Payment</x-slot:title>
+
+        <div class="d-none d-print-block">
+            <h1 class="text-center"> Payment </h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group mb-3">
+                    <label for="id" class="mb-2">Customer ID</label>
+                    <input type="text" class="form-control" id="id" name="id">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="name" class="mb-2">Customer Name</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="name" class="mb-2">Address</label>
+                    <textarea class="form-control" id="name" name="name" rows="2"></textarea>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="phone_number" class="mb-2">Phone Number</label>
+                    <input type="number" class="form-control" id="phone_number" name="phone_number">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="date" class="mb-2">Date</label>
+                    <input type="datetime-local" class="form-control" id="date" name="date">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group mb-3">
+                    <label for="police_number" class="mb-2">Police Number</label>
+                    <input type="text" class="form-control" id="police_number" name="police_number">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="type" class="mb-2">Type</label>
+                    <input type="text" class="form-control" id="type" name="type">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="merk" class="mb-2">Merk</label>
+                    <input type="text" class="form-control" id="merk" name="merk">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="year" class="mb-2">Year</label>
+                    <input type="text" class="form-control" id="year" name="year">
+                </div>
+
+            </div>
+        </div>
+        <hr class="hr" />
+        <div class="row">
+            <div class="col-sm-6">
+                <h3>Transaction</h3>
+                <div class="form-group mb-3">
+                    <label for="payamount" class="mb-2">Pay Amount</label>
+                    <input type="text" class="form-control" id="payamount" name="payamount">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="discount" class="mb-2">Discount</label>
+                    <input type="text" class="form-control" id="discount" name="discount">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="paid" class="mb-2">Paid</label>
+                    <input type="text" class="form-control" id="paid" name="paid">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="change" class="mb-2">Change</label>
+                    <input type="text" class="form-control" id="change" name="change">
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h3>Payment Type</h3>
+                <div class="form-group mb-3">
+                    <label for="payment_type" class="mb-2">Payment Type</label>
+                    <select class="form-select" id="payment_type" name="payment_type" placeholder="Choose payment methode">
+                        <option value="cash">Cash</option>
+                        <option value="debit">Debit</option>
+                        <option value="credit">Credit</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="bank" class="mb-2">Bank</label>
+                    <select class="form-select" id="bank" name="bank" placeholder="bank">
+                        <option value="BRI">BRI</option>
+                        <option value="BCA">BCA</option>
+                        <option value="Mandiri">Mandiri</option>
+                        <option value="BSI">BSI</option>
+                    </select>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="card_number" class="mb-2">Card Number</label>
+                    <input type="text" class="form-control" id="card_number" name="card_number">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="giro_number" class="mb-2">Giro Number</label>
+                    <input type="text" class="form-control" id="giro_number" name="giro_number">
+                </div>
+            </div>
+        </div>
+        {{-- <div class="row mt-3 bg-gray h-30  d-print-none">
+            <div class="card bg-primary-lt">
+                <div class="card-body p-3">
+                    <h3 class="card-title">Tambah Item</h3>
+                    <button type="button" class="btn btn-icon btn-sm btn-primary"><i class="ti ti-plus"></i>
+                        Tambah</button>
+                </div>
+            </div>
+        </div> --}}
+        <div class="row mt-3 ">
+            <table class="table table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>Barcode</th>
+                        <th>Kodepart</th>
+                        <th>Nama Part</th>
+                        <th>QTY</th>
+                        <th>Harga</th>
+                        <th>Jumlah</th>
+                        <th class="d-print-none">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td x-text="color">08201321038</td>
+                        <td>Kode</td>
+                        <td>Nama</td>
+                        <td contenteditable="true">2</td>
+                        <td>Rp. 1000000</td>
+                        <td>Rp. 2000000</td>
+                        <td class="d-print-none">
+                            <button class="btn btn-icon btn-sm btn-danger"><i class="ti ti-x"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <x-slot:footer>
+            <div class="d-flex">
+                <a href="#" class="btn btn-link">Cancel</a>
+                <button class="btn btn-primary ms-auto" onclick="printDiv('modal-new-note')">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-printer" width="44"
+                        height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M17 17h2a2 2 0 0 0 2 -2v-4a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v4a2 2 0 0 0 2 2h2" />
+                        <path d="M17 9v-4a2 2 0 0 0 -2 -2h-6a2 2 0 0 0 -2 2v4" />
+                        <rect x="7" y="13" width="10" height="8" rx="2" />
+                    </svg>
+                    Cetak
+                </button>
+            </div>
+        </x-slot:footer>
+    </x-modal>
 
     {{-- script --}}
     <script>

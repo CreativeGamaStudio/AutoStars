@@ -10,4 +10,14 @@ class Vehicle extends Model
     use HasFactory;
 
     protected $table = 'vehicle';
+
+    protected $fillable = [
+        'plate_number',
+        'engine_number',
+        'type',
+        'color',
+        'merk',
+        'year',
+        // 'customer',
+    ];
 }

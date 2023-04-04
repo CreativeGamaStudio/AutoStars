@@ -73,10 +73,10 @@
                     @php
                         $progressItems = [
                             ['name' => 'AB 2000 PX', 'value' => "Service", 'percentage' => 71.0, 'color' => 'primary'],
-                            ['name' => 'AA 1210 AB', 'value' => "Pembayaran", 'percentage' => 35.96, 'color' => 'danger'],
-                            ['name' => 'B 1203 PCS', 'value' => "Selesai", 'percentage' => 100, 'color' => 'success'],
-                            ['name' => 'AB 3253 BA', 'value' => "Menunggu Antrian", 'percentage' => 0, 'color' => 'success'],
-                            ['name' => 'H 4326 XX', 'value' => "Menunggu Antrian", 'percentage' => 0, 'color' => 'success']
+                            ['name' => 'AA 1210 AB', 'value' => "Payment", 'percentage' => 35.96, 'color' => 'danger'],
+                            ['name' => 'B 1203 PCS', 'value' => "Complete", 'percentage' => 100, 'color' => 'success'],
+                            ['name' => 'AB 3253 BA', 'value' => "Waiting Queue", 'percentage' => 0, 'color' => 'success'],
+                            ['name' => 'H 4326 XX', 'value' => "Waiting Queue", 'percentage' => 0, 'color' => 'success']
                             ];
                     @endphp
 

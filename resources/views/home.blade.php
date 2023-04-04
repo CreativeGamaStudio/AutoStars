@@ -28,12 +28,18 @@
                     <x-conversion-rate-widget title="Customer" :conversion-rate="75" :percentage-change="10" change-direction="up" />
                 </div>
                 <div class="col-4">
+                    <x-conversion-rate-widget title="Parts" :conversion-rate="90" :percentage-change="9" change-direction="up" />
+                </div>
+                <div class="col-4">
+                    <x-conversion-rate-widget title="Mechanics" :conversion-rate="80" :percentage-change="7" change-direction="down" />
+                </div>
+                <div class="col-6">
+                    <x-conversion-rate-widget title="Service" :conversion-rate="60" :percentage-change="6" change-direction="up" />
+                </div>
+                <div class="col-6">
                     <x-conversion-rate-widget title="Invoice" :conversion-rate="80" :percentage-change="7" change-direction="down" />
-                </div>
-                <div class="col-4">
-                    <x-conversion-rate-widget title="Mekanik Siap" :conversion-rate="80" :percentage-change="7" change-direction="down" />
-                </div>
-                <div class="col-4">
+                </div>               
+                {{-- <div class="col-4">
                     @php
                         $progressItems = [
                             ['name' => 'AB 2000 PX', 'value' => "Service", 'percentage' => 71.0, 'color' => 'primary'],
@@ -62,7 +68,7 @@
                     <x-table-widget title="Waiting List" itemNameHeader="Kendaraan" itemValueHeader="Proses"
                         :progressItems="$progressItems" />
 
-                </div>
+                </div> --}}
                 <div class="col">
                     @php
                         $progressItems = [

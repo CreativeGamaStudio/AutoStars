@@ -295,7 +295,7 @@
                                     Registration
                                 </a>
                                 <a class="dropdown-item" href="./orders">
-                                    Order ( Perintah Kerja Bengkel)
+                                    Order
                                 </a>
                                 <a class="dropdown-item" href="./services">
                                     Service
@@ -395,7 +395,7 @@
                         <div class="dropdown-menu-columns">
                             <div class="dropdown-menu-column">
                                 <a class="dropdown-item" href="./notes">
-                                    Receipt (Nota Bengkel)
+                                    Receipt
                                 </a>
                                 <a class="dropdown-item" href="./payments">
                                     Payment

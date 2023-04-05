@@ -39,7 +39,7 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'plate_number' => 'required|string|max:16',
+            'police_number' => 'required|string|max:16',
             'engine_number' => 'required|string|max:12',
             'type' => 'required|string|max:50',
             'color' => 'required|string|max:50',
@@ -48,7 +48,7 @@ class VehicleController extends Controller
         ]);
 
         $vehicle = new Vehicle();
-        $vehicle->plate_number = $validatedData['plate_number'];
+        $vehicle->police_number = $validatedData['police_number'];
         $vehicle->engine_number = $validatedData['engine_number'];
         $vehicle->type = $validatedData['type'];
         $vehicle->color = $validatedData['color'];
@@ -93,7 +93,7 @@ class VehicleController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'plate_number' => 'required|string|max:16',
+            'police_number' => 'required|string|max:16',
             'engine_number' => 'required|string|max:12',
             'type' => 'required|string|max:50',
             'color' => 'required|string|max:50',
@@ -103,7 +103,7 @@ class VehicleController extends Controller
         $vehicle = Vehicle::find($id);
 
 
-        $vehicle->plate_number = $validatedData['plate_number'];
+        $vehicle->police_number = $validatedData['police_number'];
         $vehicle->engine_number = $validatedData['engine_number'];
         $vehicle->type = $validatedData['type'];
         $vehicle->color = $validatedData['color'];

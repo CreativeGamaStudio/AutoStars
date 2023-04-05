@@ -89,7 +89,7 @@ class VehicleDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('plate_number'),
+            Column::make('police_number'),
             Column::make('engine_number'),
             Column::make('type'),
             Column::make('color'),

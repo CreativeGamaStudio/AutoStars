@@ -17,7 +17,7 @@ class VehicleFactory extends Factory
     public function definition()
     {
         return [
-            'plate_number' => fake()->numberBetween(1000, 100000),
+            'police_number' => fake()->numberBetween(1000, 100000),
             'engine_number' => fake()->numberBetween(1000, 100000),
             'type' => fake()->word(),
             'color' => fake()->word(),

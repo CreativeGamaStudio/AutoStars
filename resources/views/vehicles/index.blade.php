@@ -51,7 +51,7 @@
         <input type="hidden" name="_method" value="PUT" />
         @csrf
             <input type="hidden" name="_method" value="PUT"/>
-            <x-input id="plate_number" name="plate_number" label="Plate Number" placeholder="Plate Number" />
+            <x-input id="police_number" name="police_number" label="Police Number" placeholder="Police Number"/>
             <x-input id="engine_number" name="engine_number" label="Engine Number" placeholder="Engine Number" />
             <x-input id="type" name="type" label="Type" placeholder="Type" />
             <x-input id="color" name="color" label="Color" placeholder="Color" />
@@ -66,7 +66,7 @@
         <x-slot:title>New Vehicle</x-slot:title>
         <form action="{{ route('vehicles.store') }}" method="POST">
             @csrf
-            <x-input id="plate_number" name="plate_number" label="Plate Number" placeholder="Plate Number" type="number"/>
+            <x-input id="police_number" name="police_number" label="Police Number" placeholder="Police Number"/>
             <x-input id="engine_number" name="engine_number" label="Engine Number" placeholder="Engine Number" type="number"/>
             <x-input id="type" name="type" label="Type" placeholder="Type" />
             <x-input id="color" name="color" label="Color" placeholder="Color" />
@@ -91,14 +91,14 @@
             console.log(json);
 
             // Set the values of the input fields
-            var inputPlateNumber = document.getElementById('plate_number');
+            var inputPlateNumber = document.getElementById('police_number');
             var inputEngineNumber = document.getElementById('engine_number');
             var inputType = document.getElementById('type');
             var inputColor = document.getElementById('color');
             var inputMerk = document.getElementById('merk');
             var inputYear = document.getElementById('year');
 
-            inputPlateNumber.value = json.plate_number;
+            inputPlateNumber.value = json.police_number;
             inputEngineNumber.value = json.engine_number;
             inputType.value = json.type;
             inputColor.value = json.color;

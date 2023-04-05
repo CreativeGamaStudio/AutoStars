@@ -15,7 +15,7 @@ class CreateKendaraanTable extends Migration
     {
         Schema::create('vehicle', function (Blueprint $table) {
             $table->id();
-            $table->string('plate_number');
+            $table->string('police_number');
             $table->string('engine_number');
             $table->string('type');
             $table->string('color');

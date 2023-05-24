@@ -244,15 +244,6 @@
             </div>
         </div>
         <hr class="hr" />
-        {{-- <div class="row mt-3 bg-gray h-30  d-print-none">
-            <div class="card bg-primary-lt">
-                <div class="card-body p-3">
-                    <h3 class="card-title">Tambah Item</h3>
-                    <button type="button" class="btn btn-icon btn-sm btn-primary"><i class="ti ti-plus"></i>
-                        Tambah</button>
-                </div>
-            </div>
-        </div> --}}
         <div class="row mt-3 d-print-block"">
             <table class="table table-hover table-responsive">
                 <thead>

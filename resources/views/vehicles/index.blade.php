@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
 <div class="page-header d-print-none">
         <div class="container-xl">
@@ -43,24 +42,6 @@
         </div>
     </div>
 
-
-    {{-- edit form --}}
-    <x-modal id="modal-edit-vehicle">
-        <x-slot:title>Edit</x-slot:title>
-        {{ Form::open(['url' => '/', 'method' => 'PUT', 'class' => 'col-md-12']) }}
-        <input type="hidden" name="_method" value="PUT" />
-        @csrf
-            <input type="hidden" name="_method" value="PUT"/>
-            <x-input id="police_number" name="police_number" label="Police Number" placeholder="Police Number"/>
-            <x-input id="engine_number" name="engine_number" label="Engine Number" placeholder="Engine Number" />
-            <x-input id="type" name="type" label="Type" placeholder="Type" />
-            <x-input id="color" name="color" label="Color" placeholder="Color" />
-            <x-input id="merk" name="merk" label="Merk" placeholder="Merk" />
-            <x-input id="year" type="number" name="year" label="Year" placeholder="Year" />
-            <button type="submit" class="btn btn-primary">Submit</button>
-        {{ Form::close()}}
-    </x-modal>
-
     <!-- {{-- modal new vehicle --}} -->
     <x-modal id="modal-new-vehicle">
         <x-slot:title>New Vehicle</x-slot:title>
@@ -78,6 +59,22 @@
     </x-modal>
 
 
+    {{-- edit form --}}
+    <x-modal id="modal-edit-vehicle">
+        <x-slot:title>Edit</x-slot:title>
+        {{ Form::open(['url' => '/', 'method' => 'PUT', 'class' => 'col-md-12']) }}
+        <input type="hidden" name="_method" value="PUT" />
+        @csrf
+            <input type="hidden" name="_method" value="PUT"/>
+            <x-input id="police_number" name="police_number" label="Police Number" placeholder="Police Number"/>
+            <x-input id="engine_number" name="engine_number" label="Engine Number" placeholder="Engine Number" />
+            <x-input id="type" name="type" label="Type" placeholder="Type" />
+            <x-input id="color" name="color" label="Color" placeholder="Color" />
+            <x-input id="merk" name="merk" label="Merk" placeholder="Merk" />
+            <x-input id="year" type="number" name="year" label="Year" placeholder="Year" />
+            <button type="submit" class="btn btn-primary">Submit</button>
+        {{ Form::close()}}
+    </x-modal>
 
     {{-- script edit --}}
     <script>
